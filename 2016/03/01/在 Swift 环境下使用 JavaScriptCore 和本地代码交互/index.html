@@ -47,6 +47,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="王策的博客" type="application/atom+xml" />
+
 
 
 
@@ -57,34 +59,34 @@
 
 
 
-<meta name="description" content="最近被问起这样的问题，所以把自己知道的写出来。包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下。
+<meta name="description" content="最近被问起这样的问题，所以把自己知道的写出来包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下
 如果你想直接看源码这里是项目的完整代码
 准备请大家先下载初始项目
 本文使用 Xcode 7.2.1 + Swift，最低兼容 iOS 8.0
-先来看看初始项目ViewController.swiftViewController.swift 主要配合 Main.story">
+先来看看初始项目ViewController.swiftViewController.swift 主要配合 Main.storybo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Swift 环境下使用 JavaScriptCore 和本地代码交互">
 <meta property="og:url" content="http://yoursite.com/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/index.html">
 <meta property="og:site_name" content="王策的博客">
-<meta property="og:description" content="最近被问起这样的问题，所以把自己知道的写出来。包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下。
+<meta property="og:description" content="最近被问起这样的问题，所以把自己知道的写出来包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下
 如果你想直接看源码这里是项目的完整代码
 准备请大家先下载初始项目
 本文使用 Xcode 7.2.1 + Swift，最低兼容 iOS 8.0
-先来看看初始项目ViewController.swiftViewController.swift 主要配合 Main.story">
+先来看看初始项目ViewController.swiftViewController.swift 主要配合 Main.storybo">
 <meta property="og:image" content="http://yoursite.com/image_001/viewController.png">
 <meta property="og:image" content="http://yoursite.com/image_001/webPage.png">
 <meta property="og:image" content="http://yoursite.com/image_001/consolo.png">
 <meta property="og:image" content="http://yoursite.com/image_001/callNative.gif">
 <meta property="og:image" content="http://yoursite.com/image_001/callJS.gif">
 <meta property="og:image" content="http://yoursite.com/image_001/callJS_2.gif">
-<meta property="og:updated_time" content="2016-03-03T18:24:15.000Z">
+<meta property="og:updated_time" content="2016-03-04T20:58:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Swift 环境下使用 JavaScriptCore 和本地代码交互">
-<meta name="twitter:description" content="最近被问起这样的问题，所以把自己知道的写出来。包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下。
+<meta name="twitter:description" content="最近被问起这样的问题，所以把自己知道的写出来包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下
 如果你想直接看源码这里是项目的完整代码
 准备请大家先下载初始项目
 本文使用 Xcode 7.2.1 + Swift，最低兼容 iOS 8.0
-先来看看初始项目ViewController.swiftViewController.swift 主要配合 Main.story">
+先来看看初始项目ViewController.swiftViewController.swift 主要配合 Main.storybo">
 <meta name="twitter:image" content="http://yoursite.com/image_001/viewController.png">
 
 
@@ -269,7 +271,7 @@
       
 
       
-        <p>最近被问起这样的问题，所以把自己知道的写出来。<br>包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下。</p>
+        <p>最近被问起这样的问题，所以把自己知道的写出来<br>包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下</p>
 <h3 id="如果你想直接看源码"><a href="#如果你想直接看源码" class="headerlink" title="如果你想直接看源码"></a>如果你想直接看源码</h3><p><a href="https://github.com/HaloWang/JavaScriptCoreDemo/blob/master/finish.zip?raw=true" target="_blank" rel="external">这里</a>是项目的完整代码</p>
 <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>请大家先下载<a href="https://github.com/HaloWang/JavaScriptCoreDemo/blob/master/begin.zip?raw=true" target="_blank" rel="external">初始项目</a></p>
 <p>本文使用 Xcode 7.2.1 + Swift，最低兼容 iOS 8.0</p>
@@ -324,10 +326,10 @@
 <pre><code>context?.setObject(unsafeBitCast(callBack, AnyObject.self), forKeyedSubscript: &quot;callNative&quot;)
 </code></pre><p>context 会强引用这个回调块，为了避免强引用，我们需要将 self 在 block 中声明为弱引用</p>
 <p>至于 @convention(block) ，大家可以参看<a href="http://stackoverflow.com/questions/32776342/how-to-store-this-objectivec-block-inside-a-swift-variable" target="_blank" rel="external">这里</a></p>
-<p>PS: 还有一个问题，上面的代码大家是不是有点害怕？优雅的 Swift 怎么会出现 <code>unsafeBitCast(callBack, AnyObject.self)</code> 这样的代码！大家可以看看 <a href="http://nshipster.cn/javascriptcore/" target="_blank" rel="external">NSHipster</a>。期待 iOS10 中 JavaScriptCore 可以实现下标访问。</p>
+<p>PS: 还有一个问题，上面的代码大家是不是有点害怕？优雅的 Swift 怎么会出现 <code>unsafeBitCast(callBack, AnyObject.self)</code> 这样的代码！大家可以看看 <a href="http://nshipster.cn/javascriptcore/#下标值" target="_blank" rel="external">NSHipster</a><br>期待 iOS10 SDK 中 Swift 环境下，JSContext 可以实现下标访问</p>
 <p>PS2: 另外，我在这里将 paramFromJS 声明为了 AnyObject? 类型，JavaScriptCore 是可以自动将 js 传递的参数做转换的，上面例子中，我们通过</p>
 <pre><code>print(paramFromJS!.dynamicType)
-</code></pre><p>可以发现 paramFromJS 被转化为了<code>__NSDictionaryM</code>（关于 dynamicType，请看<a href="http://swifter.tips/instance-type/" target="_blank" rel="external">这里</a>。</p>
+</code></pre><p>可以发现 paramFromJS 被转化为了<code>__NSDictionaryM</code><br>关于 dynamicType，请看<a href="http://swifter.tips/instance-type/" target="_blank" rel="external">这里</a></p>
 <p><strong>运行程序</strong></p>
 <p>此时控制台输出：</p>
 <p><img src="/image_001/consolo.png" alt=""></p>
@@ -415,6 +417,29 @@
 
     <div class="post-spread">
       
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
     </div>
   </div>
 
@@ -483,6 +508,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
