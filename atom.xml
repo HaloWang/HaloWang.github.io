@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-04T21:10:38.000Z</updated>
+  <updated>2016-03-09T20:03:21.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,209 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Halo.framework</title>
+    <link href="http://yoursite.com/2016/03/09/introduction-of-Halo/"/>
+    <id>http://yoursite.com/2016/03/09/introduction-of-Halo/</id>
+    <published>2016-03-09T14:46:39.000Z</published>
+    <updated>2016-03-09T20:03:21.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的&lt;/p&gt;
+&lt;p&gt;Halo 的名字取自一款叫做 &lt;a href=&quot;https://www.halowaypoint.com/en-us&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HALO&lt;/a&gt; 的游戏。我比较喜欢这款游戏宏大的背景，所以就叫做这个名字了&lt;/p&gt;
+&lt;h3 id=&quot;Tips&quot;&gt;&lt;a href=&quot;#Tips&quot; class=&quot;headerlink&quot; title=&quot;Tips&quot;&gt;&lt;/a&gt;Tips&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Halo 使用 Swift 编写，仅支持 iOS 平台&lt;/li&gt;
+&lt;li&gt;已上传至&lt;a href=&quot;https://github.com/HaloWang/Halo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;，如果你感兴趣，可以直接下载下来玩玩看（在 HaloDemo 这个 Target 中）~&lt;/li&gt;
+&lt;li&gt;我使用 &lt;a href=&quot;https://github.com/Carthage/Carthage&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Carthage&lt;/a&gt;(carthage build –no-skip-current) 将自己的 Halo 打包成 framework 集成进自己的项目&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;链式语法&quot;&gt;&lt;a href=&quot;#链式语法&quot; class=&quot;headerlink&quot; title=&quot;链式语法&quot;&gt;&lt;/a&gt;链式语法&lt;/h4&gt;&lt;p&gt;Halo 中很多方法都是为了实现链式语法，或者带有链式语法的特性&lt;/p&gt;
+&lt;p&gt;非链式语法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;object.propertyA = valueA
+object.propertyB = valueB
+object.propertyC = valueC
+object.propertyD = valueD
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;链式语法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;object
+    .propertyA(valueA)
+    .propertyB(valueB)
+    .propertyC(valueC)
+    .propertyD(valueD)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;效果图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/image_002/ChainableMethods.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我这样作的主要原因是：&lt;br&gt;&lt;strong&gt;不喜欢在设置 object 的若干属性时每次都要多写一个 object&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这种方法的基本实现为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;extension Class {
+    //    Chainable method of property
+    func property(property: propertyType) -&amp;gt; Self {
+        self.property = property
+        return self
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Halo-详细介绍&quot;&gt;&lt;a href=&quot;#Halo-详细介绍&quot; class=&quot;headerlink&quot; title=&quot;Halo 详细介绍&quot;&gt;&lt;/a&gt;Halo 详细介绍&lt;/h3&gt;&lt;p&gt;Halo.framework 工程目录如下图：&lt;br&gt;&lt;img src=&quot;/image_002/proj.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;接下来的时间，我会介绍一下 Source 目录下各个文件实现的主要功能&lt;/p&gt;
+&lt;h4 id=&quot;Swift-Halo&quot;&gt;&lt;a href=&quot;#Swift-Halo&quot; class=&quot;headerlink&quot; title=&quot;Swift+Halo&quot;&gt;&lt;/a&gt;Swift+Halo&lt;/h4&gt;&lt;h5 id=&quot;CGFloatable-swift&quot;&gt;&lt;a href=&quot;#CGFloatable-swift&quot; class=&quot;headerlink&quot; title=&quot;CGFloatable.swift&quot;&gt;&lt;/a&gt;CGFloatable.swift&lt;/h5&gt;&lt;p&gt;该文件提供了一个&lt;code&gt;CGFloatable&lt;/code&gt;协议，主要是觉得在 Swift 编译器总是认为 “1” 是&lt;code&gt;Int&lt;/code&gt;值，和&lt;code&gt;CGFloat&lt;/code&gt;数据使用时总会出先编译错误。所以为&lt;code&gt;Int&lt;/code&gt;、&lt;code&gt;Double&lt;/code&gt;、&lt;code&gt;Float&lt;/code&gt;实现了&lt;code&gt;CGFloatable&lt;/code&gt;协议，通过 &lt;code&gt;.f&lt;/code&gt; 的形式快速转化为&lt;code&gt;CGFloat&lt;/code&gt;（而不是麻烦的 &lt;code&gt;CGFloat(X)&lt;/code&gt;）&lt;br&gt;同事在此基础上，使用硬编码对屏幕适配做了一些处理&lt;/p&gt;
+&lt;h5 id=&quot;GCD-Halo-swift&quot;&gt;&lt;a href=&quot;#GCD-Halo-swift&quot; class=&quot;headerlink&quot; title=&quot;GCD+Halo.swift&quot;&gt;&lt;/a&gt;GCD+Halo.swift&lt;/h5&gt;&lt;p&gt;快速调用 GCD，但是网上已经有很好的&lt;a href=&quot;https://github.com/duemunk/Async&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;实现&lt;/a&gt;了&lt;br&gt;我经常会这样写：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Async {
+
+    //  复杂耗时任务...
+
+    Last {
+        //  更新 UI
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;或者：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;After(second: 2) {
+    //    做某事
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;Print-Halo-swift&quot;&gt;&lt;a href=&quot;#Print-Halo-swift&quot; class=&quot;headerlink&quot; title=&quot;Print+Halo.swift&quot;&gt;&lt;/a&gt;Print+Halo.swift&lt;/h5&gt;&lt;p&gt;通过&lt;code&gt;ccRight&lt;/code&gt;、&lt;code&gt;ccWarning&lt;/code&gt;、&lt;code&gt;ccError&lt;/code&gt;输出表情符号方便调试&lt;br&gt;之后我们可以在控制台输出像这样的东西：&lt;br&gt;&lt;img src=&quot;/image_002/log.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;UIKit-Halo&quot;&gt;&lt;a href=&quot;#UIKit-Halo&quot; class=&quot;headerlink&quot; title=&quot;UIKit+Halo&quot;&gt;&lt;/a&gt;UIKit+Halo&lt;/h4&gt;&lt;p&gt;这个目录下的文件以 &lt;code&gt;extension&lt;/code&gt; 的形式大量的实现了 UIKit 一些常用控件的链式语法，以方便日常开发的使用&lt;/p&gt;
+&lt;p&gt;除此之外，还有一些边边角角的东西：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UITableView/UICollectionView 利用泛型快速注册/重用单元格方法&lt;/li&gt;
+&lt;li&gt;使用 Hex 值初始化 UIColor&lt;/li&gt;
+&lt;li&gt;UIImage静态模糊&lt;/li&gt;
+&lt;li&gt;UIView 截屏&lt;/li&gt;
+&lt;li&gt;文本显示所需高度计算&lt;/li&gt;
+&lt;li&gt;UIAlertController 封装&lt;br&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;KeyboardObserver&quot;&gt;&lt;a href=&quot;#KeyboardObserver&quot; class=&quot;headerlink&quot; title=&quot;KeyboardObserver&quot;&gt;&lt;/a&gt;KeyboardObserver&lt;/h4&gt;&lt;p&gt;实现这个类主要是原来每次在不同 &lt;code&gt;UIViewController&lt;/code&gt; 中处理键盘事件，写了很多重复代码，被恶心到了(-_-!)&lt;/p&gt;
+&lt;p&gt;假设我们需要在 ViewController 类中监听键盘高度，只需要设置（我通常在 viewDidLoad 方法中）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;KeyboardObserver.delegate = self
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;让 ViewController 实现相关协议：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// MARK: - KeyboardObserverDelegate
+extension ViewController : KeyboardObserverDelegate {
+    func keyboardWillChangeToHeight(height: CGFloat, duration: NSTimeInterval) {
+        //    height 就是键盘即将改变到的高度
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你还想使用 Halo 对 &lt;code&gt;UIScrollView&lt;/code&gt; 的拓展，再调用一下 &lt;code&gt;insetBottom()&lt;/code&gt; 就可以方便快捷的实现键盘高度变化的响应了~&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func keyboardWillChangeToHeight(height: CGFloat, duration: NSTimeInterval) 
+    scrollView.insetBottom(height)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;PS：方便归方便，但是这个类的我写的有点乱，有机会一定好好整理一下！&lt;/p&gt;
+&lt;h4 id=&quot;方圆（FangYuan）&quot;&gt;&lt;a href=&quot;#方圆（FangYuan）&quot; class=&quot;headerlink&quot; title=&quot;方圆（FangYuan）&quot;&gt;&lt;/a&gt;方圆（FangYuan）&lt;/h4&gt;&lt;p&gt;一套微型布局库，使用&lt;code&gt;UIView.frame&lt;/code&gt;进行布局，功能简单，上手快速！&lt;/p&gt;
+&lt;h5 id=&quot;我是这样想的&quot;&gt;&lt;a href=&quot;#我是这样想的&quot; class=&quot;headerlink&quot; title=&quot;我是这样想的&quot;&gt;&lt;/a&gt;我是这样想的&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;任何一个&lt;code&gt;UIView&lt;/code&gt;，我们知道其在 X 轴上的&lt;code&gt;宽度&lt;/code&gt;、&lt;code&gt;&amp;lt;左边-父视图左边&amp;gt;距离&lt;/code&gt;、&lt;code&gt;&amp;lt;右边-父视图右边&amp;gt;距离&lt;/code&gt;中的任意两者，即可确定&lt;code&gt;UIView.frame.origin.x&lt;/code&gt;和&lt;code&gt;UIView.frame.size.width&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;任何一个&lt;code&gt;UIView&lt;/code&gt;，我们知道其在 Y 轴上的&lt;code&gt;高度&lt;/code&gt;、&lt;code&gt;&amp;lt;上边-父视图上边&amp;gt;距离&lt;/code&gt;、&lt;code&gt;&amp;lt;下边-下视图右边&amp;gt;距离&lt;/code&gt;中的任意两者，即可确定&lt;code&gt;UIView.frame.origin.y&lt;/code&gt;和&lt;code&gt;UIView.frame.size.height&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;通过前两步，即可确定该&lt;code&gt;UIView&lt;/code&gt;的&lt;code&gt;frame&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;予以实现&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&quot;简单展示&quot;&gt;&lt;a href=&quot;#简单展示&quot; class=&quot;headerlink&quot; title=&quot;简单展示&quot;&gt;&lt;/a&gt;简单展示&lt;/h5&gt;&lt;p&gt;假设我们想达到这样的需求：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1、testView_A
+    距离顶部30，距离右侧30，高度为100，距离左侧30
+2、testView_B
+    距离 testView_A 的底部 25
+    距离 superView 左侧的距离等于 testView_A 距离 superView 左侧的距离
+    距离 superView 右侧的距离等于 testView_A 距离 superView 右侧的距离 + 10
+    距离 superView 底部的距离等于 30
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;效果图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/image_002/FangYuanDemo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;不使用任何第三方布局方式：&quot;&gt;&lt;a href=&quot;#不使用任何第三方布局方式：&quot; class=&quot;headerlink&quot; title=&quot;不使用任何第三方布局方式：&quot;&gt;&lt;/a&gt;不使用任何第三方布局方式：&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;class ViewController: UIViewController {
+
+    let testView_A = UILabel()
+
+    let testView_B = UILabel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(testView_A)
+        view.addSubview(testView_B)
+
+        testView_A.text = &amp;quot;testView_A&amp;quot;
+        testView_B.text = &amp;quot;testView_B&amp;quot;
+
+        var frameA = CGRectZero
+        frameA.origin.x = 30
+        frameA.origin.y = 30
+        frameA.size.width = UIScreen.mainScreen().bounds.size.width - frameA.origin.x - 30
+        frameA.size.height = 100
+        testView_A.frame = frameA
+
+        var frameB = CGRectZero
+        frameB.origin.x = testView_A.frame.origin.x
+        frameB.origin.y = testView_A.frame.origin.y + testView_A.frame.size.height + 25
+        frameB.size.width = UIScreen.mainScreen().bounds.size.width - testView_A.frame.origin.x - (testView_A.superview!.frame.size.width - (testView_A.frame.origin.x + testView_A.frame.size.width)) - 10
+        frameB.size.height = UIScreen.mainScreen().bounds.size.height - frameB.origin.y - 30
+        testView_B.frame = frameB
+
+
+        testView_A.backgroundColor = UIColor.redColor()
+        testView_B.backgroundColor = UIColor.blueColor()
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用 FangYuan：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import UIKit
+import Halo
+
+class ViewController: UIViewController {
+
+    let testView_A = UILabel()
+
+    let testView_B = UILabel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(testView_A)
+        view.addSubview(testView_B)
+
+        testView_A.text = &amp;quot;testView_A&amp;quot;
+        testView_B.text = &amp;quot;testView_B&amp;quot;
+
+        //    ------- 主要变化 -------
+
+        testView_A
+            .top(30)
+            .right(30)
+            .height(100)
+            .left(30)
+
+        testView_B
+            .top(testView_A.chainBottom + 25)
+            .left(testView_A.left)
+            .right(testView_A.right + 10)
+            .bottom(30)
+
+        //    ---------------------
+
+        testView_A.backgroundColor = UIColor.redColor()
+        testView_B.backgroundColor = UIColor.blueColor()
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以看到 FangYuan 能简化很多代码，就算是和 Masonry 相比，也能省下不少代码，同时也还能实现同样的效果&lt;/p&gt;
+&lt;h5 id=&quot;FangYuan-的缺点&quot;&gt;&lt;a href=&quot;#FangYuan-的缺点&quot; class=&quot;headerlink&quot; title=&quot;FangYuan 的缺点&quot;&gt;&lt;/a&gt;FangYuan 的缺点&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;需要知道在&lt;code&gt;UIView.superView&lt;/code&gt;存在时才有效&lt;/li&gt;
+&lt;li&gt;FangYuan 的诸多方法需要在&lt;code&gt;layoutSubviews&lt;/code&gt;或&lt;code&gt;viewWillLayoutSubviews&lt;/code&gt;调用才能保证随&lt;code&gt;superView.frame&lt;/code&gt;的变化而变化，比如上述代码的ViewController外如果嵌套在一个 NavigationController中，会出现这种情况（因为FangYuan的方法写在了&lt;code&gt;viewDidLoad&lt;/code&gt;中）：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;/image_002/badDemo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h5 id=&quot;FangYuan-的使用情况&quot;&gt;&lt;a href=&quot;#FangYuan-的使用情况&quot; class=&quot;headerlink&quot; title=&quot;FangYuan 的使用情况&quot;&gt;&lt;/a&gt;FangYuan 的使用情况&lt;/h5&gt;&lt;p&gt;我在最近的一个&lt;a href=&quot;https://itunes.apple.com/cn/app/quan-min-mo-te-ti-gong-gao/id1086009210?mt=8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;项目&lt;/a&gt;中，&lt;strong&gt;仅仅&lt;/strong&gt;使用了 Halo.FangYuan 就实现了整个项目的布局😁&lt;/p&gt;
+&lt;h3 id=&quot;如何在你的项目中集成-Halo-framework&quot;&gt;&lt;a href=&quot;#如何在你的项目中集成-Halo-framework&quot; class=&quot;headerlink&quot; title=&quot;如何在你的项目中集成 Halo.framework&quot;&gt;&lt;/a&gt;如何在你的项目中集成 Halo.framework&lt;/h3&gt;&lt;p&gt;1、直接在&lt;a href=&quot;https://github.com/HaloWang/Halo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;下载下来整个项目&lt;br&gt;2、打开终端&lt;br&gt;3、cd [解压缩后的工程目录]&lt;br&gt;4、carthage build –no-skip-current&lt;br&gt;5、在工程目录中 Carthage/Build/iOS/ 中找到 Halo.framework&lt;br&gt;6、接下来就是将 Halo.framework 集成到你的工程中了，相信大家看到这里，应该都肯定会的吧~&lt;/p&gt;
+&lt;h4 id=&quot;上线到-AppStore-时的坑&quot;&gt;&lt;a href=&quot;#上线到-AppStore-时的坑&quot; class=&quot;headerlink&quot; title=&quot;上线到 AppStore 时的坑&quot;&gt;&lt;/a&gt;上线到 AppStore 时的坑&lt;/h4&gt;&lt;p&gt;使用上述方法集成的 Halo.framework 在（且仅在）上传至 AppStore 时会出错，原因是将 Halo.framework 中多余的 Architectures 打包进了索要上传的应用程序包中，解决方案大家可以参照&lt;a href=&quot;http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;或者&lt;a href=&quot;http://stackoverflow.com/questions/35240330/errors-building-xcode-project-after-adding-in-run-script-fatal-error-lipo-inpu/35240555&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stackoverflow&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;囧，这个分明是我的锅啊，有时间一定解决！&lt;/p&gt;
+&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;h4 id=&quot;现在&quot;&gt;&lt;a href=&quot;#现在&quot; class=&quot;headerlink&quot; title=&quot;现在&quot;&gt;&lt;/a&gt;现在&lt;/h4&gt;&lt;p&gt;总得来说，Halo.framework是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。&lt;/p&gt;
+&lt;p&gt;平时写项目，写Demo感觉根部离不开~不过，相比于网上知名的第三方库来说，就羸弱很多了😓&lt;/p&gt;
+&lt;h4 id=&quot;将来&quot;&gt;&lt;a href=&quot;#将来&quot; class=&quot;headerlink&quot; title=&quot;将来&quot;&gt;&lt;/a&gt;将来&lt;/h4&gt;&lt;p&gt;最近读了喵神的&lt;a href=&quot;https://onevcat.com/2016/01/create-framework/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;如何打造一个让人愉快的框架&lt;/a&gt;，感觉自己的 Halo 即便仅仅是个人使用，也有很多可以改进的地方，比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;你还没有对 FangYuan 进行过性能优化啊？&lt;/li&gt;
+&lt;li&gt;FangYuan 一定要在&lt;code&gt;layoutSubviews&lt;/code&gt;或&lt;code&gt;viewWillLayoutSubviews&lt;/code&gt;才能保证使用FangYuan的&lt;code&gt;UIView&lt;/code&gt;的&lt;code&gt;superView&lt;/code&gt;一定存在吗？才能保证任何 frame 变动时，约束都能生效吗？是不是可以利用 runtime 做一些事情呢？&lt;/li&gt;
+&lt;li&gt;书写链式语法时，在代码自动补齐方面，总是跟 UIKit 原有的属性相冲突，为了快速书写，也为了避免和其他第三方库产生可能的冲突，是不是应该添加前缀？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有机会的话，我一定会不断积累下去的！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>在 Swift 环境下使用 JavaScriptCore 和本地代码交互</title>
     <link href="http://yoursite.com/2016/03/01/%E5%9C%A8%20Swift%20%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8%20JavaScriptCore%20%E5%92%8C%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E4%BA%A4%E4%BA%92/"/>
     <id>http://yoursite.com/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/</id>
     <published>2016-03-01T15:36:50.000Z</published>
-    <updated>2016-03-04T21:10:38.000Z</updated>
+    <updated>2016-03-09T16:37:27.000Z</updated>
     
     <content type="html">&lt;p&gt;最近被问起这样的问题，所以把自己知道的写出来&lt;br&gt;包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下&lt;/p&gt;
 &lt;h3 id=&quot;如果你想直接看源码&quot;&gt;&lt;a href=&quot;#如果你想直接看源码&quot; class=&quot;headerlink&quot; title=&quot;如果你想直接看源码&quot;&gt;&lt;/a&gt;如果你想直接看源码&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/HaloWang/JavaScriptCoreDemo/blob/master/finish.zip?raw=true&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;是项目的完整代码&lt;/p&gt;
