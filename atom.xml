@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-09T20:03:21.000Z</updated>
+  <updated>2016-03-13T14:12:25.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/03/09/introduction-of-Halo/"/>
     <id>http://yoursite.com/2016/03/09/introduction-of-Halo/</id>
     <published>2016-03-09T14:46:39.000Z</published>
-    <updated>2016-03-09T20:03:21.000Z</updated>
+    <updated>2016-03-13T14:12:25.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的&lt;/p&gt;
 &lt;p&gt;Halo 的名字取自一款叫做 &lt;a href=&quot;https://www.halowaypoint.com/en-us&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HALO&lt;/a&gt; 的游戏。我比较喜欢这款游戏宏大的背景，所以就叫做这个名字了&lt;/p&gt;
@@ -53,7 +53,7 @@ object.propertyD = valueD
     }
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Halo-详细介绍&quot;&gt;&lt;a href=&quot;#Halo-详细介绍&quot; class=&quot;headerlink&quot; title=&quot;Halo 详细介绍&quot;&gt;&lt;/a&gt;Halo 详细介绍&lt;/h3&gt;&lt;p&gt;Halo.framework 工程目录如下图：&lt;br&gt;&lt;img src=&quot;/image_002/proj.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;接下来的时间，我会介绍一下 Source 目录下各个文件实现的主要功能&lt;/p&gt;
-&lt;h4 id=&quot;Swift-Halo&quot;&gt;&lt;a href=&quot;#Swift-Halo&quot; class=&quot;headerlink&quot; title=&quot;Swift+Halo&quot;&gt;&lt;/a&gt;Swift+Halo&lt;/h4&gt;&lt;h5 id=&quot;CGFloatable-swift&quot;&gt;&lt;a href=&quot;#CGFloatable-swift&quot; class=&quot;headerlink&quot; title=&quot;CGFloatable.swift&quot;&gt;&lt;/a&gt;CGFloatable.swift&lt;/h5&gt;&lt;p&gt;该文件提供了一个&lt;code&gt;CGFloatable&lt;/code&gt;协议，主要是觉得在 Swift 编译器总是认为 “1” 是&lt;code&gt;Int&lt;/code&gt;值，和&lt;code&gt;CGFloat&lt;/code&gt;数据使用时总会出先编译错误。所以为&lt;code&gt;Int&lt;/code&gt;、&lt;code&gt;Double&lt;/code&gt;、&lt;code&gt;Float&lt;/code&gt;实现了&lt;code&gt;CGFloatable&lt;/code&gt;协议，通过 &lt;code&gt;.f&lt;/code&gt; 的形式快速转化为&lt;code&gt;CGFloat&lt;/code&gt;（而不是麻烦的 &lt;code&gt;CGFloat(X)&lt;/code&gt;）&lt;br&gt;同事在此基础上，使用硬编码对屏幕适配做了一些处理&lt;/p&gt;
+&lt;h4 id=&quot;Swift-Halo&quot;&gt;&lt;a href=&quot;#Swift-Halo&quot; class=&quot;headerlink&quot; title=&quot;Swift+Halo&quot;&gt;&lt;/a&gt;Swift+Halo&lt;/h4&gt;&lt;h5 id=&quot;CGFloatable-swift&quot;&gt;&lt;a href=&quot;#CGFloatable-swift&quot; class=&quot;headerlink&quot; title=&quot;CGFloatable.swift&quot;&gt;&lt;/a&gt;CGFloatable.swift&lt;/h5&gt;&lt;p&gt;该文件提供了一个&lt;code&gt;CGFloatable&lt;/code&gt;协议，主要是觉得在 Swift 编译器总是认为 “1” 是&lt;code&gt;Int&lt;/code&gt;值，和&lt;code&gt;CGFloat&lt;/code&gt;数据使用时总会出先编译错误。所以为&lt;code&gt;Int&lt;/code&gt;、&lt;code&gt;Double&lt;/code&gt;、&lt;code&gt;Float&lt;/code&gt;实现了&lt;code&gt;CGFloatable&lt;/code&gt;协议，通过 &lt;code&gt;.f&lt;/code&gt; 的形式快速转化为&lt;code&gt;CGFloat&lt;/code&gt;（而不是麻烦的 &lt;code&gt;CGFloat(X)&lt;/code&gt;）&lt;br&gt;同时在此基础上，使用硬编码对屏幕适配做了一些处理&lt;/p&gt;
 &lt;h5 id=&quot;GCD-Halo-swift&quot;&gt;&lt;a href=&quot;#GCD-Halo-swift&quot; class=&quot;headerlink&quot; title=&quot;GCD+Halo.swift&quot;&gt;&lt;/a&gt;GCD+Halo.swift&lt;/h5&gt;&lt;p&gt;快速调用 GCD，但是网上已经有很好的&lt;a href=&quot;https://github.com/duemunk/Async&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;实现&lt;/a&gt;了&lt;br&gt;我经常会这样写：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Async {
 

@@ -46,6 +46,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="王策的博客" type="application/atom+xml" />
 
@@ -78,7 +80,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
 <meta property="og:image" content="http://yoursite.com/image_002/log.png">
 <meta property="og:image" content="http://yoursite.com/image_002/FangYuanDemo.png">
 <meta property="og:image" content="http://yoursite.com/image_002/badDemo.png">
-<meta property="og:updated_time" content="2016-03-09T20:03:21.000Z">
+<meta property="og:updated_time" content="2016-03-13T14:12:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Halo.framework">
 <meta name="twitter:description" content="简介Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的
@@ -301,7 +303,7 @@ object.propertyD = valueD
     }
 }
 </code></pre><h3 id="Halo-详细介绍"><a href="#Halo-详细介绍" class="headerlink" title="Halo 详细介绍"></a>Halo 详细介绍</h3><p>Halo.framework 工程目录如下图：<br><img src="/image_002/proj.png" alt=""><br>接下来的时间，我会介绍一下 Source 目录下各个文件实现的主要功能</p>
-<h4 id="Swift-Halo"><a href="#Swift-Halo" class="headerlink" title="Swift+Halo"></a>Swift+Halo</h4><h5 id="CGFloatable-swift"><a href="#CGFloatable-swift" class="headerlink" title="CGFloatable.swift"></a>CGFloatable.swift</h5><p>该文件提供了一个<code>CGFloatable</code>协议，主要是觉得在 Swift 编译器总是认为 “1” 是<code>Int</code>值，和<code>CGFloat</code>数据使用时总会出先编译错误。所以为<code>Int</code>、<code>Double</code>、<code>Float</code>实现了<code>CGFloatable</code>协议，通过 <code>.f</code> 的形式快速转化为<code>CGFloat</code>（而不是麻烦的 <code>CGFloat(X)</code>）<br>同事在此基础上，使用硬编码对屏幕适配做了一些处理</p>
+<h4 id="Swift-Halo"><a href="#Swift-Halo" class="headerlink" title="Swift+Halo"></a>Swift+Halo</h4><h5 id="CGFloatable-swift"><a href="#CGFloatable-swift" class="headerlink" title="CGFloatable.swift"></a>CGFloatable.swift</h5><p>该文件提供了一个<code>CGFloatable</code>协议，主要是觉得在 Swift 编译器总是认为 “1” 是<code>Int</code>值，和<code>CGFloat</code>数据使用时总会出先编译错误。所以为<code>Int</code>、<code>Double</code>、<code>Float</code>实现了<code>CGFloatable</code>协议，通过 <code>.f</code> 的形式快速转化为<code>CGFloat</code>（而不是麻烦的 <code>CGFloat(X)</code>）<br>同时在此基础上，使用硬编码对屏幕适配做了一些处理</p>
 <h5 id="GCD-Halo-swift"><a href="#GCD-Halo-swift" class="headerlink" title="GCD+Halo.swift"></a>GCD+Halo.swift</h5><p>快速调用 GCD，但是网上已经有很好的<a href="https://github.com/duemunk/Async" target="_blank" rel="external">实现</a>了<br>我经常会这样写：</p>
 <pre><code>Async {
 
