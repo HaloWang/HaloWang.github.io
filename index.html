@@ -269,7 +269,7 @@
 <h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul>
 <li>Halo 使用 Swift 编写，仅支持 iOS 平台</li>
 <li>已上传至<a href="https://github.com/HaloWang/Halo" target="_blank" rel="external">Github</a>，如果你感兴趣，可以直接下载下来玩玩看（在 HaloDemo 这个 Target 中）~</li>
-<li>我使用 <a href="https://github.com/Carthage/Carthage" target="_blank" rel="external">Carthage</a>(carthage build –no-skip-current) 将自己的 Halo 打包成 framework 集成进自己的项目</li>
+<li>我使用 <a href="https://github.com/Carthage/Carthage" target="_blank" rel="external">Carthage</a>(carthage build –no-skip-current) 将自己的 Halo 打包成 framework 集成进自己的项目（当然你也可以使用 cocoapods）</li>
 </ul>
 <h4 id="链式语法"><a href="#链式语法" class="headerlink" title="链式语法"></a>链式语法</h4><p>Halo 中很多方法都是为了实现链式语法，或者带有链式语法的特性</p>
 <p>非链式语法：</p>
@@ -436,8 +436,8 @@ class ViewController: UIViewController {
 <h4 id="Cocoapods"><a href="#Cocoapods" class="headerlink" title="Cocoapods"></a>Cocoapods</h4><p>直接使用 <code>pod &#39;Halo&#39;</code>，不要忘记 <code>use_frameworks!</code>~</p>
 <h4 id="上线到-AppStore-时的坑"><a href="#上线到-AppStore-时的坑" class="headerlink" title="上线到 AppStore 时的坑"></a>上线到 AppStore 时的坑</h4><p>使用上述方法集成的 Halo.framework 在（且仅在）上传至 AppStore 时会出错，原因是将 Halo.framework 中多余的 Architectures 打包进了索要上传的应用程序包中，解决方案大家可以参照<a href="http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/" target="_blank" rel="external">这里</a>或者<a href="http://stackoverflow.com/questions/35240330/errors-building-xcode-project-after-adding-in-run-script-fatal-error-lipo-inpu/35240555" target="_blank" rel="external">Stackoverflow</a></p>
 <p>囧，这个分明是我的锅啊，有时间一定解决！</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h4><p>总得来说，Halo.framework是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。</p>
-<p>平时写项目，写Demo感觉根部离不开~不过，相比于网上知名的第三方库来说，就羸弱很多了😓</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h4><p>总得来说，Halo.framework 是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。</p>
+<p>平时写项目，写Demo感觉根本离不开~不过，相比于网上知名的第三方库来说，就羸弱很多了😓</p>
 <h4 id="将来"><a href="#将来" class="headerlink" title="将来"></a>将来</h4><p>最近读了喵神的<a href="https://onevcat.com/2016/01/create-framework/" target="_blank" rel="external">如何打造一个让人愉快的框架</a>，感觉自己的 Halo 即便仅仅是个人使用，也有很多可以改进的地方，比如：</p>
 <ul>
 <li>你还没有对 FangYuan 进行过性能优化啊？</li>

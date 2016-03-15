@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-15T10:05:42.000Z</updated>
+  <updated>2016-03-15T10:34:12.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,14 +20,14 @@
     <link href="http://yoursite.com/2016/03/09/introduction-of-Halo/"/>
     <id>http://yoursite.com/2016/03/09/introduction-of-Halo/</id>
     <published>2016-03-09T14:46:39.000Z</published>
-    <updated>2016-03-15T10:05:42.000Z</updated>
+    <updated>2016-03-15T10:34:12.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的&lt;/p&gt;
 &lt;p&gt;Halo 的名字取自一款叫做 &lt;a href=&quot;https://www.halowaypoint.com/en-us&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HALO&lt;/a&gt; 的游戏。我比较喜欢这款游戏宏大的背景，所以就叫做这个名字了&lt;/p&gt;
 &lt;h3 id=&quot;Tips&quot;&gt;&lt;a href=&quot;#Tips&quot; class=&quot;headerlink&quot; title=&quot;Tips&quot;&gt;&lt;/a&gt;Tips&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Halo 使用 Swift 编写，仅支持 iOS 平台&lt;/li&gt;
 &lt;li&gt;已上传至&lt;a href=&quot;https://github.com/HaloWang/Halo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;，如果你感兴趣，可以直接下载下来玩玩看（在 HaloDemo 这个 Target 中）~&lt;/li&gt;
-&lt;li&gt;我使用 &lt;a href=&quot;https://github.com/Carthage/Carthage&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Carthage&lt;/a&gt;(carthage build –no-skip-current) 将自己的 Halo 打包成 framework 集成进自己的项目&lt;/li&gt;
+&lt;li&gt;我使用 &lt;a href=&quot;https://github.com/Carthage/Carthage&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Carthage&lt;/a&gt;(carthage build –no-skip-current) 将自己的 Halo 打包成 framework 集成进自己的项目（当然你也可以使用 cocoapods）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;链式语法&quot;&gt;&lt;a href=&quot;#链式语法&quot; class=&quot;headerlink&quot; title=&quot;链式语法&quot;&gt;&lt;/a&gt;链式语法&lt;/h4&gt;&lt;p&gt;Halo 中很多方法都是为了实现链式语法，或者带有链式语法的特性&lt;/p&gt;
 &lt;p&gt;非链式语法：&lt;/p&gt;
@@ -194,8 +194,8 @@ class ViewController: UIViewController {
 &lt;h4 id=&quot;Cocoapods&quot;&gt;&lt;a href=&quot;#Cocoapods&quot; class=&quot;headerlink&quot; title=&quot;Cocoapods&quot;&gt;&lt;/a&gt;Cocoapods&lt;/h4&gt;&lt;p&gt;直接使用 &lt;code&gt;pod &amp;#39;Halo&amp;#39;&lt;/code&gt;，不要忘记 &lt;code&gt;use_frameworks!&lt;/code&gt;~&lt;/p&gt;
 &lt;h4 id=&quot;上线到-AppStore-时的坑&quot;&gt;&lt;a href=&quot;#上线到-AppStore-时的坑&quot; class=&quot;headerlink&quot; title=&quot;上线到 AppStore 时的坑&quot;&gt;&lt;/a&gt;上线到 AppStore 时的坑&lt;/h4&gt;&lt;p&gt;使用上述方法集成的 Halo.framework 在（且仅在）上传至 AppStore 时会出错，原因是将 Halo.framework 中多余的 Architectures 打包进了索要上传的应用程序包中，解决方案大家可以参照&lt;a href=&quot;http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;或者&lt;a href=&quot;http://stackoverflow.com/questions/35240330/errors-building-xcode-project-after-adding-in-run-script-fatal-error-lipo-inpu/35240555&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stackoverflow&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;囧，这个分明是我的锅啊，有时间一定解决！&lt;/p&gt;
-&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;h4 id=&quot;现在&quot;&gt;&lt;a href=&quot;#现在&quot; class=&quot;headerlink&quot; title=&quot;现在&quot;&gt;&lt;/a&gt;现在&lt;/h4&gt;&lt;p&gt;总得来说，Halo.framework是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。&lt;/p&gt;
-&lt;p&gt;平时写项目，写Demo感觉根部离不开~不过，相比于网上知名的第三方库来说，就羸弱很多了😓&lt;/p&gt;
+&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;h4 id=&quot;现在&quot;&gt;&lt;a href=&quot;#现在&quot; class=&quot;headerlink&quot; title=&quot;现在&quot;&gt;&lt;/a&gt;现在&lt;/h4&gt;&lt;p&gt;总得来说，Halo.framework 是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。&lt;/p&gt;
+&lt;p&gt;平时写项目，写Demo感觉根本离不开~不过，相比于网上知名的第三方库来说，就羸弱很多了😓&lt;/p&gt;
 &lt;h4 id=&quot;将来&quot;&gt;&lt;a href=&quot;#将来&quot; class=&quot;headerlink&quot; title=&quot;将来&quot;&gt;&lt;/a&gt;将来&lt;/h4&gt;&lt;p&gt;最近读了喵神的&lt;a href=&quot;https://onevcat.com/2016/01/create-framework/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;如何打造一个让人愉快的框架&lt;/a&gt;，感觉自己的 Halo 即便仅仅是个人使用，也有很多可以改进的地方，比如：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;你还没有对 FangYuan 进行过性能优化啊？&lt;/li&gt;
