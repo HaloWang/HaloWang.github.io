@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-13T14:12:25.000Z</updated>
+  <updated>2016-03-15T10:05:42.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/03/09/introduction-of-Halo/"/>
     <id>http://yoursite.com/2016/03/09/introduction-of-Halo/</id>
     <published>2016-03-09T14:46:39.000Z</published>
-    <updated>2016-03-13T14:12:25.000Z</updated>
+    <updated>2016-03-15T10:05:42.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的&lt;/p&gt;
 &lt;p&gt;Halo 的名字取自一款叫做 &lt;a href=&quot;https://www.halowaypoint.com/en-us&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HALO&lt;/a&gt; 的游戏。我比较喜欢这款游戏宏大的背景，所以就叫做这个名字了&lt;/p&gt;
@@ -190,7 +190,8 @@ class ViewController: UIViewController {
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&quot;/image_002/badDemo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h5 id=&quot;FangYuan-的使用情况&quot;&gt;&lt;a href=&quot;#FangYuan-的使用情况&quot; class=&quot;headerlink&quot; title=&quot;FangYuan 的使用情况&quot;&gt;&lt;/a&gt;FangYuan 的使用情况&lt;/h5&gt;&lt;p&gt;我在最近的一个&lt;a href=&quot;https://itunes.apple.com/cn/app/quan-min-mo-te-ti-gong-gao/id1086009210?mt=8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;项目&lt;/a&gt;中，&lt;strong&gt;仅仅&lt;/strong&gt;使用了 Halo.FangYuan 就实现了整个项目的布局😁&lt;/p&gt;
-&lt;h3 id=&quot;如何在你的项目中集成-Halo-framework&quot;&gt;&lt;a href=&quot;#如何在你的项目中集成-Halo-framework&quot; class=&quot;headerlink&quot; title=&quot;如何在你的项目中集成 Halo.framework&quot;&gt;&lt;/a&gt;如何在你的项目中集成 Halo.framework&lt;/h3&gt;&lt;p&gt;1、直接在&lt;a href=&quot;https://github.com/HaloWang/Halo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;下载下来整个项目&lt;br&gt;2、打开终端&lt;br&gt;3、cd [解压缩后的工程目录]&lt;br&gt;4、carthage build –no-skip-current&lt;br&gt;5、在工程目录中 Carthage/Build/iOS/ 中找到 Halo.framework&lt;br&gt;6、接下来就是将 Halo.framework 集成到你的工程中了，相信大家看到这里，应该都肯定会的吧~&lt;/p&gt;
+&lt;h3 id=&quot;如何在你的项目中集成-Halo-framework&quot;&gt;&lt;a href=&quot;#如何在你的项目中集成-Halo-framework&quot; class=&quot;headerlink&quot; title=&quot;如何在你的项目中集成 Halo.framework&quot;&gt;&lt;/a&gt;如何在你的项目中集成 Halo.framework&lt;/h3&gt;&lt;h4 id=&quot;Carthage&quot;&gt;&lt;a href=&quot;#Carthage&quot; class=&quot;headerlink&quot; title=&quot;Carthage&quot;&gt;&lt;/a&gt;Carthage&lt;/h4&gt;&lt;p&gt;1、直接在&lt;a href=&quot;https://github.com/HaloWang/Halo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;下载下来整个项目&lt;br&gt;2、打开终端&lt;br&gt;3、cd [解压缩后的工程目录]&lt;br&gt;4、carthage build –no-skip-current&lt;br&gt;5、在工程目录中 Carthage/Build/iOS/ 中找到 Halo.framework&lt;br&gt;6、接下来就是将 Halo.framework 集成到你的工程中了，相信大家看到这里，应该都肯定会的吧~&lt;/p&gt;
+&lt;h4 id=&quot;Cocoapods&quot;&gt;&lt;a href=&quot;#Cocoapods&quot; class=&quot;headerlink&quot; title=&quot;Cocoapods&quot;&gt;&lt;/a&gt;Cocoapods&lt;/h4&gt;&lt;p&gt;直接使用 &lt;code&gt;pod &amp;#39;Halo&amp;#39;&lt;/code&gt;，不要忘记 &lt;code&gt;use_frameworks!&lt;/code&gt;~&lt;/p&gt;
 &lt;h4 id=&quot;上线到-AppStore-时的坑&quot;&gt;&lt;a href=&quot;#上线到-AppStore-时的坑&quot; class=&quot;headerlink&quot; title=&quot;上线到 AppStore 时的坑&quot;&gt;&lt;/a&gt;上线到 AppStore 时的坑&lt;/h4&gt;&lt;p&gt;使用上述方法集成的 Halo.framework 在（且仅在）上传至 AppStore 时会出错，原因是将 Halo.framework 中多余的 Architectures 打包进了索要上传的应用程序包中，解决方案大家可以参照&lt;a href=&quot;http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;或者&lt;a href=&quot;http://stackoverflow.com/questions/35240330/errors-building-xcode-project-after-adding-in-run-script-fatal-error-lipo-inpu/35240555&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stackoverflow&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;囧，这个分明是我的锅啊，有时间一定解决！&lt;/p&gt;
 &lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;h4 id=&quot;现在&quot;&gt;&lt;a href=&quot;#现在&quot; class=&quot;headerlink&quot; title=&quot;现在&quot;&gt;&lt;/a&gt;现在&lt;/h4&gt;&lt;p&gt;总得来说，Halo.framework是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。&lt;/p&gt;
