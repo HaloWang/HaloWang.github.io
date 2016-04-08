@@ -32,13 +32,36 @@
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
 
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -52,7 +75,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -109,6 +132,8 @@
 
 
 
+
+
   
   
     
@@ -145,7 +170,7 @@
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
@@ -167,9 +192,17 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-      
-      
       
     </ul>
   
@@ -186,12 +219,6 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
-
-    
-
-    
-    
-
     
       
 
@@ -264,191 +291,22 @@
       
         
           
-            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的</p>
-<p>Halo 的名字取自一款叫做 <a href="https://www.halowaypoint.com/en-us" target="_blank" rel="external">HALO</a> 的游戏。我比较喜欢这款游戏宏大的背景，所以就叫做这个名字了</p>
-<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul>
-<li>Halo 使用 Swift 编写，仅支持 iOS 平台</li>
-<li>已上传至<a href="https://github.com/HaloWang/Halo" target="_blank" rel="external">Github</a>，如果你感兴趣，可以直接下载下来玩玩看（在 HaloDemo 这个 Target 中）~</li>
-<li><del>我使用 <a href="https://github.com/Carthage/Carthage" target="_blank" rel="external">Carthage</a>(carthage build –no-skip-current) 将自己的 Halo 打包成 framework 集成进自己的项目（当然你也可以使用 cocoapods）</del></li>
-<li>我现在使用 CocoaPods 将 Halo 集成进自己的项目（PS: <code>pod search Halo</code>）</li>
-</ul>
-<h4 id="链式语法"><a href="#链式语法" class="headerlink" title="链式语法"></a>链式语法</h4><p>Halo 中很多方法都是为了实现链式语法，或者带有链式语法的特性</p>
-<p>非链式语法：</p>
-<pre><code>object.propertyA = valueA
-object.propertyB = valueB
-object.propertyC = valueC
-object.propertyD = valueD
-</code></pre><p>链式语法：</p>
-<pre><code>object
-    .propertyA(valueA)
-    .propertyB(valueB)
-    .propertyC(valueC)
-    .propertyD(valueD)
-</code></pre><p>效果图：</p>
-<p><img src="/image_002/ChainableMethods.png" alt=""></p>
-<p>我这样作的主要原因是：<br><strong>不喜欢在设置 object 的若干属性时每次都要多写一个 object</strong></p>
-<p>这种方法的基本实现为：</p>
-<pre><code>extension Class {
-    //    Chainable method of property
-    func property(property: propertyType) -&gt; Self {
-        self.property = property
-        return self
-    }
-}
-</code></pre><h3 id="Halo-详细介绍"><a href="#Halo-详细介绍" class="headerlink" title="Halo 详细介绍"></a>Halo 详细介绍</h3><p>Halo.framework 工程目录如下图：<br><img src="/image_002/proj.png" alt=""><br>接下来的时间，我会介绍一下 Source 目录下各个文件实现的主要功能</p>
-<h4 id="Swift-Halo"><a href="#Swift-Halo" class="headerlink" title="Swift+Halo"></a>Swift+Halo</h4><h5 id="CGFloatable-swift"><a href="#CGFloatable-swift" class="headerlink" title="CGFloatable.swift"></a>CGFloatable.swift</h5><p>该文件提供了一个<code>CGFloatable</code>协议，主要是觉得在 Swift 编译器总是认为 “1” 是<code>Int</code>值，和<code>CGFloat</code>数据使用时总会出先编译错误。所以为<code>Int</code>、<code>Double</code>、<code>Float</code>实现了<code>CGFloatable</code>协议，通过 <code>.f</code> 的形式快速转化为<code>CGFloat</code>（而不是麻烦的 <code>CGFloat(X)</code>）<br>同时在此基础上，使用硬编码对屏幕适配做了一些处理</p>
-<h5 id="GCD-Halo-swift"><a href="#GCD-Halo-swift" class="headerlink" title="GCD+Halo.swift"></a>GCD+Halo.swift</h5><p>快速调用 GCD，但是网上已经有很好的<a href="https://github.com/duemunk/Async" target="_blank" rel="external">实现</a>了<br>我经常会这样写：</p>
-<pre><code>Async {
+          简介Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的
+Halo 的名字取自一款叫做 HALO 的游戏。我比较喜欢这款游戏宏大的背景，所以就叫做这个名字了
+Tips
+Ha
+          ...
 
-    //  复杂耗时任务...
-
-    Last {
-        //  更新 UI
-    }
-}
-</code></pre><p>或者：</p>
-<pre><code>After(second: 2) {
-    //    做某事
-}
-</code></pre><h5 id="Print-Halo-swift"><a href="#Print-Halo-swift" class="headerlink" title="Print+Halo.swift"></a>Print+Halo.swift</h5><p>通过<code>ccRight</code>、<code>ccWarning</code>、<code>ccError</code>输出表情符号方便调试<br>之后我们可以在控制台输出像这样的东西：<br><img src="/image_002/log.png" alt=""></p>
-<h4 id="UIKit-Halo"><a href="#UIKit-Halo" class="headerlink" title="UIKit+Halo"></a>UIKit+Halo</h4><p>这个目录下的文件以 <code>extension</code> 的形式大量的实现了 UIKit 一些常用控件的链式语法，以方便日常开发的使用</p>
-<p>除此之外，还有一些边边角角的东西：</p>
-<ul>
-<li>UITableView/UICollectionView 利用泛型快速注册/重用单元格方法</li>
-<li>使用 Hex 值初始化 UIColor</li>
-<li>UIImage静态模糊</li>
-<li>UIView 截屏</li>
-<li>文本显示所需高度计算</li>
-<li>UIAlertController 封装<br>…</li>
-</ul>
-<h4 id="KeyboardObserver"><a href="#KeyboardObserver" class="headerlink" title="KeyboardObserver"></a>KeyboardObserver</h4><p>实现这个类主要是原来每次在不同 <code>UIViewController</code> 中处理键盘事件，写了很多重复代码，被恶心到了(-_-!)</p>
-<p>假设我们需要在 ViewController 类中监听键盘高度，只需要设置（我通常在 viewDidLoad 方法中）：</p>
-<pre><code>KeyboardObserver.delegate = self
-</code></pre><p>让 ViewController 实现相关协议：</p>
-<pre><code>// MARK: - KeyboardObserverDelegate
-extension ViewController : KeyboardObserverDelegate {
-    func keyboardWillChangeToHeight(height: CGFloat, duration: NSTimeInterval) {
-        //    height 就是键盘即将改变到的高度
-    }
-}
-</code></pre><p>如果你还想使用 Halo 对 <code>UIScrollView</code> 的拓展，再调用一下 <code>insetBottom()</code> 就可以方便快捷的实现键盘高度变化的响应了~</p>
-<pre><code>func keyboardWillChangeToHeight(height: CGFloat, duration: NSTimeInterval) 
-    scrollView.insetBottom(height)
-}
-</code></pre><p>PS：方便归方便，但是这个类的我写的有点乱，有机会一定好好整理一下！</p>
-<h4 id="方圆（FangYuan）"><a href="#方圆（FangYuan）" class="headerlink" title="方圆（FangYuan）"></a>方圆（FangYuan）</h4><p>一套微型布局库，使用<code>UIView.frame</code>进行布局，功能简单，上手快速！</p>
-<h5 id="我是这样想的"><a href="#我是这样想的" class="headerlink" title="我是这样想的"></a>我是这样想的</h5><ul>
-<li>任何一个<code>UIView</code>，我们知道其在 X 轴上的<code>宽度</code>、<code>&lt;左边-父视图左边&gt;距离</code>、<code>&lt;右边-父视图右边&gt;距离</code>中的任意两者，即可确定<code>UIView.frame.origin.x</code>和<code>UIView.frame.size.width</code></li>
-<li>任何一个<code>UIView</code>，我们知道其在 Y 轴上的<code>高度</code>、<code>&lt;上边-父视图上边&gt;距离</code>、<code>&lt;下边-下视图右边&gt;距离</code>中的任意两者，即可确定<code>UIView.frame.origin.y</code>和<code>UIView.frame.size.height</code></li>
-<li>通过前两步，即可确定该<code>UIView</code>的<code>frame</code></li>
-<li>予以实现</li>
-</ul>
-<h5 id="简单展示"><a href="#简单展示" class="headerlink" title="简单展示"></a>简单展示</h5><p>假设我们想达到这样的需求：</p>
-<pre><code>1、testView_A
-    距离顶部30，距离右侧30，高度为100，距离左侧30
-2、testView_B
-    距离 testView_A 的底部 25
-    距离 superView 左侧的距离等于 testView_A 距离 superView 左侧的距离
-    距离 superView 右侧的距离等于 testView_A 距离 superView 右侧的距离 + 10
-    距离 superView 底部的距离等于 30
-</code></pre><p>效果图：</p>
-<p><img src="/image_002/FangYuanDemo.png" alt=""></p>
-<h4 id="不使用任何第三方布局方式："><a href="#不使用任何第三方布局方式：" class="headerlink" title="不使用任何第三方布局方式："></a>不使用任何第三方布局方式：</h4><pre><code>class ViewController: UIViewController {
-
-    let testView_A = UILabel()
-
-    let testView_B = UILabel()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.addSubview(testView_A)
-        view.addSubview(testView_B)
-
-        testView_A.text = &quot;testView_A&quot;
-        testView_B.text = &quot;testView_B&quot;
-
-        var frameA = CGRectZero
-        frameA.origin.x = 30
-        frameA.origin.y = 30
-        frameA.size.width = UIScreen.mainScreen().bounds.size.width - frameA.origin.x - 30
-        frameA.size.height = 100
-        testView_A.frame = frameA
-
-        var frameB = CGRectZero
-        frameB.origin.x = testView_A.frame.origin.x
-        frameB.origin.y = testView_A.frame.origin.y + testView_A.frame.size.height + 25
-        frameB.size.width = UIScreen.mainScreen().bounds.size.width - testView_A.frame.origin.x - (testView_A.superview!.frame.size.width - (testView_A.frame.origin.x + testView_A.frame.size.width)) - 10
-        frameB.size.height = UIScreen.mainScreen().bounds.size.height - frameB.origin.y - 30
-        testView_B.frame = frameB
-
-
-        testView_A.backgroundColor = UIColor.redColor()
-        testView_B.backgroundColor = UIColor.blueColor()
-    }
-}
-</code></pre><p>使用 FangYuan：</p>
-<pre><code>import UIKit
-import Halo
-
-class ViewController: UIViewController {
-
-    let testView_A = UILabel()
-
-    let testView_B = UILabel()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.addSubview(testView_A)
-        view.addSubview(testView_B)
-
-        testView_A.text = &quot;testView_A&quot;
-        testView_B.text = &quot;testView_B&quot;
-
-        //    ------- 主要变化 -------
-
-        testView_A
-            .top(30)
-            .right(30)
-            .height(100)
-            .left(30)
-
-        testView_B
-            .top(testView_A.chainBottom + 25)
-            .left(testView_A.left)
-            .right(testView_A.right + 10)
-            .bottom(30)
-
-        //    ---------------------
-
-        testView_A.backgroundColor = UIColor.redColor()
-        testView_B.backgroundColor = UIColor.blueColor()
-    }
-}
-</code></pre><p>可以看到 FangYuan 能简化很多代码，就算是和 Masonry 相比，也能省下不少代码，同时也还能实现同样的效果</p>
-<h5 id="FangYuan-的缺点"><a href="#FangYuan-的缺点" class="headerlink" title="FangYuan 的缺点"></a>FangYuan 的缺点</h5><ul>
-<li>需要知道在<code>UIView.superView</code>存在时才有效</li>
-<li>FangYuan 的诸多方法需要在<code>layoutSubviews</code>或<code>viewWillLayoutSubviews</code>调用才能保证随<code>superView.frame</code>的变化而变化，比如上述代码的ViewController外如果嵌套在一个 NavigationController中，会出现这种情况（因为FangYuan的方法写在了<code>viewDidLoad</code>中）：</li>
-</ul>
-<p><img src="/image_002/badDemo.png" alt=""></p>
-<h5 id="FangYuan-的使用情况"><a href="#FangYuan-的使用情况" class="headerlink" title="FangYuan 的使用情况"></a>FangYuan 的使用情况</h5><p>我在最近的一个<a href="https://itunes.apple.com/cn/app/quan-min-mo-te-ti-gong-gao/id1086009210?mt=8" target="_blank" rel="external">项目</a>中，<strong>仅仅</strong>使用了 Halo.FangYuan 就实现了整个项目的布局😁</p>
-<h3 id="如何在你的项目中集成-Halo-framework"><a href="#如何在你的项目中集成-Halo-framework" class="headerlink" title="如何在你的项目中集成 Halo.framework"></a>如何在你的项目中集成 Halo.framework</h3><h4 id="Carthage"><a href="#Carthage" class="headerlink" title="Carthage"></a>Carthage</h4><p>1、直接在<a href="https://github.com/HaloWang/Halo" target="_blank" rel="external">Github</a>下载下来整个项目<br>2、打开终端<br>3、cd [解压缩后的工程目录]<br>4、carthage build –no-skip-current<br>5、在工程目录中 Carthage/Build/iOS/ 中找到 Halo.framework<br>6、接下来就是将 Halo.framework 集成到你的工程中了，相信大家看到这里，应该都肯定会的吧~</p>
-<h4 id="Cocoapods"><a href="#Cocoapods" class="headerlink" title="Cocoapods"></a>Cocoapods</h4><p>直接使用 <code>pod &#39;Halo&#39;</code>，不要忘记 <code>use_frameworks!</code>~</p>
-<h4 id="上线到-AppStore-时的坑"><a href="#上线到-AppStore-时的坑" class="headerlink" title="上线到 AppStore 时的坑"></a>上线到 AppStore 时的坑</h4><p>使用上述方法集成的 Halo.framework 在（且仅在）上传至 AppStore 时会出错，原因是将 Halo.framework 中多余的 Architectures 打包进了索要上传的应用程序包中，解决方案大家可以参照<a href="http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/" target="_blank" rel="external">这里</a>或者<a href="http://stackoverflow.com/questions/35240330/errors-building-xcode-project-after-adding-in-run-script-fatal-error-lipo-inpu/35240555" target="_blank" rel="external">Stackoverflow</a></p>
-<p>囧，这个分明是我的锅啊，有时间一定解决！</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h4><p>总得来说，Halo.framework 是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。</p>
-<p>平时写项目，写Demo感觉根本离不开~不过，相比于网上知名的第三方库来说，就羸弱很多了😓</p>
-<h4 id="将来"><a href="#将来" class="headerlink" title="将来"></a>将来</h4><p>最近读了喵神的<a href="https://onevcat.com/2016/01/create-framework/" target="_blank" rel="external">如何打造一个让人愉快的框架</a>，感觉自己的 Halo 即便仅仅是个人使用，也有很多可以改进的地方，比如：</p>
-<ul>
-<li>你还没有对 FangYuan 进行过性能优化啊？</li>
-<li>FangYuan 一定要在<code>layoutSubviews</code>或<code>viewWillLayoutSubviews</code>才能保证使用FangYuan的<code>UIView</code>的<code>superView</code>一定存在吗？才能保证任何 frame 变动时，约束都能生效吗？是不是可以利用 runtime 做一些事情呢？</li>
-<li>书写链式语法时，在代码自动补齐方面，总是跟 UIKit 原有的属性相冲突，为了快速书写，也为了避免和其他第三方库产生可能的冲突，是不是应该添加前缀？</li>
-</ul>
-<p>有机会的话，我一定会不断积累下去的！</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/09/introduction-of-Halo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
+      
+    </div>
+    
+    <div>
       
     </div>
 
@@ -541,117 +399,22 @@ class ViewController: UIViewController {
       
         
           
-            <p>最近被问起这样的问题，所以把自己知道的写出来<br>包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下</p>
-<h3 id="如果你想直接看源码"><a href="#如果你想直接看源码" class="headerlink" title="如果你想直接看源码"></a>如果你想直接看源码</h3><p><a href="https://github.com/HaloWang/JavaScriptCoreDemo/blob/master/finish.zip?raw=true" target="_blank" rel="external">这里</a>是项目的完整代码</p>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>请大家先下载<a href="https://github.com/HaloWang/JavaScriptCoreDemo/blob/master/begin.zip?raw=true" target="_blank" rel="external">初始项目</a></p>
-<p>本文使用 Xcode 7.2.1 + Swift，最低兼容 iOS 8.0</p>
-<h4 id="先来看看初始项目"><a href="#先来看看初始项目" class="headerlink" title="先来看看初始项目"></a>先来看看初始项目</h4><h5 id="ViewController-swift"><a href="#ViewController-swift" class="headerlink" title="ViewController.swift"></a>ViewController.swift</h5><p>ViewController.swift 主要配合 Main.storyboard 绘制了 UI 元素<br>接下来绝大部分代码工作将在这个文件中进行<br><code>viewDidLoad</code>方法中主要是让 webView 加载 Bundle 中的 html 文件<br><img src="/image_001/viewController.png" alt=""></p>
-<h5 id="JavaScriptCoreDemo-html"><a href="#JavaScriptCoreDemo-html" class="headerlink" title="JavaScriptCoreDemo.html"></a>JavaScriptCoreDemo.html</h5><p>这个文件主要用来模拟实际使用时我们会遇到的 web 页面<br><img src="/image_001/webPage.png" alt=""></p>
-<h3 id="Web-端调用-iOS-端代码"><a href="#Web-端调用-iOS-端代码" class="headerlink" title="Web 端调用 iOS 端代码"></a>Web 端调用 iOS 端代码</h3><p>我将其分为了如下步骤</p>
-<h4 id="为-WebView-注册代理，并实现代理方法"><a href="#为-WebView-注册代理，并实现代理方法" class="headerlink" title="为 WebView 注册代理，并实现代理方法"></a>为 WebView 注册代理，并实现代理方法</h4><p><code>webView.delegate = self</code></p>
-<pre><code>extension ViewController : UIWebViewDelegate {
-    func webViewDidFinishLoad(webView: UIWebView) {
-        //    Waiting
-    }
-}
-</code></pre><h4 id="获取到当前-Web-页面中的上下文"><a href="#获取到当前-Web-页面中的上下文" class="headerlink" title="获取到当前 Web 页面中的上下文"></a>获取到当前 Web 页面中的上下文</h4><pre><code>func webViewDidFinishLoad(webView: UIWebView) {
-    context = webView.valueForKeyPath(&quot;documentView.webView.mainFrame.javaScriptContext&quot;) as? JSContext
-    //    Waiting
-}
-</code></pre><h4 id="注册回调"><a href="#注册回调" class="headerlink" title="注册回调"></a>注册回调</h4><pre><code>func webViewDidFinishLoad(webView: UIWebView) {
+          缘由最近被问起这样的问题，所以把自己知道的写出来包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下
+本文使用 Xcode 7.3 + Swift，最低兼容 iOS 8.0
+这里查看源代码)是项目的完整代码，下载完成后，请执行 pod install
+目录文件介绍View
+          ...
 
-    context = webView.valueForKeyPath(&quot;documentView.webView.mainFrame.javaScriptContext&quot;) as? JSContext
-
-    let callBack : @convention(block) (AnyObject?) -&gt; Void = { [weak self] (paramFromJS) -&gt; Void in
-        //    Waiting
-     }
-
-    context?.setObject(unsafeBitCast(callBack, AnyObject.self), forKeyedSubscript: &quot;callNative&quot;)
-}
-</code></pre><h4 id="展示-Web-页面传递过来的的参数"><a href="#展示-Web-页面传递过来的的参数" class="headerlink" title="展示 Web 页面传递过来的的参数"></a>展示 Web 页面传递过来的的参数</h4><p>最后我们需要通知自己原生代码已经接受到了 web 端的调用，并且输出一下 web 页面传递过来了参数</p>
-<p>在 ViewController 类中，实现 fromJS 方法：</p>
-<pre><code>func fromJS(paramFromJS:AnyObject?) {
-
-    Alert
-        .showIn(self)
-        .style(UIAlertControllerStyle.ActionSheet)
-        .title(&quot;Call From JS&quot;)
-        .message(&quot;检测到了来自 JS 的调用！&quot;)
-        .addAction(&quot;我知道了&quot;, style: .Cancel, handler: nil)
-
-    guard let paramFromJS = paramFromJS else {
-        return
-    }
-
-    print(&quot;param from JavaScript is:&quot;)
-    print(paramFromJS)
-
-}
-</code></pre><p>其中 Alert 类来自于 Halo.framework，用来通知自己原生代码已经接受到了 web 端的调用，对 UIAlertController 做了简单的封装，不必关心</p>
-<p>在上一步中的 <code>Waiting</code> 注释处调用</p>
-<pre><code>let callBack : @convention(block) (AnyObject?) -&gt; Void = { [weak self] (paramFromJS) -&gt; Void in
-    self?.fromJS(paramFromJS)    
-}
-</code></pre><p> 这里的 self (也就是我们的 ViewController) 中被加上了 weak 修饰符，这是因为：</p>
-<pre><code>context?.setObject(unsafeBitCast(callBack, AnyObject.self), forKeyedSubscript: &quot;callNative&quot;)
-</code></pre><p>context 会强引用这个回调块，为了避免强引用，我们需要将 self 在 block 中声明为弱引用</p>
-<p>至于 @convention(block) ，大家可以参看<a href="http://stackoverflow.com/questions/32776342/how-to-store-this-objectivec-block-inside-a-swift-variable" target="_blank" rel="external">这里</a></p>
-<p>PS: 还有一个问题，上面的代码大家是不是有点害怕？优雅的 Swift 怎么会出现 <code>unsafeBitCast(callBack, AnyObject.self)</code> 这样的代码！大家可以看看 <a href="http://nshipster.cn/javascriptcore" target="_blank" rel="external">这里</a><br>期待 iOS10 SDK 中 Swift 环境下，JSContext 可以实现下标访问</p>
-<p>PS2: 另外，我在这里将 paramFromJS 声明为了 AnyObject? 类型，JavaScriptCore 是可以自动将 js 传递的参数做转换的，上面例子中，我们通过</p>
-<pre><code>print(paramFromJS!.dynamicType)
-</code></pre><p>可以发现 paramFromJS 被转化为了<code>__NSDictionaryM</code><br>关于 dynamicType，请看<a href="http://swifter.tips/instance-type/" target="_blank" rel="external">这里</a></p>
-<p><strong>运行程序</strong></p>
-<p>此时控制台输出：</p>
-<p><img src="/image_001/consolo.png" alt=""></p>
-<p>模拟器：</p>
-<p><img src="/image_001/callNative.gif" alt=""></p>
-<h3 id="iOS-端调用-Web-的-js-代码"><a href="#iOS-端调用-Web-的-js-代码" class="headerlink" title="iOS 端调用 Web 的 js 代码"></a>iOS 端调用 Web 的 js 代码</h3><p>可以分为两种方式</p>
-<h4 id="调用-Web-页面中已经实现好的-JS"><a href="#调用-Web-页面中已经实现好的-JS" class="headerlink" title="调用 Web 页面中已经实现好的 JS"></a>调用 Web 页面中已经实现好的 JS</h4><p>我们的 web 页面中包含了一段已经写好的 JavaScript function：</p>
-<pre><code>function fromNative(args) {
-    document.getElementById(&quot;fromNativeParan&quot;).innerHTML = &quot;来自原生代码的参数为&quot; + args;
-};
-</code></pre><p>我们可以通过 JavaScriptContext 直接对其进行调用：</p>
-<p>在 ViewController 类中，实现 callJS 方法：</p>
-<pre><code>func callJS() {
-    let params : [AnyObject]! = [&quot;Hello JS! \(arc4random() % 10)&quot;]
-    context?.objectForKeyedSubscript(&quot;fromNative&quot;).callWithArguments(params)
-}
-</code></pre><p><em>arc4random() % 10 的作用是为了产生随机取以区分多次点击</em></p>
-<p>在 rightBarButtonClick 中调用：</p>
-<pre><code>@IBAction func rightBarButtonClick(sender: UIBarButtonItem) {
-    callJS()
-}
-</code></pre><p>web 页面产生了如下变化：</p>
-<p><img src="/image_001/callJS.gif" alt=""></p>
-<h4 id="直接注入一段-JS-代码"><a href="#直接注入一段-JS-代码" class="headerlink" title="直接注入一段 JS 代码"></a>直接注入一段 JS 代码</h4><p>在 ViewController 类中，实现 evaluateJS 方法：</p>
-<pre><code>func evaluateJS() {
-    context?.evaluateScript(&quot;alert(\&quot;你调用了 JS\&quot;)&quot;)
-}
-</code></pre><p>在 rightBarButtonClick 中调用：</p>
-<pre><code>@IBAction func rightBarButtonClick(sender: UIBarButtonItem) {
-    evaluateJS()
-}
-</code></pre><p>效果如图：</p>
-<p><img src="/image_001/callJS_2.gif" alt=""></p>
-<p>PS: 实际上 evaluateJS 还可以小城下面这种形式：</p>
-<pre><code>func evaluateJS() {
-    context?.evaluateScript(&quot;fromNative(&apos; 你运行了一段JS&apos;)&quot;)
-}
-</code></pre><p>这时该方法的作用和 ViewController.callJS 就一样了</p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>再次附上项目的<a href="https://github.com/HaloWang/JavaScriptCoreDemo/blob/master/finish.zip?raw=true" target="_blank" rel="external">完整代码</a></p>
-<h4 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h4><p>本来还想写点 WKWebView 的东西，但鉴于自己以前的使用经历，还是算了…<br>简单说一下使用 WKWebView 遇到的坑吧：</p>
-<ul>
-<li>无法通过点击 web 页面跳转到 AppStore，<a href="http://stackoverflow.com/questions/29056854/how-can-i-understand-if-uiapplication-is-going-to-open-link-in-safari-app" target="_blank" rel="external">解决方案</a></li>
-<li>在淘宝页面时无法点击 web 页面上的按钮，<a href="http://stackoverflow.com/questions/31955880/wkwebview-not-opening-some-target-blank-links" target="_blank" rel="external">解决方案</a></li>
-<li>web 页面的 alert 在移动端上失效，<a href="http://stackoverflow.com/questions/26898941/ios-wkwebview-not-showing-javascript-alert-dialog" target="_blank" rel="external">解决方案</a></li>
-</ul>
-<p>每个都是超级严重的 bug 有没有！<br>在产品经理面前直冒冷汗有没有！</p>
-<h4 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h4><ul>
-<li><a href="http://nshipster.cn/javascriptcore/" target="_blank" rel="external">NSHipster - JavaScriptCore</a></li>
-</ul>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
+      
+    </div>
+    
+    <div>
       
     </div>
 
@@ -744,15 +507,25 @@ class ViewController: UIViewController {
       
         
           
-            <p>正式开启了个人博客😁</p>
-<p>下面是一些我想写的东西</p>
-<h3 id="Halo-framework"><a href="#Halo-framework" class="headerlink" title="Halo.framework"></a>Halo.framework</h3><p>使用 Swift 开发 iOS App 以来所总结的东西</p>
-<h3 id="JS-和-iOS-原生交互的若干种方法"><a href="#JS-和-iOS-原生交互的若干种方法" class="headerlink" title="JS 和 iOS 原生交互的若干种方法"></a>JS 和 iOS 原生交互的若干种方法</h3><p>最近被问起这样的问题</p>
-<h3 id="使用-Instrument"><a href="#使用-Instrument" class="headerlink" title="使用 Instrument"></a>使用 Instrument</h3><p>曾经使用过，现在来总结一下</p>
-<p>敬请期待~</p>
+          正式开启了个人博客😁
+下面是一些我想写的东西
+Halo.framework使用 Swift 开发 iOS App 以来所总结的东西
+JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
+使用 Instrument曾经使用过，现在来总结一下
+敬请期待~
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/01/first-article/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
+      
+    </div>
+    
+    <div>
       
     </div>
 
@@ -774,7 +547,6 @@ class ViewController: UIViewController {
 
 
     
-
   </section>
 
   
@@ -820,16 +592,9 @@ class ViewController: UIViewController {
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
-          
-          
 
           
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">标签</span>
-              
-            </div>
+
           
 
         </nav>
@@ -849,8 +614,9 @@ class ViewController: UIViewController {
               <span class="links-of-author-item">
                 <a href="https://github.com/HaloWang" target="_blank">
                   
-                    <i class="fa fa-github"></i> GitHub
+                    <i class="fa fa-github"></i>
                   
+                  GitHub
                 </a>
               </span>
             
@@ -860,7 +626,8 @@ class ViewController: UIViewController {
         
         
 
-        <div class="links-of-author motion-element">
+        
+        <div class="links-of-blogroll motion-element">
           
         </div>
 
@@ -904,47 +671,68 @@ class ViewController: UIViewController {
       </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
   
 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
 
   
 
 
 
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
+  
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
+  
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
 
   
-  
-
   
 
   
 
+  
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -977,10 +765,11 @@ class ViewController: UIViewController {
 
   
   
-
-  
   
 
+  
+
+  
 
 </body>
 </html>

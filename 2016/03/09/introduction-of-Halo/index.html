@@ -32,13 +32,36 @@
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
 
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -46,15 +69,13 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="王策的博客" type="application/atom+xml" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -80,7 +101,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
 <meta property="og:image" content="http://yoursite.com/image_002/log.png">
 <meta property="og:image" content="http://yoursite.com/image_002/FangYuanDemo.png">
 <meta property="og:image" content="http://yoursite.com/image_002/badDemo.png">
-<meta property="og:updated_time" content="2016-03-28T09:03:08.000Z">
+<meta property="og:updated_time" content="2016-04-08T12:42:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Halo.framework">
 <meta name="twitter:description" content="简介Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的
@@ -130,6 +151,8 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
 
 
 
+
+
   
   
     
@@ -164,7 +187,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
@@ -186,9 +209,17 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-      
-      
       
     </ul>
   
@@ -272,15 +303,14 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
       
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的</p>
 <p>Halo 的名字取自一款叫做 <a href="https://www.halowaypoint.com/en-us" target="_blank" rel="external">HALO</a> 的游戏。我比较喜欢这款游戏宏大的背景，所以就叫做这个名字了</p>
-<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
 <li>Halo 使用 Swift 编写，仅支持 iOS 平台</li>
 <li>已上传至<a href="https://github.com/HaloWang/Halo" target="_blank" rel="external">Github</a>，如果你感兴趣，可以直接下载下来玩玩看（在 HaloDemo 这个 Target 中）~</li>
-<li><del>我使用 <a href="https://github.com/Carthage/Carthage" target="_blank" rel="external">Carthage</a>(carthage build –no-skip-current) 将自己的 Halo 打包成 framework 集成进自己的项目（当然你也可以使用 cocoapods）</del></li>
 <li>我现在使用 CocoaPods 将 Halo 集成进自己的项目（PS: <code>pod search Halo</code>）</li>
 </ul>
-<h4 id="链式语法"><a href="#链式语法" class="headerlink" title="链式语法"></a>链式语法</h4><p>Halo 中很多方法都是为了实现链式语法，或者带有链式语法的特性</p>
+<h3 id="链式语法"><a href="#链式语法" class="headerlink" title="链式语法"></a>链式语法</h3><p>Halo 中很多方法都是为了实现链式语法，或者带有链式语法的特性</p>
 <p>非链式语法：</p>
 <pre><code>object.propertyA = valueA
 object.propertyB = valueB
@@ -294,7 +324,11 @@ object.propertyD = valueD
     .propertyD(valueD)
 </code></pre><p>效果图：</p>
 <p><img src="/image_002/ChainableMethods.png" alt=""></p>
-<p>我这样作的主要原因是：<br><strong>不喜欢在设置 object 的若干属性时每次都要多写一个 object</strong></p>
+<p>我这样作的主要原因有：</p>
+<ul>
+<li>不喜欢在设置 object 的若干属性时每次都要多写一个 object</li>
+<li>可以在 map 等函数中设置属性的同时返回结果</li>
+</ul>
 <p>这种方法的基本实现为：</p>
 <pre><code>extension Class {
     //    Chainable method of property
@@ -303,9 +337,9 @@ object.propertyD = valueD
         return self
     }
 }
-</code></pre><h3 id="Halo-详细介绍"><a href="#Halo-详细介绍" class="headerlink" title="Halo 详细介绍"></a>Halo 详细介绍</h3><p>Halo.framework 工程目录如下图：<br><img src="/image_002/proj.png" alt=""><br>接下来的时间，我会介绍一下 Source 目录下各个文件实现的主要功能</p>
-<h4 id="Swift-Halo"><a href="#Swift-Halo" class="headerlink" title="Swift+Halo"></a>Swift+Halo</h4><h5 id="CGFloatable-swift"><a href="#CGFloatable-swift" class="headerlink" title="CGFloatable.swift"></a>CGFloatable.swift</h5><p>该文件提供了一个<code>CGFloatable</code>协议，主要是觉得在 Swift 编译器总是认为 “1” 是<code>Int</code>值，和<code>CGFloat</code>数据使用时总会出先编译错误。所以为<code>Int</code>、<code>Double</code>、<code>Float</code>实现了<code>CGFloatable</code>协议，通过 <code>.f</code> 的形式快速转化为<code>CGFloat</code>（而不是麻烦的 <code>CGFloat(X)</code>）<br>同时在此基础上，使用硬编码对屏幕适配做了一些处理</p>
-<h5 id="GCD-Halo-swift"><a href="#GCD-Halo-swift" class="headerlink" title="GCD+Halo.swift"></a>GCD+Halo.swift</h5><p>快速调用 GCD，但是网上已经有很好的<a href="https://github.com/duemunk/Async" target="_blank" rel="external">实现</a>了<br>我经常会这样写：</p>
+</code></pre><h2 id="Halo-详细介绍"><a href="#Halo-详细介绍" class="headerlink" title="Halo 详细介绍"></a>Halo 详细介绍</h2><p>Halo.framework 工程目录如下图：<br><img src="/image_002/proj.png" alt=""><br>接下来的时间，我会介绍一下 Source 目录下各个文件实现的主要功能</p>
+<h3 id="Swift-Halo"><a href="#Swift-Halo" class="headerlink" title="Swift+Halo"></a>Swift+Halo</h3><h4 id="CGFloatable-swift"><a href="#CGFloatable-swift" class="headerlink" title="CGFloatable.swift"></a>CGFloatable.swift</h4><p>该文件提供了一个<code>CGFloatable</code>协议，主要是觉得在 Swift 编译器总是认为 “1” 是<code>Int</code>值，和<code>CGFloat</code>数据使用时总会出先编译错误。所以为<code>Int</code>、<code>Double</code>、<code>Float</code>实现了<code>CGFloatable</code>协议，通过 <code>.f</code> 的形式快速转化为<code>CGFloat</code>（而不是麻烦的 <code>CGFloat(X)</code>）<br>同时在此基础上，使用硬编码对屏幕适配做了一些处理</p>
+<h4 id="GCD-Halo-swift"><a href="#GCD-Halo-swift" class="headerlink" title="GCD+Halo.swift"></a>GCD+Halo.swift</h4><p>快速调用 GCD，但是网上已经有很好的<a href="https://github.com/duemunk/Async" target="_blank" rel="external">实现</a>了<br>我经常会这样写：</p>
 <pre><code>Async {
 
     //  复杂耗时任务...
@@ -318,8 +352,8 @@ object.propertyD = valueD
 <pre><code>After(second: 2) {
     //    做某事
 }
-</code></pre><h5 id="Print-Halo-swift"><a href="#Print-Halo-swift" class="headerlink" title="Print+Halo.swift"></a>Print+Halo.swift</h5><p>通过<code>ccRight</code>、<code>ccWarning</code>、<code>ccError</code>输出表情符号方便调试<br>之后我们可以在控制台输出像这样的东西：<br><img src="/image_002/log.png" alt=""></p>
-<h4 id="UIKit-Halo"><a href="#UIKit-Halo" class="headerlink" title="UIKit+Halo"></a>UIKit+Halo</h4><p>这个目录下的文件以 <code>extension</code> 的形式大量的实现了 UIKit 一些常用控件的链式语法，以方便日常开发的使用</p>
+</code></pre><h4 id="Print-Halo-swift"><a href="#Print-Halo-swift" class="headerlink" title="Print+Halo.swift"></a>Print+Halo.swift</h4><p>通过<code>ccRight</code>、<code>ccWarning</code>、<code>ccError</code>输出表情符号方便调试<br>之后我们可以在控制台输出像这样的东西：<br><img src="/image_002/log.png" alt=""></p>
+<h3 id="UIKit-Halo"><a href="#UIKit-Halo" class="headerlink" title="UIKit+Halo"></a>UIKit+Halo</h3><p>这个目录下的文件以 <code>extension</code> 的形式大量的实现了 UIKit 一些常用控件的链式语法，以方便日常开发的使用</p>
 <p>除此之外，还有一些边边角角的东西：</p>
 <ul>
 <li>UITableView/UICollectionView 利用泛型快速注册/重用单元格方法</li>
@@ -329,7 +363,7 @@ object.propertyD = valueD
 <li>文本显示所需高度计算</li>
 <li>UIAlertController 封装<br>…</li>
 </ul>
-<h4 id="KeyboardObserver"><a href="#KeyboardObserver" class="headerlink" title="KeyboardObserver"></a>KeyboardObserver</h4><p>实现这个类主要是原来每次在不同 <code>UIViewController</code> 中处理键盘事件，写了很多重复代码，被恶心到了(-_-!)</p>
+<h3 id="KeyboardObserver"><a href="#KeyboardObserver" class="headerlink" title="KeyboardObserver"></a>KeyboardObserver</h3><p>实现这个类主要是原来每次在不同 <code>UIViewController</code> 中处理键盘事件，写了很多重复代码，被恶心到了(-_-!)</p>
 <p>假设我们需要在 ViewController 类中监听键盘高度，只需要设置（我通常在 viewDidLoad 方法中）：</p>
 <pre><code>KeyboardObserver.delegate = self
 </code></pre><p>让 ViewController 实现相关协议：</p>
@@ -344,14 +378,15 @@ extension ViewController : KeyboardObserverDelegate {
     scrollView.insetBottom(height)
 }
 </code></pre><p>PS：方便归方便，但是这个类的我写的有点乱，有机会一定好好整理一下！</p>
-<h4 id="方圆（FangYuan）"><a href="#方圆（FangYuan）" class="headerlink" title="方圆（FangYuan）"></a>方圆（FangYuan）</h4><p>一套微型布局库，使用<code>UIView.frame</code>进行布局，功能简单，上手快速！</p>
-<h5 id="我是这样想的"><a href="#我是这样想的" class="headerlink" title="我是这样想的"></a>我是这样想的</h5><ul>
-<li>任何一个<code>UIView</code>，我们知道其在 X 轴上的<code>宽度</code>、<code>&lt;左边-父视图左边&gt;距离</code>、<code>&lt;右边-父视图右边&gt;距离</code>中的任意两者，即可确定<code>UIView.frame.origin.x</code>和<code>UIView.frame.size.width</code></li>
-<li>任何一个<code>UIView</code>，我们知道其在 Y 轴上的<code>高度</code>、<code>&lt;上边-父视图上边&gt;距离</code>、<code>&lt;下边-下视图右边&gt;距离</code>中的任意两者，即可确定<code>UIView.frame.origin.y</code>和<code>UIView.frame.size.height</code></li>
-<li>通过前两步，即可确定该<code>UIView</code>的<code>frame</code></li>
+<h3 id="方圆（FangYuan）"><a href="#方圆（FangYuan）" class="headerlink" title="方圆（FangYuan）"></a>方圆（FangYuan）</h3><p>Update: 现在方圆在<a href="https://github.com/HaloWang/FangYuan" target="_blank" rel="external">这里</a></p>
+<p>一套微型布局库，使用 <code>UIView.frame</code> 进行布局，功能简单，上手快速！</p>
+<h4 id="我是这样想的"><a href="#我是这样想的" class="headerlink" title="我是这样想的"></a>我是这样想的</h4><ul>
+<li>任何一个 <code>UIView</code> ，我们知道其在 X 轴上的<code>宽度</code>、<code>&lt;左边-父视图左边&gt;距离</code>、<code>&lt;右边-父视图右边&gt;距离</code>中的任意两者，即可确定<code>UIView.frame.origin.x</code>和<code>UIView.frame.size.width</code></li>
+<li>任何一个 <code>UIView</code> ，我们知道其在 Y 轴上的<code>高度</code>、<code>&lt;上边-父视图上边&gt;距离</code>、<code>&lt;下边-下视图右边&gt;距离</code>中的任意两者，即可确定<code>UIView.frame.origin.y</code>和<code>UIView.frame.size.height</code></li>
+<li>通过前两步，即可确定该 <code>UIView</code> 的 <code>frame</code> </li>
 <li>予以实现</li>
 </ul>
-<h5 id="简单展示"><a href="#简单展示" class="headerlink" title="简单展示"></a>简单展示</h5><p>假设我们想达到这样的需求：</p>
+<h4 id="简单展示"><a href="#简单展示" class="headerlink" title="简单展示"></a>简单展示</h4><p>假设我们想达到这样的需求：</p>
 <pre><code>1、testView_A
     距离顶部30，距离右侧30，高度为100，距离左侧30
 2、testView_B
@@ -361,7 +396,7 @@ extension ViewController : KeyboardObserverDelegate {
     距离 superView 底部的距离等于 30
 </code></pre><p>效果图：</p>
 <p><img src="/image_002/FangYuanDemo.png" alt=""></p>
-<h4 id="不使用任何第三方布局方式："><a href="#不使用任何第三方布局方式：" class="headerlink" title="不使用任何第三方布局方式："></a>不使用任何第三方布局方式：</h4><pre><code>class ViewController: UIViewController {
+<h3 id="不使用任何第三方布局方式："><a href="#不使用任何第三方布局方式：" class="headerlink" title="不使用任何第三方布局方式："></a>不使用任何第三方布局方式：</h3><pre><code>class ViewController: UIViewController {
 
     let testView_A = UILabel()
 
@@ -435,19 +470,19 @@ class ViewController: UIViewController {
     }
 }
 </code></pre><p>可以看到 FangYuan 能简化很多代码，就算是和 Masonry 相比，也能省下不少代码，同时也还能实现同样的效果</p>
-<h5 id="FangYuan-的缺点"><a href="#FangYuan-的缺点" class="headerlink" title="FangYuan 的缺点"></a>FangYuan 的缺点</h5><ul>
+<h4 id="FangYuan-的缺点"><a href="#FangYuan-的缺点" class="headerlink" title="FangYuan 的缺点"></a>FangYuan 的缺点</h4><ul>
 <li>需要知道在<code>UIView.superView</code>存在时才有效</li>
 <li>FangYuan 的诸多方法需要在<code>layoutSubviews</code>或<code>viewWillLayoutSubviews</code>调用才能保证随<code>superView.frame</code>的变化而变化，比如上述代码的ViewController外如果嵌套在一个 NavigationController中，会出现这种情况（因为FangYuan的方法写在了<code>viewDidLoad</code>中）：</li>
 </ul>
 <p><img src="/image_002/badDemo.png" alt=""></p>
-<h5 id="FangYuan-的使用情况"><a href="#FangYuan-的使用情况" class="headerlink" title="FangYuan 的使用情况"></a>FangYuan 的使用情况</h5><p>我在最近的一个<a href="https://itunes.apple.com/cn/app/quan-min-mo-te-ti-gong-gao/id1086009210?mt=8" target="_blank" rel="external">项目</a>中，<strong>仅仅</strong>使用了 Halo.FangYuan 就实现了整个项目的布局😁</p>
-<h3 id="如何在你的项目中集成-Halo-framework"><a href="#如何在你的项目中集成-Halo-framework" class="headerlink" title="如何在你的项目中集成 Halo.framework"></a>如何在你的项目中集成 Halo.framework</h3><h4 id="Carthage"><a href="#Carthage" class="headerlink" title="Carthage"></a>Carthage</h4><p>1、直接在<a href="https://github.com/HaloWang/Halo" target="_blank" rel="external">Github</a>下载下来整个项目<br>2、打开终端<br>3、cd [解压缩后的工程目录]<br>4、carthage build –no-skip-current<br>5、在工程目录中 Carthage/Build/iOS/ 中找到 Halo.framework<br>6、接下来就是将 Halo.framework 集成到你的工程中了，相信大家看到这里，应该都肯定会的吧~</p>
-<h4 id="Cocoapods"><a href="#Cocoapods" class="headerlink" title="Cocoapods"></a>Cocoapods</h4><p>直接使用 <code>pod &#39;Halo&#39;</code>，不要忘记 <code>use_frameworks!</code>~</p>
-<h4 id="上线到-AppStore-时的坑"><a href="#上线到-AppStore-时的坑" class="headerlink" title="上线到 AppStore 时的坑"></a>上线到 AppStore 时的坑</h4><p>使用上述方法集成的 Halo.framework 在（且仅在）上传至 AppStore 时会出错，原因是将 Halo.framework 中多余的 Architectures 打包进了索要上传的应用程序包中，解决方案大家可以参照<a href="http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/" target="_blank" rel="external">这里</a>或者<a href="http://stackoverflow.com/questions/35240330/errors-building-xcode-project-after-adding-in-run-script-fatal-error-lipo-inpu/35240555" target="_blank" rel="external">Stackoverflow</a></p>
+<h4 id="FangYuan-的使用情况"><a href="#FangYuan-的使用情况" class="headerlink" title="FangYuan 的使用情况"></a>FangYuan 的使用情况</h4><p>我在最近的一个<a href="https://itunes.apple.com/cn/app/quan-min-mo-te-ti-gong-gao/id1086009210?mt=8" target="_blank" rel="external">项目</a>中，<strong>仅仅</strong>使用了 Halo.FangYuan 就实现了整个项目的布局😁</p>
+<h2 id="如何在你的项目中集成-Halo-framework"><a href="#如何在你的项目中集成-Halo-framework" class="headerlink" title="如何在你的项目中集成 Halo.framework"></a>如何在你的项目中集成 Halo.framework</h2><h3 id="CocoaPods（推荐）"><a href="#CocoaPods（推荐）" class="headerlink" title="CocoaPods（推荐）"></a>CocoaPods（推荐）</h3><p>直接使用 <code>pod &#39;Halo&#39;</code>，不要忘记 <code>use_frameworks!</code>~</p>
+<h3 id="Carthage"><a href="#Carthage" class="headerlink" title="Carthage"></a>Carthage</h3><p>1、直接在<a href="https://github.com/HaloWang/Halo" target="_blank" rel="external">Github</a>下载下来整个项目<br>2、打开终端<br>3、cd [解压缩后的工程目录]<br>4、carthage build –no-skip-current<br>5、在工程目录中 Carthage/Build/iOS/ 中找到 Halo.framework<br>6、接下来就是将 Halo.framework 集成到你的工程中了，相信大家看到这里，应该都肯定会的吧~</p>
+<h4 id="使用-Carthage-上线到-AppStore-时的坑"><a href="#使用-Carthage-上线到-AppStore-时的坑" class="headerlink" title="使用 Carthage 上线到 AppStore 时的坑"></a>使用 Carthage 上线到 AppStore 时的坑</h4><p>使用上述方法集成的 Halo.framework 在（且仅在）上传至 AppStore 时会出错，原因是将 Halo.framework 中多余的 Architectures 打包进了索要上传的应用程序包中，解决方案大家可以参照<a href="http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/" target="_blank" rel="external">这里</a>或者<a href="http://stackoverflow.com/questions/35240330/errors-building-xcode-project-after-adding-in-run-script-fatal-error-lipo-inpu/35240555" target="_blank" rel="external">Stackoverflow</a></p>
 <p>囧，这个分明是我的锅啊，有时间一定解决！</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h4><p>总得来说，Halo.framework 是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h3><p>总得来说，Halo.framework 是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。</p>
 <p>平时写项目，写Demo感觉根本离不开~不过，相比于网上知名的第三方库来说，就羸弱很多了😓</p>
-<h4 id="将来"><a href="#将来" class="headerlink" title="将来"></a>将来</h4><p>最近读了喵神的<a href="https://onevcat.com/2016/01/create-framework/" target="_blank" rel="external">如何打造一个让人愉快的框架</a>，感觉自己的 Halo 即便仅仅是个人使用，也有很多可以改进的地方，比如：</p>
+<h3 id="将来"><a href="#将来" class="headerlink" title="将来"></a>将来</h3><p>最近读了喵神的<a href="https://onevcat.com/2016/01/create-framework/" target="_blank" rel="external">如何打造一个让人愉快的框架</a>，感觉自己的 Halo 即便仅仅是个人使用，也有很多可以改进的地方，比如：</p>
 <ul>
 <li>你还没有对 FangYuan 进行过性能优化啊？</li>
 <li>FangYuan 一定要在<code>layoutSubviews</code>或<code>viewWillLayoutSubviews</code>才能保证使用FangYuan的<code>UIView</code>的<code>superView</code>一定存在吗？才能保证任何 frame 变动时，约束都能生效吗？是不是可以利用 runtime 做一些事情呢？</li>
@@ -455,6 +490,12 @@ class ViewController: UIViewController {
 </ul>
 <p>有机会的话，我一定会不断积累下去的！</p>
 
+      
+    </div>
+    
+    <div>
+      
+        
       
     </div>
 
@@ -576,16 +617,9 @@ class ViewController: UIViewController {
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
-          
-          
 
           
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">标签</span>
-              
-            </div>
+
           
 
         </nav>
@@ -605,8 +639,9 @@ class ViewController: UIViewController {
               <span class="links-of-author-item">
                 <a href="https://github.com/HaloWang" target="_blank">
                   
-                    <i class="fa fa-github"></i> GitHub
+                    <i class="fa fa-github"></i>
                   
+                  GitHub
                 </a>
               </span>
             
@@ -616,7 +651,8 @@ class ViewController: UIViewController {
         
         
 
-        <div class="links-of-author motion-element">
+        
+        <div class="links-of-blogroll motion-element">
           
         </div>
 
@@ -624,19 +660,13 @@ class ViewController: UIViewController {
 
       
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
           <div class="post-toc">
             
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips"><span class="nav-number">2.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链式语法"><span class="nav-number">2.1.</span> <span class="nav-text">链式语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Halo-详细介绍"><span class="nav-number">3.</span> <span class="nav-text">Halo 详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift-Halo"><span class="nav-number">3.1.</span> <span class="nav-text">Swift+Halo</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CGFloatable-swift"><span class="nav-number">3.1.1.</span> <span class="nav-text">CGFloatable.swift</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GCD-Halo-swift"><span class="nav-number">3.1.2.</span> <span class="nav-text">GCD+Halo.swift</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Print-Halo-swift"><span class="nav-number">3.1.3.</span> <span class="nav-text">Print+Halo.swift</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIKit-Halo"><span class="nav-number">3.2.</span> <span class="nav-text">UIKit+Halo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KeyboardObserver"><span class="nav-number">3.3.</span> <span class="nav-text">KeyboardObserver</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方圆（FangYuan）"><span class="nav-number">3.4.</span> <span class="nav-text">方圆（FangYuan）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#我是这样想的"><span class="nav-number">3.4.1.</span> <span class="nav-text">我是这样想的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#简单展示"><span class="nav-number">3.4.2.</span> <span class="nav-text">简单展示</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不使用任何第三方布局方式："><span class="nav-number">3.5.</span> <span class="nav-text">不使用任何第三方布局方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#FangYuan-的缺点"><span class="nav-number">3.5.1.</span> <span class="nav-text">FangYuan 的缺点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#FangYuan-的使用情况"><span class="nav-number">3.5.2.</span> <span class="nav-text">FangYuan 的使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何在你的项目中集成-Halo-framework"><span class="nav-number">4.</span> <span class="nav-text">如何在你的项目中集成 Halo.framework</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Carthage"><span class="nav-number">4.1.</span> <span class="nav-text">Carthage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cocoapods"><span class="nav-number">4.2.</span> <span class="nav-text">Cocoapods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上线到-AppStore-时的坑"><span class="nav-number">4.3.</span> <span class="nav-text">上线到 AppStore 时的坑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#现在"><span class="nav-number">5.1.</span> <span class="nav-text">现在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将来"><span class="nav-number">5.2.</span> <span class="nav-text">将来</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">2.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链式语法"><span class="nav-number">2.1.</span> <span class="nav-text">链式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Halo-详细介绍"><span class="nav-number">3.</span> <span class="nav-text">Halo 详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-Halo"><span class="nav-number">3.1.</span> <span class="nav-text">Swift+Halo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CGFloatable-swift"><span class="nav-number">3.1.1.</span> <span class="nav-text">CGFloatable.swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD-Halo-swift"><span class="nav-number">3.1.2.</span> <span class="nav-text">GCD+Halo.swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-Halo-swift"><span class="nav-number">3.1.3.</span> <span class="nav-text">Print+Halo.swift</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIKit-Halo"><span class="nav-number">3.2.</span> <span class="nav-text">UIKit+Halo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyboardObserver"><span class="nav-number">3.3.</span> <span class="nav-text">KeyboardObserver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方圆（FangYuan）"><span class="nav-number">3.4.</span> <span class="nav-text">方圆（FangYuan）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我是这样想的"><span class="nav-number">3.4.1.</span> <span class="nav-text">我是这样想的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单展示"><span class="nav-number">3.4.2.</span> <span class="nav-text">简单展示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用任何第三方布局方式："><span class="nav-number">3.5.</span> <span class="nav-text">不使用任何第三方布局方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的缺点"><span class="nav-number">3.5.1.</span> <span class="nav-text">FangYuan 的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的使用情况"><span class="nav-number">3.5.2.</span> <span class="nav-text">FangYuan 的使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在你的项目中集成-Halo-framework"><span class="nav-number">4.</span> <span class="nav-text">如何在你的项目中集成 Halo.framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods（推荐）"><span class="nav-number">4.1.</span> <span class="nav-text">CocoaPods（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carthage"><span class="nav-number">4.2.</span> <span class="nav-text">Carthage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-Carthage-上线到-AppStore-时的坑"><span class="nav-number">4.2.1.</span> <span class="nav-text">使用 Carthage 上线到 AppStore 时的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现在"><span class="nav-number">5.1.</span> <span class="nav-text">现在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将来"><span class="nav-number">5.2.</span> <span class="nav-text">将来</span></a></li></ol></li></ol></div>
             
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
           </div>
         </section>
       
@@ -677,208 +707,72 @@ class ViewController: UIViewController {
       </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
   
 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
 
   
 
 
 
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
+  
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
+  
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
-
-  
-  
 
   
   
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
-        }
-      }
-    };
-  });
-</script>
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -911,10 +805,11 @@ class ViewController: UIViewController {
 
   
   
-
-  
   
 
+  
+
+  
 
 </body>
 </html>
