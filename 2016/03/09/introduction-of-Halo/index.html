@@ -101,7 +101,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
 <meta property="og:image" content="http://yoursite.com/image_002/log.png">
 <meta property="og:image" content="http://yoursite.com/image_002/FangYuanDemo.png">
 <meta property="og:image" content="http://yoursite.com/image_002/badDemo.png">
-<meta property="og:updated_time" content="2016-04-08T12:42:15.000Z">
+<meta property="og:updated_time" content="2016-04-09T14:43:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Halo.framework">
 <meta name="twitter:description" content="简介Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的
@@ -206,16 +206,6 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            标签
           </a>
         </li>
       
@@ -339,20 +329,7 @@ object.propertyD = valueD
 }
 </code></pre><h2 id="Halo-详细介绍"><a href="#Halo-详细介绍" class="headerlink" title="Halo 详细介绍"></a>Halo 详细介绍</h2><p>Halo.framework 工程目录如下图：<br><img src="/image_002/proj.png" alt=""><br>接下来的时间，我会介绍一下 Source 目录下各个文件实现的主要功能</p>
 <h3 id="Swift-Halo"><a href="#Swift-Halo" class="headerlink" title="Swift+Halo"></a>Swift+Halo</h3><h4 id="CGFloatable-swift"><a href="#CGFloatable-swift" class="headerlink" title="CGFloatable.swift"></a>CGFloatable.swift</h4><p>该文件提供了一个<code>CGFloatable</code>协议，主要是觉得在 Swift 编译器总是认为 “1” 是<code>Int</code>值，和<code>CGFloat</code>数据使用时总会出先编译错误。所以为<code>Int</code>、<code>Double</code>、<code>Float</code>实现了<code>CGFloatable</code>协议，通过 <code>.f</code> 的形式快速转化为<code>CGFloat</code>（而不是麻烦的 <code>CGFloat(X)</code>）<br>同时在此基础上，使用硬编码对屏幕适配做了一些处理</p>
-<h4 id="GCD-Halo-swift"><a href="#GCD-Halo-swift" class="headerlink" title="GCD+Halo.swift"></a>GCD+Halo.swift</h4><p>快速调用 GCD，但是网上已经有很好的<a href="https://github.com/duemunk/Async" target="_blank" rel="external">实现</a>了<br>我经常会这样写：</p>
-<pre><code>Async {
-
-    //  复杂耗时任务...
-
-    Last {
-        //  更新 UI
-    }
-}
-</code></pre><p>或者：</p>
-<pre><code>After(second: 2) {
-    //    做某事
-}
-</code></pre><h4 id="Print-Halo-swift"><a href="#Print-Halo-swift" class="headerlink" title="Print+Halo.swift"></a>Print+Halo.swift</h4><p>通过<code>ccRight</code>、<code>ccWarning</code>、<code>ccError</code>输出表情符号方便调试<br>之后我们可以在控制台输出像这样的东西：<br><img src="/image_002/log.png" alt=""></p>
+<h4 id="Print-Halo-swift"><a href="#Print-Halo-swift" class="headerlink" title="Print+Halo.swift"></a>Print+Halo.swift</h4><p>通过<code>ccRight</code>、<code>ccWarning</code>、<code>ccError</code>输出表情符号方便调试<br>之后我们可以在控制台输出像这样的东西：<br><img src="/image_002/log.png" alt=""></p>
 <h3 id="UIKit-Halo"><a href="#UIKit-Halo" class="headerlink" title="UIKit+Halo"></a>UIKit+Halo</h3><p>这个目录下的文件以 <code>extension</code> 的形式大量的实现了 UIKit 一些常用控件的链式语法，以方便日常开发的使用</p>
 <p>除此之外，还有一些边边角角的东西：</p>
 <ul>
@@ -665,7 +642,7 @@ class ViewController: UIViewController {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">2.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链式语法"><span class="nav-number">2.1.</span> <span class="nav-text">链式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Halo-详细介绍"><span class="nav-number">3.</span> <span class="nav-text">Halo 详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-Halo"><span class="nav-number">3.1.</span> <span class="nav-text">Swift+Halo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CGFloatable-swift"><span class="nav-number">3.1.1.</span> <span class="nav-text">CGFloatable.swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD-Halo-swift"><span class="nav-number">3.1.2.</span> <span class="nav-text">GCD+Halo.swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-Halo-swift"><span class="nav-number">3.1.3.</span> <span class="nav-text">Print+Halo.swift</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIKit-Halo"><span class="nav-number">3.2.</span> <span class="nav-text">UIKit+Halo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyboardObserver"><span class="nav-number">3.3.</span> <span class="nav-text">KeyboardObserver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方圆（FangYuan）"><span class="nav-number">3.4.</span> <span class="nav-text">方圆（FangYuan）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我是这样想的"><span class="nav-number">3.4.1.</span> <span class="nav-text">我是这样想的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单展示"><span class="nav-number">3.4.2.</span> <span class="nav-text">简单展示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用任何第三方布局方式："><span class="nav-number">3.5.</span> <span class="nav-text">不使用任何第三方布局方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的缺点"><span class="nav-number">3.5.1.</span> <span class="nav-text">FangYuan 的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的使用情况"><span class="nav-number">3.5.2.</span> <span class="nav-text">FangYuan 的使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在你的项目中集成-Halo-framework"><span class="nav-number">4.</span> <span class="nav-text">如何在你的项目中集成 Halo.framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods（推荐）"><span class="nav-number">4.1.</span> <span class="nav-text">CocoaPods（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carthage"><span class="nav-number">4.2.</span> <span class="nav-text">Carthage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-Carthage-上线到-AppStore-时的坑"><span class="nav-number">4.2.1.</span> <span class="nav-text">使用 Carthage 上线到 AppStore 时的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现在"><span class="nav-number">5.1.</span> <span class="nav-text">现在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将来"><span class="nav-number">5.2.</span> <span class="nav-text">将来</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">2.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链式语法"><span class="nav-number">2.1.</span> <span class="nav-text">链式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Halo-详细介绍"><span class="nav-number">3.</span> <span class="nav-text">Halo 详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-Halo"><span class="nav-number">3.1.</span> <span class="nav-text">Swift+Halo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CGFloatable-swift"><span class="nav-number">3.1.1.</span> <span class="nav-text">CGFloatable.swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-Halo-swift"><span class="nav-number">3.1.2.</span> <span class="nav-text">Print+Halo.swift</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIKit-Halo"><span class="nav-number">3.2.</span> <span class="nav-text">UIKit+Halo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyboardObserver"><span class="nav-number">3.3.</span> <span class="nav-text">KeyboardObserver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方圆（FangYuan）"><span class="nav-number">3.4.</span> <span class="nav-text">方圆（FangYuan）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我是这样想的"><span class="nav-number">3.4.1.</span> <span class="nav-text">我是这样想的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单展示"><span class="nav-number">3.4.2.</span> <span class="nav-text">简单展示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用任何第三方布局方式："><span class="nav-number">3.5.</span> <span class="nav-text">不使用任何第三方布局方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的缺点"><span class="nav-number">3.5.1.</span> <span class="nav-text">FangYuan 的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的使用情况"><span class="nav-number">3.5.2.</span> <span class="nav-text">FangYuan 的使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在你的项目中集成-Halo-framework"><span class="nav-number">4.</span> <span class="nav-text">如何在你的项目中集成 Halo.framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods（推荐）"><span class="nav-number">4.1.</span> <span class="nav-text">CocoaPods（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carthage"><span class="nav-number">4.2.</span> <span class="nav-text">Carthage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-Carthage-上线到-AppStore-时的坑"><span class="nav-number">4.2.1.</span> <span class="nav-text">使用 Carthage 上线到 AppStore 时的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现在"><span class="nav-number">5.1.</span> <span class="nav-text">现在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将来"><span class="nav-number">5.2.</span> <span class="nav-text">将来</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content=",,,,,,,,,,," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -88,11 +88,12 @@
 bundle
 code
 
-纯展示的图像可以使用 CALayer 而非 UIView比如一条线
+比如一条线
 取消无效的图片加载尽可能使用不透明的 UIViewTime Profiler - Core Animation
-mis">
+misaligned image 不重合的图片
+可以在网络请">
 <meta property="og:type" content="website">
-<meta property="og:title" content="UITableView 性能优化">
+<meta property="og:title" content="王策的博客">
 <meta property="og:url" content="http://yoursite.com/UnfinishPosts/UITableview-smooth-scrolling.html">
 <meta property="og:site_name" content="王策的博客">
 <meta property="og:description" content="UITableView Smooth之前可能会有一项准备工作，创建更多的，需求之外的 Cell 来测试滑动
@@ -101,21 +102,23 @@ mis">
 bundle
 code
 
-纯展示的图像可以使用 CALayer 而非 UIView比如一条线
+比如一条线
 取消无效的图片加载尽可能使用不透明的 UIViewTime Profiler - Core Animation
-mis">
-<meta property="og:updated_time" content="2016-03-25T13:13:25.000Z">
+misaligned image 不重合的图片
+可以在网络请">
+<meta property="og:updated_time" content="2016-04-08T14:07:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITableView 性能优化">
+<meta name="twitter:title" content="王策的博客">
 <meta name="twitter:description" content="UITableView Smooth之前可能会有一项准备工作，创建更多的，需求之外的 Cell 来测试滑动
 缓存更多的数据到内存中我就曾经在 cellForRowAtIndexPath
 
 bundle
 code
 
-纯展示的图像可以使用 CALayer 而非 UIView比如一条线
+比如一条线
 取消无效的图片加载尽可能使用不透明的 UIViewTime Profiler - Core Animation
-mis">
+misaligned image 不重合的图片
+可以在网络请">
 
 
 
@@ -137,7 +140,7 @@ mis">
   
 
   
-    UITableView 性能优化 | 王策的博客
+     | 王策的博客
   
 </title>
 </head>
@@ -221,16 +224,6 @@ mis">
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -251,31 +244,41 @@ mis">
   <div id="posts" class="posts-expand">
     
     
-      <h2 id="UITableView-Smooth"><a href="#UITableView-Smooth" class="headerlink" title="UITableView Smooth"></a>UITableView Smooth</h2><p>之前可能会有一项准备工作，创建更多的，需求之外的 Cell 来测试滑动</p>
+      <!-----
+title: UITableView 性能优化
+date: 2016-03-22 15:17:39
+tags: UITableView
+----->
+<h2 id="UITableView-Smooth"><a href="#UITableView-Smooth" class="headerlink" title="UITableView Smooth"></a>UITableView Smooth</h2><p>之前可能会有一项准备工作，创建更多的，需求之外的 Cell 来测试滑动</p>
 <h3 id="缓存更多的数据到内存中"><a href="#缓存更多的数据到内存中" class="headerlink" title="缓存更多的数据到内存中"></a>缓存更多的数据到内存中</h3><p>我就曾经在 cellForRowAtIndexPath</p>
 <ul>
 <li>bundle</li>
 <li>code</li>
 </ul>
-<h3 id="纯展示的图像可以使用-CALayer-而非-UIView"><a href="#纯展示的图像可以使用-CALayer-而非-UIView" class="headerlink" title="纯展示的图像可以使用 CALayer 而非 UIView"></a>纯展示的图像可以使用 CALayer 而非 UIView</h3><p>比如一条线</p>
+<p>比如一条线</p>
 <h3 id="取消无效的图片加载"><a href="#取消无效的图片加载" class="headerlink" title="取消无效的图片加载"></a>取消无效的图片加载</h3><h3 id="尽可能使用不透明的-UIView"><a href="#尽可能使用不透明的-UIView" class="headerlink" title="尽可能使用不透明的 UIView"></a>尽可能使用不透明的 UIView</h3><h3 id="Time-Profiler-Core-Animation"><a href="#Time-Profiler-Core-Animation" class="headerlink" title="Time Profiler - Core Animation"></a>Time Profiler - Core Animation</h3><ul>
-<li>misaligned image 不重合的图片<ul>
+<li><code>misaligned image</code> 不重合的图片<ul>
 <li>可以在网络请求加载完成后，开一个新的异步并行线程对图片尺寸进行处理，处理完成后，回到主线程更新 UI，你甚至可以为 SDWebImage 专门写一个方法，即便服务器没有返回你想要的尺寸</li>
 </ul>
 </li>
-<li>blended layers 混合图层</li>
+<li><code>blended layers</code> 混合图层</li>
 </ul>
 <h3 id="不要去动-CALayer-层的属性，使用其他替代方案"><a href="#不要去动-CALayer-层的属性，使用其他替代方案" class="headerlink" title="不要去动 CALayer 层的属性，使用其他替代方案"></a>不要去动 CALayer 层的属性，使用其他替代方案</h3><ul>
 <li>如果你不得不使用 layer.shadow 之类的属性，设置 <code>layer.shouldRasterize = true</code>，并使用 Instrument 中的 <code>Color hits green and missed red</code> 来检查</li>
 </ul>
-<h3 id="固定高度直接设定-rowHeight"><a href="#固定高度直接设定-rowHeight" class="headerlink" title="固定高度直接设定 rowHeight"></a>固定高度直接设定 rowHeight</h3><h3 id="使用纯代码布局"><a href="#使用纯代码布局" class="headerlink" title="使用纯代码布局"></a>使用纯代码布局</h3><h3 id="Unfinish"><a href="#Unfinish" class="headerlink" title="Unfinish"></a><font color="red">Unfinish</font></h3><ul>
+<h3 id="固定高度直接设定-rowHeight"><a href="#固定高度直接设定-rowHeight" class="headerlink" title="固定高度直接设定 rowHeight"></a>固定高度直接设定 rowHeight</h3><p>而不是使用 <code>tableView:heightForRowAtIndexPath:</code></p>
+<h3 id="使用纯代码布局"><a href="#使用纯代码布局" class="headerlink" title="使用纯代码布局"></a>使用纯代码布局</h3><ul>
+<li>给我的 <code>FangYuan</code> 做一下广告</li>
+</ul>
+<h3 id="纯展示的-UIView-可以直接使用-CALayer"><a href="#纯展示的-UIView-可以直接使用-CALayer" class="headerlink" title="纯展示的 UIView 可以直接使用 CALayer"></a>纯展示的 UIView 可以直接使用 CALayer</h3><h3 id="Unfinish"><a href="#Unfinish" class="headerlink" title="Unfinish"></a><font color="red">Unfinish</font></h3><ul>
 <li>尽量少的出现离屏渲染</li>
 <li>避免在单元格中使用动画 / 网络加载指示器</li>
 <li>直接使用 AsyncDisplayKit</li>
 <li>YYKit（原理）</li>
 <li>ASDK（原理）</li>
 </ul>
-<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p><a href="https://medium.com/ios-os-x-development/perfect-smooth-scrolling-in-uitableviews-fd609d5275a5#.x00iah11v" target="_blank" rel="external">Alexander Orlov</a><br><a href="http://b2cloud.com.au/tutorial/smooth-uitableviews/" target="_blank" rel="external">b2cloud</a><br><a href="http://iosinjordan.tumblr.com/post/56778173518/help-my-tables-dont-scroll-smoothly" target="_blank" rel="external">IOS THOUGHTS FROM JORDAN</a><br><a href="http://www.tuicool.com/articles/2iYbMfE" target="_blank" rel="external">离屏渲染_Off-Screen Rendering</a><br><a href="http://www.jianshu.com/p/6d24a4c29e18" target="_blank" rel="external">iOS 离屏渲染的研究</a><br><a href="https://www.objc.io/issues/3-views/moving-pixels-onto-the-screen/" target="_blank" rel="external">objc.io</a><br><a href="https://robots.thoughtbot.com/designing-for-ios-graphics-performance" target="_blank" rel="external">robots</a><br><a href="https://lobste.rs/s/ckm4uw/a_performance-minded_take_on_ios_design" target="_blank" rel="external">lobste.rs</a><br><a href="http://stackoverflow.com/questions/6302029/what-triggers-color-copied-images-and-color-hits-green-and-misses-red-in-ins" target="_blank" rel="external">stackoverflow</a><br><a href="http://blog.ibireme.com/" target="_blank" rel="external">ibireme</a></p>
+<h3 id="细分-Cell-的类型"><a href="#细分-Cell-的类型" class="headerlink" title="细分 Cell 的类型"></a>细分 Cell 的类型</h3><p>目前每个 Cell 的类型都是相同的，但显示的内容却各不一样，比如有的 Cell 有图片，有的 Cell 里是卡片。把 Cell 按类型划分，进一步减少 Cell 内不必要的视图对象和操作，应该能有一些效果。；来自<a href="http://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/#56" target="_blank" rel="external">这里</a></p>
+<h3 id="后台线程计算高度"><a href="#后台线程计算高度" class="headerlink" title="后台线程计算高度"></a>后台线程计算高度</h3><h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p><a href="https://medium.com/ios-os-x-development/perfect-smooth-scrolling-in-uitableviews-fd609d5275a5#.x00iah11v" target="_blank" rel="external">Alexander Orlov</a><br><a href="http://b2cloud.com.au/tutorial/smooth-uitableviews/" target="_blank" rel="external">b2cloud</a><br><a href="http://iosinjordan.tumblr.com/post/56778173518/help-my-tables-dont-scroll-smoothly" target="_blank" rel="external">IOS THOUGHTS FROM JORDAN</a><br><a href="http://www.tuicool.com/articles/2iYbMfE" target="_blank" rel="external">离屏渲染_Off-Screen Rendering</a><br><a href="http://www.jianshu.com/p/6d24a4c29e18" target="_blank" rel="external">iOS 离屏渲染的研究</a><br><a href="https://www.objc.io/issues/3-views/moving-pixels-onto-the-screen/" target="_blank" rel="external">objc.io</a><br><a href="https://robots.thoughtbot.com/designing-for-ios-graphics-performance" target="_blank" rel="external">robots</a><br><a href="https://lobste.rs/s/ckm4uw/a_performance-minded_take_on_ios_design" target="_blank" rel="external">lobste.rs</a><br><a href="http://stackoverflow.com/questions/6302029/what-triggers-color-copied-images-and-color-hits-green-and-misses-red-in-ins" target="_blank" rel="external">stackoverflow</a><br><a href="http://blog.ibireme.com/" target="_blank" rel="external">ibireme</a></p>
 
     
   </div>
@@ -289,7 +292,7 @@ mis">
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="UnfinishPosts/UITableview-smooth-scrolling.html"
-           data-title="UITableView 性能优化" data-url="http://yoursite.com/UnfinishPosts/UITableview-smooth-scrolling.html">
+           data-title="" data-url="http://yoursite.com/UnfinishPosts/UITableview-smooth-scrolling.html">
       </div>
     
   </div>
