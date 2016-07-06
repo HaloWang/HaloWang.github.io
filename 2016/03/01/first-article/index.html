@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -49,12 +51,20 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
+
+
 
 
 
@@ -64,7 +74,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT, HaloWang, Halo, GitHub, WangCe, iOS" />
+  <meta name="keywords" content="WangCe, HaloWang, Swift, iOS" />
 
 
 
@@ -112,7 +122,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"always"},
+    sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -121,6 +131,11 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
     }
   };
 </script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/01/first-article/"/>
 
   <title> 写点什么好呢？ | 王策的博客 </title>
 </head>
@@ -188,7 +203,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -198,7 +213,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -277,6 +292,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
           
           
 
+          
         </div>
       </header>
     
@@ -297,7 +313,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
 
       
     </div>
-    
+
     <div>
       
         
@@ -307,6 +323,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
     <div>
       
         
+
       
     </div>
 
@@ -387,7 +404,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar_image.jpeg"
+               src="/images/avatar.jpeg"
                alt="WangCe" />
           <p class="site-author-name" itemprop="name">WangCe</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -412,18 +429,18 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/HaloWang" target="_blank">
+                <a href="https://github.com/HaloWang" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/u/1782552423" target="_blank">
+                <a href="http://weibo.com/u/1782552423" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -436,9 +453,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
+        
 
       </section>
 
@@ -467,7 +482,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2015 - 
+  &copy; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -486,8 +501,9 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
   </a>
 </div>
 
+        
 
-
+        
       </div>
     </footer>
 
@@ -581,7 +597,10 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
+
 
 
 

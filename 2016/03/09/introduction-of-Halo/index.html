@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -49,12 +51,20 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
+
+
 
 
 
@@ -64,7 +74,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT, HaloWang, Halo, GitHub, WangCe, iOS" />
+  <meta name="keywords" content="WangCe, HaloWang, Swift, iOS" />
 
 
 
@@ -115,7 +125,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"always"},
+    sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -124,6 +134,11 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
     }
   };
 </script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/09/introduction-of-Halo/"/>
 
   <title> Halo.framework | 王策的博客 </title>
 </head>
@@ -191,7 +206,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -201,7 +216,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -280,6 +295,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
           
           
 
+          
         </div>
       </header>
     
@@ -467,7 +483,7 @@ class ViewController: UIViewController {
 
       
     </div>
-    
+
     <div>
       
         
@@ -477,6 +493,7 @@ class ViewController: UIViewController {
     <div>
       
         
+
       
     </div>
 
@@ -557,7 +574,7 @@ class ViewController: UIViewController {
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar_image.jpeg"
+               src="/images/avatar.jpeg"
                alt="WangCe" />
           <p class="site-author-name" itemprop="name">WangCe</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -582,18 +599,18 @@ class ViewController: UIViewController {
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/HaloWang" target="_blank">
+                <a href="https://github.com/HaloWang" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/u/1782552423" target="_blank">
+                <a href="http://weibo.com/u/1782552423" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -606,9 +623,7 @@ class ViewController: UIViewController {
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
+        
 
       </section>
 
@@ -637,7 +652,7 @@ class ViewController: UIViewController {
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2015 - 
+  &copy; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -656,8 +671,9 @@ class ViewController: UIViewController {
   </a>
 </div>
 
+        
 
-
+        
       </div>
     </footer>
 
@@ -751,7 +767,10 @@ class ViewController: UIViewController {
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
+
 
 
 

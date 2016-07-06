@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -49,12 +51,20 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
+
+
 
 
 
@@ -64,7 +74,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT, HaloWang, Halo, GitHub, WangCe, iOS" />
+  <meta name="keywords" content="WangCe, HaloWang, Swift, iOS" />
 
 
 
@@ -80,15 +90,12 @@
 
 
 
-<meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="王策的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="王策的博客">
-<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="王策的博客">
-<meta name="twitter:description">
 
 
 
@@ -96,7 +103,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"always"},
+    sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -105,6 +112,11 @@
     }
   };
 </script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
 
   <title> 王策的博客 </title>
 </head>
@@ -174,7 +186,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -184,7 +196,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -266,6 +278,7 @@
           
           
 
+          
         </div>
       </header>
     
@@ -280,9 +293,7 @@
         
           
           简介Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的
-Halo 的名字取自一款叫做 HALO 的游戏。我比较喜欢这款游戏宏大的背景，所以就叫做这个名字了
-Tips
-Ha
+Halo 的名
           ...
 
           <div class="post-more-link text-center">
@@ -293,7 +304,7 @@ Ha
         
       
     </div>
-    
+
     <div>
       
     </div>
@@ -374,6 +385,7 @@ Ha
           
           
 
+          
         </div>
       </header>
     
@@ -389,8 +401,6 @@ Ha
           
           缘由最近被问起这样的问题，所以把自己知道的写出来包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下
 本文使用 Xcode 7.3 + Swift，最低兼容 iOS 8.0
-这里查看源代码)是项目的完整代码，下载完成后，请执行 pod install
-目录文件介绍View
           ...
 
           <div class="post-more-link text-center">
@@ -401,7 +411,7 @@ Ha
         
       
     </div>
-    
+
     <div>
       
     </div>
@@ -482,6 +492,7 @@ Ha
           
           
 
+          
         </div>
       </header>
     
@@ -499,10 +510,8 @@ Ha
 下面是一些我想写的东西
 Halo.framework使用 Swift 开发 iOS App 以来所总结的东西
 JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
-使用 Instrument曾经使用过，现在来总结一下
-敬请期待~
-
-          
+使用 
+          ...
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/01/first-article/#more" rel="contents">
@@ -512,7 +521,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
         
       
     </div>
-    
+
     <div>
       
     </div>
@@ -568,7 +577,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar_image.jpeg"
+               src="/images/avatar.jpeg"
                alt="WangCe" />
           <p class="site-author-name" itemprop="name">WangCe</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -593,18 +602,18 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/HaloWang" target="_blank">
+                <a href="https://github.com/HaloWang" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/u/1782552423" target="_blank">
+                <a href="http://weibo.com/u/1782552423" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -617,9 +626,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
+        
 
       </section>
 
@@ -637,7 +644,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2015 - 
+  &copy; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -656,8 +663,9 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
   </a>
 </div>
 
+        
 
-
+        
       </div>
     </footer>
 
@@ -747,7 +755,10 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
+
 
 
 
