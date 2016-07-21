@@ -61,7 +61,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -79,6 +79,8 @@
 
 
 
+
+  <link rel="alternate" href="/atom.xml" title="王策的博客" type="application/atom+xml" />
 
 
 
@@ -125,7 +127,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"always"},
+    sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -487,6 +489,7 @@ class ViewController: UIViewController {
     <div>
       
         
+
       
     </div>
 
@@ -511,6 +514,10 @@ class ViewController: UIViewController {
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/06/Feed-Forward-Neural-Network/" rel="prev" title="关于神经网络">
+                关于神经网络 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -582,7 +589,7 @@ class ViewController: UIViewController {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -593,6 +600,13 @@ class ViewController: UIViewController {
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -634,7 +648,7 @@ class ViewController: UIViewController {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">2.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链式语法"><span class="nav-number">2.1.</span> <span class="nav-text">链式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Halo-详细介绍"><span class="nav-number">3.</span> <span class="nav-text">Halo 详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-Halo"><span class="nav-number">3.1.</span> <span class="nav-text">Swift+Halo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CGFloatable-swift"><span class="nav-number">3.1.1.</span> <span class="nav-text">CGFloatable.swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-Halo-swift"><span class="nav-number">3.1.2.</span> <span class="nav-text">Print+Halo.swift</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIKit-Halo"><span class="nav-number">3.2.</span> <span class="nav-text">UIKit+Halo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyboardObserver"><span class="nav-number">3.3.</span> <span class="nav-text">KeyboardObserver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方圆（FangYuan）"><span class="nav-number">3.4.</span> <span class="nav-text">方圆（FangYuan）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我是这样想的"><span class="nav-number">3.4.1.</span> <span class="nav-text">我是这样想的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单展示"><span class="nav-number">3.4.2.</span> <span class="nav-text">简单展示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用任何第三方布局方式："><span class="nav-number">3.5.</span> <span class="nav-text">不使用任何第三方布局方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的缺点"><span class="nav-number">3.5.1.</span> <span class="nav-text">FangYuan 的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的使用情况"><span class="nav-number">3.5.2.</span> <span class="nav-text">FangYuan 的使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在你的项目中集成-Halo-framework"><span class="nav-number">4.</span> <span class="nav-text">如何在你的项目中集成 Halo.framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods（推荐）"><span class="nav-number">4.1.</span> <span class="nav-text">CocoaPods（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carthage"><span class="nav-number">4.2.</span> <span class="nav-text">Carthage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-Carthage-上线到-AppStore-时的坑"><span class="nav-number">4.2.1.</span> <span class="nav-text">使用 Carthage 上线到 AppStore 时的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现在"><span class="nav-number">5.1.</span> <span class="nav-text">现在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将来"><span class="nav-number">5.2.</span> <span class="nav-text">将来</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链式语法"><span class="nav-text">链式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Halo-详细介绍"><span class="nav-text">Halo 详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-Halo"><span class="nav-text">Swift+Halo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CGFloatable-swift"><span class="nav-text">CGFloatable.swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-Halo-swift"><span class="nav-text">Print+Halo.swift</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIKit-Halo"><span class="nav-text">UIKit+Halo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyboardObserver"><span class="nav-text">KeyboardObserver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方圆（FangYuan）"><span class="nav-text">方圆（FangYuan）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我是这样想的"><span class="nav-text">我是这样想的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单展示"><span class="nav-text">简单展示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用任何第三方布局方式："><span class="nav-text">不使用任何第三方布局方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的缺点"><span class="nav-text">FangYuan 的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的使用情况"><span class="nav-text">FangYuan 的使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在你的项目中集成-Halo-framework"><span class="nav-text">如何在你的项目中集成 Halo.framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods（推荐）"><span class="nav-text">CocoaPods（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carthage"><span class="nav-text">Carthage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-Carthage-上线到-AppStore-时的坑"><span class="nav-text">使用 Carthage 上线到 AppStore 时的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现在"><span class="nav-text">现在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将来"><span class="nav-text">将来</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -652,7 +666,7 @@ class ViewController: UIViewController {
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -778,6 +792,7 @@ class ViewController: UIViewController {
 
   
   
+
   
 
   

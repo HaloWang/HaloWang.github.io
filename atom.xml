@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>王策的博客</title>
+  <subtitle>一个 iOS 开发者</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-07-21T09:32:08.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>WangCe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于神经网络</title>
+    <link href="http://yoursite.com/2016/07/06/Feed-Forward-Neural-Network/"/>
+    <id>http://yoursite.com/2016/07/06/Feed-Forward-Neural-Network/</id>
+    <published>2016-07-06T09:06:03.000Z</published>
+    <updated>2016-07-21T09:32:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在本文中，我将分享一下我近期学习到的神经网络相关<br>同时，使用 Swift 实现一个简单的神经网络，并予以测试</p>
+<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><h3 id="什么是神经网络"><a href="#什么是神经网络" class="headerlink" title="什么是神经网络"></a>什么是神经网络</h3><p>一般意思上的神经网络指<strong>人工神经网络（Artificial Neural Network）</strong></p>
+<p><a href="https://www.zhihu.com/question/22553761/answer/36429105" target="_blank" rel="external">如何简单形象又有趣地讲解神经网络是什么？</a><br><a href="https://www.quora.com/How-do-you-explain-Machine-Learning-and-Data-Mining-to-non-Computer-Science-people/answer/Pararth-Shah" target="_blank" rel="external">How do you explain Machine Learning and Data Mining to non Computer Science people?</a><br><a href="https://en.wikipedia.org/wiki/Artificial_neural_network" target="_blank" rel="external">wikipedia</a></p>
+<h3 id="很直观的演示"><a href="#很直观的演示" class="headerlink" title="很直观的演示"></a>很直观的演示</h3><p><a href="http://playground.tensorflow.org/" target="_blank" rel="external">Tensorflow</a><br><a href="https://github.com/collinhundley/Swift-AI" target="_blank" rel="external">Swift-AI</a>（需要有 Mac/Xcode 环境）</p>
+<h3 id="神经网络的基本样式"><a href="#神经网络的基本样式" class="headerlink" title="神经网络的基本样式"></a>神经网络的基本样式</h3><p><img src="/FFNN_images/ffnn.png" alt="FFNN"></p>
+<h3 id="Feed-Forward-Neural-Network"><a href="#Feed-Forward-Neural-Network" class="headerlink" title="Feed Forward Neural Network"></a>Feed Forward Neural Network</h3><p>Feed Forward Neural Network 简称 FFNN，也就是<strong>向前反馈神经网络</strong>或称<strong>前馈神经网络</strong>，是一种最简单，最基础的神经网络（这里大家不用太在乎前馈这个词）</p>
+<h3 id="我理解的神经网络"><a href="#我理解的神经网络" class="headerlink" title="我理解的神经网络"></a>我理解的神经网络</h3><p>给定若干个数据（inputs），以及每个数据所代表的意义（answers），已知每个数据的值和每个数据代表的意义间有<strong>某种复杂的（难以使用传统数学方法得知）函数关系</strong></p>
+<p>现在有该类：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FFNN</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">train</span><span class="params">(inputs:[Float], outputs:[Float])</span></span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">calculate</span><span class="params">(input:[Float])</span></span> -&gt; [<span class="type">Float</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我现在使用足够多的 inputs 和对应的 answers 不断训练这个 FFNN，即同时告知输入和输出：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> ffnn = <span class="type">FFNN</span>()</div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> <span class="type">SAMPLE_DATAS</span> &#123;</div><div class="line">    ffnn.train(item.input, item.answer)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>逐渐的，这个 <code>ffnn</code> 就可以<strong>学习/模仿/估算</strong>（更多描述为<strong>拟合</strong>）到<strong>若干个数据，以及每个数据所代表的意义中隐含的函数关系</strong><br>当我充分训练了这个 <code>ffnn</code> 后<br>那么假设现在我有一个数据（input），我们不知道它所代表的意义（answer）<br>但是之前训练过的 <code>ffnn</code> 差不多能猜出来：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> result = ffnn.calculate(input)</div><div class="line"></div><div class="line"><span class="keyword">if</span> result.diff(input.true_result) &lt; <span class="number">0.05</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"✅ 八九不离十！"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果我们训练完了 <code>ffnn</code> 后，用一些已知答案的数据做测试，发现 <code>ffnn</code> 计算出来的答案和真实答案的误差已经很小了，那么我们就可以认为对 <code>ffnn</code> 的训练成功了，或者说，<code>ffnn.train</code> 这个黑盒子已经『猜透』了数据中<strong>某种复杂的（难以使用传统数学方法得知）函数关系</strong></p>
+<h2 id="使用-Swift-实现一个-FFNN"><a href="#使用-Swift-实现一个-FFNN" class="headerlink" title="使用 Swift 实现一个 FFNN"></a>使用 Swift 实现一个 FFNN</h2><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p><strong>首先附上<a href="https://github.com/HaloWang/SwiftFFNN" target="_blank" rel="external">完整项目链接</a></strong></p>
+<p>这份代码极大程度上参考了<a href="https://github.com/collinhundley/Swift-AI" target="_blank" rel="external">Swift-AI</a></p>
+<p>下面我会对代码中的一些<strong>关键部分</strong>做一下讲解</p>
+<h4 id="数据初始化"><a href="#数据初始化" class="headerlink" title="数据初始化"></a>数据初始化</h4><p>初始化输入层、隐藏层、输出层神经元的数量、层级之间的权重、计算所需的缓存</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FFNN</span> </span>&#123;</div><div class="line">    <span class="comment">//  输入层神经元数量</span></div><div class="line">    <span class="keyword">let</span> inputCount: <span class="type">Int</span></div><div class="line">    <span class="comment">//  隐藏层神经元数量</span></div><div class="line">    <span class="keyword">let</span> hiddenCount: <span class="type">Int</span></div><div class="line">    <span class="comment">//  输出层神经元数量</span></div><div class="line">    <span class="keyword">let</span> outputCount: <span class="type">Int</span></div><div class="line">    <span class="comment">//  输入层 - 隐藏层权重</span></div><div class="line">    <span class="keyword">var</span> inputToHiddenWeight: [<span class="type">Float</span>]</div><div class="line">    <span class="comment">//  隐藏层 - 输出层权重</span></div><div class="line">    <span class="keyword">var</span> hiddenToOutputWeight: [<span class="type">Float</span>]</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="激励函数"><a href="#激励函数" class="headerlink" title="激励函数"></a>激励函数</h4><p>关于激励函数的选择，建议大家看看这里：<a href="https://www.zhihu.com/question/29021768/answer/43488153" target="_blank" rel="external">请问人工神经网络中的activation function的作用具体是什么？为什么ReLu要好过于tanh和sigmoid function? - 知乎用户的回答 - 知乎</a><br>我在这个例子中使用的是 <code>sigmoid</code> 函数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">sigmoid</span><span class="params">(x: Float)</span></span> -&gt; <span class="type">Float</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span> / (<span class="number">1</span> + exp(-x))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h4><p>⚠️ 凭什么拟合？</p>
+<p><code>i</code> 根据 <code>inputToHiddenWeight</code> 和 <code>hiddenToOutputWeight</code> 以及 <code>activation function</code> 计算输出的过程</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">update</span><span class="params">(i: [Float])</span></span> -&gt; [<span class="type">Float</span>] &#123;</div><div class="line">    <span class="comment">//  保证输入 = 输入层神经元</span></div><div class="line">    <span class="built_in">assert</span>(i.<span class="built_in">count</span> == inputCount)</div><div class="line">    <span class="comment">//  为输入层神经元加入偏置</span></div><div class="line">    inputCache = [<span class="number">1.0</span>] + i</div><div class="line">    <span class="comment">//  矩阵相乘</span></div><div class="line">    mul(<span class="type">A</span>: inputToHiddenWeight, <span class="type">B</span>: inputCache, <span class="type">C</span>: &amp;hiddenToOutputCache, <span class="type">M</span>: hiddenCount, <span class="type">N</span>: <span class="number">1</span>, <span class="type">P</span>: inputWithBiasCount)</div><div class="line">    <span class="comment">//  激励</span></div><div class="line">    hiddenToOutputCache = hiddenToOutputCache.<span class="built_in">map</span>(sigmoid)</div><div class="line">    <span class="comment">//  矩阵相乘</span></div><div class="line">    mul(<span class="type">A</span>: hiddenToOutputWeight, <span class="type">B</span>: hiddenToOutputCache, <span class="type">C</span>: &amp;outputCache, <span class="type">M</span>: outputCount, <span class="type">N</span>: <span class="number">1</span>, <span class="type">P</span>: hiddenWithBiasCount)</div><div class="line">    <span class="comment">//  激励</span></div><div class="line">    outputCache = outputCache.<span class="built_in">map</span>(sigmoid)</div><div class="line">    <span class="comment">//  返回结果</span></div><div class="line">    <span class="keyword">return</span> outputCache</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><p>关于如何计算权值，非常推荐大家先看看这个问题：<a href="https://www.zhihu.com/question/27239198/answer/89853077" target="_blank" rel="external">如何直观的解释back propagation算法？ - Evan Hoo 的回答 - 知乎</a></p>
+<p>下面是一些我认为对我理解 BP 算法帮助比较大的话：</p>
+<blockquote>
+<ol>
+<li>机器学习可以看做是数理统计的一个应用，在数理统计中一个常见的任务就是拟合，也就是给定一些样本点，用合适的曲线揭示这些样本点随着自变量的变化关系</li>
+<li>采用我们常用的梯度下降法就可以有效的求解最小化 cost 函数的问题</li>
+<li>BP算法正是用来求解这种多层复合函数的所有变量的偏导数的利器</li>
+</ol>
+</blockquote>
+<p>十分抱歉，这里的 backpropagation 写的不够简洁明了，我就不多讲了，仅仅说明一下这个 <code>function</code> 调用后，对 <code>FFNN. inputToHiddenWeight</code> 和 <code>FFNN. hiddenToOutputWeight</code> 的影响吧</p>
+<ul>
+<li>在 <code>update</code> 后调用</li>
+<li>修改 <code>weight</code></li>
+<li>通过调整各个神经元链接间的 weight ，是拟合出来和函数越来越接近目标函数</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">backpropagation</span><span class="params">(answer: [Float])</span></span> &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p><font color="#999999"><em>测试这一小节的数据/数据隐含的关系都是我 YY 的，仅仅是为了方便大家理解，如有雷同，纯属巧合</em><br><em>关于 FFNN 在这里的使用方式，我也是 YY 的，不具有指导作用，请大家仅作参考</em></font></p>
+
+<p>假设现在有一家公司要要针对自己的移动端用户做一个<strong>结识妹子</strong>的活动，该活动在移动端的入口为首页的某个可点击区域，该公司运营希望这个活动能<strong>更有针对性的推广</strong>，也就是筛选出来可能会对这个活动更感兴趣的用户，在这些用户使用 App 时，在移动应用首页向其推广活动</p>
+<p>假设现在我们通过某些方式（如灰度发布）得到了一些用户数据：</p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Item</span> </span>&#123;</div><div class="line">    <span class="comment">/// 性别</span></div><div class="line">    <span class="comment">/// 0 女性 1 男性</span></div><div class="line">    <span class="keyword">let</span> male: <span class="type">Float</span></div><div class="line">    <span class="comment">/// 婚恋状况</span></div><div class="line">    <span class="comment">/// 0 非单身 1 未知 2 单身</span></div><div class="line">    <span class="keyword">let</span> single: <span class="type">Float</span></div><div class="line">    <span class="comment">/// 年龄</span></div><div class="line">    <span class="comment">/// 15 ~ 55</span></div><div class="line">    <span class="keyword">let</span> age: <span class="type">Float</span></div><div class="line">    <span class="comment">/// 点击热度/感兴趣程度</span></div><div class="line">    <span class="comment">/// 0 ~ 1000</span></div><div class="line">    <span class="keyword">let</span> frequency: <span class="type">Float</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="创建数据"><a href="#创建数据" class="headerlink" title="创建数据"></a>创建数据</h4><p>在这里我假设 <code>frequency</code> 和 <code>age</code> 服从<a href="https://zh.wikipedia.org/zh/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83" target="_blank" rel="external">正态分布</a>的关系，同时和性别于年龄有关</p>
+<p><font color="#999999"><em>这里使用正态分布可能并不是太恰当，因为用户对活动的喜好程度可能并不是一个概率分布问题</em></font></p>
+
+<p>通俗一点的讲，我创建的这些数据中，对<strong>结识妹子</strong>活动最感兴趣的是<strong>年龄为 25 岁的男性单身用户</strong>（item.age = 25, item.single = 2, item.male = 1），25岁之前，对活动的兴趣逐渐升高，25岁之后，对活动的兴趣逐渐降低，这个关系大概服从某个类似正态分布的关系。性别为女的话，对<strong>结识妹子</strong>活动的兴趣为男性用户的一半，确定非单身的用户对活动兴趣为单身用户的 1/3，婚恋情况未知取中间值 2/3。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="type">CustomNormalDistribution</span> = <span class="type">NormalDistribution</span>(μ: <span class="number">0</span>, σ: <span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataGenerator</span> </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">generateItems</span>(<span class="title">count</span>:<span class="title">Int</span>) -&gt; [<span class="title">Item</span>] </span>&#123;</div><div class="line">        ...</div><div class="line">        frequency = <span class="type">CustomNormalDistribution</span>(age) * (male == <span class="number">1</span> ? <span class="number">1</span> : <span class="number">0.5</span>) * (single == <span class="number">1</span> ? <span class="number">0.66</span> : (single == <span class="number">2</span> ? <span class="number">1</span> : <span class="number">0.33</span>))</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h4><p>而我们的 FFNN 就是要通过大量的“学习”，来<strong>拟合</strong>上面我假想的这个函数关系</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> ffnn = <span class="type">FFNN</span>(inputCount: <span class="number">3</span>, hiddenCount: <span class="number">5</span>, outputCount: <span class="number">1</span>)</div><div class="line"><span class="keyword">let</span> data = <span class="type">DataGenerator</span>.generateItems(<span class="number">10000</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> (index, item) <span class="keyword">in</span> data.<span class="built_in">enumerate</span>() &#123;</div><div class="line">    ffnn.update([item.male, item.single, item.age])</div><div class="line">    ffnn.backpropagate([item.frequency])</div><div class="line">    <span class="keyword">if</span> index % <span class="number">10</span> == <span class="number">0</span> &#123;</div><div class="line">        <span class="keyword">let</span> testData = <span class="type">DataGenerator</span>.getPerson()</div><div class="line">        <span class="keyword">let</span> result = ffnn.update([testData.male, testData.single, testData.age])</div><div class="line">        <span class="keyword">let</span> answer = testData.frequency</div><div class="line">        <span class="built_in">print</span>(result[<span class="number">0</span>] - answer)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>FFNN 训练好了之后，我们就可以将这个 ffnn 应用在当前的这个<strong>结识妹子</strong>的模型上了</p>
+<p>这时我们可以认为 ffnn 已经能准确的分析出某个用户对这个活动的兴趣，并根据兴趣的多少，来动态改变首页数据是否展示该活动的入口，面积多大，让首页寸土寸金的空间创造更多的流量</p>
+<p><strong>再次附上<a href="https://github.com/HaloWang/SwiftFFNN" target="_blank" rel="external">完整项目链接</a></strong></p>
+<h2 id="使用-TensorFlow"><a href="#使用-TensorFlow" class="headerlink" title="使用 TensorFlow"></a>使用 TensorFlow</h2><p></p><p><font color="#999999"><em>需要科学上网</em></font></p><p></p>
+<p>实际上关于神经网络业界成熟的轮子已经有很多了，目前比较火的就是 Google 的 <a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">TensorFlow</a></p>
+<p>关于如何使用基于 TensorFlow 的 FFNN，大家可以看一下这里：<a href="https://www.tensorflow.org/versions/r0.9/tutorials/mnist/tf/index.html" target="_blank" rel="external">TensorFlow Mechanics 101</a>，或者<a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/" target="_blank" rel="external">中文版</a></p>
+<p>下面我就使用 Python 和 TensorFlow 对上面代码生成的 JSON 再做一遍分析：</p>
+<font color="#999999"><em>基于 Python 2.7.12，TensorFlow 已正确安装</em></font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"><span class="comment"># 导入 json 数据</span></div><div class="line"><span class="comment"># 训练</span></div></pre></td></tr></table></figure>
+<p><a href="">Python.useTF 源码</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="http://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks" target="_blank" rel="external">stackoverflow: bias 有什么用</a></li>
+<li><a href="https://www.youtube.com/channel/UCiDouKcxRmAdc5OeZdiRwAg" target="_blank" rel="external">Youtube: DeepLearning.TV</a></li>
+<li><a href="https://www.youtube.com/channel/UC9OeZkIwhzfv-_Cb7fCikLQ" target="_blank" rel="external">Youtube: Hugo Larochelle</a>我仅仅看了 10 多集，不过前几集仍然让我收获良多</li>
+<li><a href="https://www.youtube.com/watch?v=h3l4qz76JhQ" target="_blank" rel="external">Youtube: Build a Neural Net in 4 Minutes</a>视频作者把 numpy 写成了 np，实在是有点坑了，不过仍然让我见识到了 Python + Numpy 组合的强大</li>
+<li><a href="https://en.wikipedia.org/wiki/Geoffrey_Hinton" target="_blank" rel="external">Geoffrey Hinton</a> 和<a href="https://en.wikipedia.org/wiki/Backpropagation" target="_blank" rel="external">backpropagation</a>有说不尽的关系</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在本文中，我将分享一下我近期学习到的神经网络相关&lt;br&gt;同时，使用 Swift 实现一个简单的神经网络，并予以测试&lt;/p&gt;
+&lt;h2 id=&quot;神经网络&quot;&gt;&lt;a href=&quot;#神经网络&quot; class=&quot;headerlink&quot; title=&quot;神经网络&quot;&gt;&lt;/a&gt;神经网络&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Halo.framework</title>
+    <link href="http://yoursite.com/2016/03/09/introduction-of-Halo/"/>
+    <id>http://yoursite.com/2016/03/09/introduction-of-Halo/</id>
+    <published>2016-03-09T14:46:39.000Z</published>
+    <updated>2016-04-09T14:43:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的</p>
+<p>Halo 的名字取自一款叫做 <a href="https://www.halowaypoint.com/en-us" target="_blank" rel="external">HALO</a> 的游戏。我比较喜欢这款游戏宏大的背景，所以就叫做这个名字了</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li>Halo 使用 Swift 编写，仅支持 iOS 平台</li>
+<li>已上传至<a href="https://github.com/HaloWang/Halo" target="_blank" rel="external">Github</a>，如果你感兴趣，可以直接下载下来玩玩看（在 HaloDemo 这个 Target 中）~</li>
+<li>我现在使用 CocoaPods 将 Halo 集成进自己的项目（PS: <code>pod search Halo</code>）</li>
+</ul>
+<h3 id="链式语法"><a href="#链式语法" class="headerlink" title="链式语法"></a>链式语法</h3><p>Halo 中很多方法都是为了实现链式语法，或者带有链式语法的特性</p>
+<p>非链式语法：</p>
+<pre><code>object.propertyA = valueA
+object.propertyB = valueB
+object.propertyC = valueC
+object.propertyD = valueD
+</code></pre><p>链式语法：</p>
+<pre><code>object
+    .propertyA(valueA)
+    .propertyB(valueB)
+    .propertyC(valueC)
+    .propertyD(valueD)
+</code></pre><p>效果图：</p>
+<p><img src="/image_002/ChainableMethods.png" alt=""></p>
+<p>我这样作的主要原因有：</p>
+<ul>
+<li>不喜欢在设置 object 的若干属性时每次都要多写一个 object</li>
+<li>可以在 map 等函数中设置属性的同时返回结果</li>
+</ul>
+<p>这种方法的基本实现为：</p>
+<pre><code>extension Class {
+    //    Chainable method of property
+    func property(property: propertyType) -&gt; Self {
+        self.property = property
+        return self
+    }
+}
+</code></pre><h2 id="Halo-详细介绍"><a href="#Halo-详细介绍" class="headerlink" title="Halo 详细介绍"></a>Halo 详细介绍</h2><p>Halo.framework 工程目录如下图：<br><img src="/image_002/proj.png" alt=""><br>接下来的时间，我会介绍一下 Source 目录下各个文件实现的主要功能</p>
+<h3 id="Swift-Halo"><a href="#Swift-Halo" class="headerlink" title="Swift+Halo"></a>Swift+Halo</h3><h4 id="CGFloatable-swift"><a href="#CGFloatable-swift" class="headerlink" title="CGFloatable.swift"></a>CGFloatable.swift</h4><p>该文件提供了一个<code>CGFloatable</code>协议，主要是觉得在 Swift 编译器总是认为 “1” 是<code>Int</code>值，和<code>CGFloat</code>数据使用时总会出先编译错误。所以为<code>Int</code>、<code>Double</code>、<code>Float</code>实现了<code>CGFloatable</code>协议，通过 <code>.f</code> 的形式快速转化为<code>CGFloat</code>（而不是麻烦的 <code>CGFloat(X)</code>）<br>同时在此基础上，使用硬编码对屏幕适配做了一些处理</p>
+<h4 id="Print-Halo-swift"><a href="#Print-Halo-swift" class="headerlink" title="Print+Halo.swift"></a>Print+Halo.swift</h4><p>通过<code>ccRight</code>、<code>ccWarning</code>、<code>ccError</code>输出表情符号方便调试<br>之后我们可以在控制台输出像这样的东西：<br><img src="/image_002/log.png" alt=""></p>
+<h3 id="UIKit-Halo"><a href="#UIKit-Halo" class="headerlink" title="UIKit+Halo"></a>UIKit+Halo</h3><p>这个目录下的文件以 <code>extension</code> 的形式大量的实现了 UIKit 一些常用控件的链式语法，以方便日常开发的使用</p>
+<p>除此之外，还有一些边边角角的东西：</p>
+<ul>
+<li>UITableView/UICollectionView 利用泛型快速注册/重用单元格方法</li>
+<li>使用 Hex 值初始化 UIColor</li>
+<li>UIImage静态模糊</li>
+<li>UIView 截屏</li>
+<li>文本显示所需高度计算</li>
+<li>UIAlertController 封装<br>…</li>
+</ul>
+<h3 id="KeyboardObserver"><a href="#KeyboardObserver" class="headerlink" title="KeyboardObserver"></a>KeyboardObserver</h3><p>实现这个类主要是原来每次在不同 <code>UIViewController</code> 中处理键盘事件，写了很多重复代码，被恶心到了(-_-!)</p>
+<p>假设我们需要在 ViewController 类中监听键盘高度，只需要设置（我通常在 viewDidLoad 方法中）：</p>
+<pre><code>KeyboardObserver.delegate = self
+</code></pre><p>让 ViewController 实现相关协议：</p>
+<pre><code>// MARK: - KeyboardObserverDelegate
+extension ViewController : KeyboardObserverDelegate {
+    func keyboardWillChangeToHeight(height: CGFloat, duration: NSTimeInterval) {
+        //    height 就是键盘即将改变到的高度
+    }
+}
+</code></pre><p>如果你还想使用 Halo 对 <code>UIScrollView</code> 的拓展，再调用一下 <code>insetBottom()</code> 就可以方便快捷的实现键盘高度变化的响应了~</p>
+<pre><code>func keyboardWillChangeToHeight(height: CGFloat, duration: NSTimeInterval) 
+    scrollView.insetBottom(height)
+}
+</code></pre><p>PS：方便归方便，但是这个类的我写的有点乱，有机会一定好好整理一下！</p>
+<h3 id="方圆（FangYuan）"><a href="#方圆（FangYuan）" class="headerlink" title="方圆（FangYuan）"></a>方圆（FangYuan）</h3><p>Update: 现在方圆在<a href="https://github.com/HaloWang/FangYuan" target="_blank" rel="external">这里</a></p>
+<p>一套微型布局库，使用 <code>UIView.frame</code> 进行布局，功能简单，上手快速！</p>
+<h4 id="我是这样想的"><a href="#我是这样想的" class="headerlink" title="我是这样想的"></a>我是这样想的</h4><ul>
+<li>任何一个 <code>UIView</code> ，我们知道其在 X 轴上的<code>宽度</code>、<code>&lt;左边-父视图左边&gt;距离</code>、<code>&lt;右边-父视图右边&gt;距离</code>中的任意两者，即可确定<code>UIView.frame.origin.x</code>和<code>UIView.frame.size.width</code></li>
+<li>任何一个 <code>UIView</code> ，我们知道其在 Y 轴上的<code>高度</code>、<code>&lt;上边-父视图上边&gt;距离</code>、<code>&lt;下边-下视图右边&gt;距离</code>中的任意两者，即可确定<code>UIView.frame.origin.y</code>和<code>UIView.frame.size.height</code></li>
+<li>通过前两步，即可确定该 <code>UIView</code> 的 <code>frame</code> </li>
+<li>予以实现</li>
+</ul>
+<h4 id="简单展示"><a href="#简单展示" class="headerlink" title="简单展示"></a>简单展示</h4><p>假设我们想达到这样的需求：</p>
+<pre><code>1、testView_A
+    距离顶部30，距离右侧30，高度为100，距离左侧30
+2、testView_B
+    距离 testView_A 的底部 25
+    距离 superView 左侧的距离等于 testView_A 距离 superView 左侧的距离
+    距离 superView 右侧的距离等于 testView_A 距离 superView 右侧的距离 + 10
+    距离 superView 底部的距离等于 30
+</code></pre><p>效果图：</p>
+<p><img src="/image_002/FangYuanDemo.png" alt=""></p>
+<h3 id="不使用任何第三方布局方式："><a href="#不使用任何第三方布局方式：" class="headerlink" title="不使用任何第三方布局方式："></a>不使用任何第三方布局方式：</h3><pre><code>class ViewController: UIViewController {
+
+    let testView_A = UILabel()
+
+    let testView_B = UILabel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(testView_A)
+        view.addSubview(testView_B)
+
+        testView_A.text = &quot;testView_A&quot;
+        testView_B.text = &quot;testView_B&quot;
+
+        var frameA = CGRectZero
+        frameA.origin.x = 30
+        frameA.origin.y = 30
+        frameA.size.width = UIScreen.mainScreen().bounds.size.width - frameA.origin.x - 30
+        frameA.size.height = 100
+        testView_A.frame = frameA
+
+        var frameB = CGRectZero
+        frameB.origin.x = testView_A.frame.origin.x
+        frameB.origin.y = testView_A.frame.origin.y + testView_A.frame.size.height + 25
+        frameB.size.width = UIScreen.mainScreen().bounds.size.width - testView_A.frame.origin.x - (testView_A.superview!.frame.size.width - (testView_A.frame.origin.x + testView_A.frame.size.width)) - 10
+        frameB.size.height = UIScreen.mainScreen().bounds.size.height - frameB.origin.y - 30
+        testView_B.frame = frameB
+
+
+        testView_A.backgroundColor = UIColor.redColor()
+        testView_B.backgroundColor = UIColor.blueColor()
+    }
+}
+</code></pre><p>使用 FangYuan：</p>
+<pre><code>import UIKit
+import Halo
+
+class ViewController: UIViewController {
+
+    let testView_A = UILabel()
+
+    let testView_B = UILabel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(testView_A)
+        view.addSubview(testView_B)
+
+        testView_A.text = &quot;testView_A&quot;
+        testView_B.text = &quot;testView_B&quot;
+
+        //    ------- 主要变化 -------
+
+        testView_A
+            .top(30)
+            .right(30)
+            .height(100)
+            .left(30)
+
+        testView_B
+            .top(testView_A.chainBottom + 25)
+            .left(testView_A.left)
+            .right(testView_A.right + 10)
+            .bottom(30)
+
+        //    ---------------------
+
+        testView_A.backgroundColor = UIColor.redColor()
+        testView_B.backgroundColor = UIColor.blueColor()
+    }
+}
+</code></pre><p>可以看到 FangYuan 能简化很多代码，就算是和 Masonry 相比，也能省下不少代码，同时也还能实现同样的效果</p>
+<h4 id="FangYuan-的缺点"><a href="#FangYuan-的缺点" class="headerlink" title="FangYuan 的缺点"></a>FangYuan 的缺点</h4><ul>
+<li>需要知道在<code>UIView.superView</code>存在时才有效</li>
+<li>FangYuan 的诸多方法需要在<code>layoutSubviews</code>或<code>viewWillLayoutSubviews</code>调用才能保证随<code>superView.frame</code>的变化而变化，比如上述代码的ViewController外如果嵌套在一个 NavigationController中，会出现这种情况（因为FangYuan的方法写在了<code>viewDidLoad</code>中）：</li>
+</ul>
+<p><img src="/image_002/badDemo.png" alt=""></p>
+<h4 id="FangYuan-的使用情况"><a href="#FangYuan-的使用情况" class="headerlink" title="FangYuan 的使用情况"></a>FangYuan 的使用情况</h4><p>我在最近的一个<a href="https://itunes.apple.com/cn/app/quan-min-mo-te-ti-gong-gao/id1086009210?mt=8" target="_blank" rel="external">项目</a>中，<strong>仅仅</strong>使用了 Halo.FangYuan 就实现了整个项目的布局😁</p>
+<h2 id="如何在你的项目中集成-Halo-framework"><a href="#如何在你的项目中集成-Halo-framework" class="headerlink" title="如何在你的项目中集成 Halo.framework"></a>如何在你的项目中集成 Halo.framework</h2><h3 id="CocoaPods（推荐）"><a href="#CocoaPods（推荐）" class="headerlink" title="CocoaPods（推荐）"></a>CocoaPods（推荐）</h3><p>直接使用 <code>pod &#39;Halo&#39;</code>，不要忘记 <code>use_frameworks!</code>~</p>
+<h3 id="Carthage"><a href="#Carthage" class="headerlink" title="Carthage"></a>Carthage</h3><p>1、直接在<a href="https://github.com/HaloWang/Halo" target="_blank" rel="external">Github</a>下载下来整个项目<br>2、打开终端<br>3、cd [解压缩后的工程目录]<br>4、carthage build –no-skip-current<br>5、在工程目录中 Carthage/Build/iOS/ 中找到 Halo.framework<br>6、接下来就是将 Halo.framework 集成到你的工程中了，相信大家看到这里，应该都肯定会的吧~</p>
+<h4 id="使用-Carthage-上线到-AppStore-时的坑"><a href="#使用-Carthage-上线到-AppStore-时的坑" class="headerlink" title="使用 Carthage 上线到 AppStore 时的坑"></a>使用 Carthage 上线到 AppStore 时的坑</h4><p>使用上述方法集成的 Halo.framework 在（且仅在）上传至 AppStore 时会出错，原因是将 Halo.framework 中多余的 Architectures 打包进了索要上传的应用程序包中，解决方案大家可以参照<a href="http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/" target="_blank" rel="external">这里</a>或者<a href="http://stackoverflow.com/questions/35240330/errors-building-xcode-project-after-adding-in-run-script-fatal-error-lipo-inpu/35240555" target="_blank" rel="external">Stackoverflow</a></p>
+<p>囧，这个分明是我的锅啊，有时间一定解决！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h3><p>总得来说，Halo.framework 是很多小工具的集合，我本着快捷、高效、代码美观、意义明晰的想法去设计向其中不断整合代码。</p>
+<p>平时写项目，写Demo感觉根本离不开~不过，相比于网上知名的第三方库来说，就羸弱很多了😓</p>
+<h3 id="将来"><a href="#将来" class="headerlink" title="将来"></a>将来</h3><p>最近读了喵神的<a href="https://onevcat.com/2016/01/create-framework/" target="_blank" rel="external">如何打造一个让人愉快的框架</a>，感觉自己的 Halo 即便仅仅是个人使用，也有很多可以改进的地方，比如：</p>
+<ul>
+<li>你还没有对 FangYuan 进行过性能优化啊？</li>
+<li>FangYuan 一定要在<code>layoutSubviews</code>或<code>viewWillLayoutSubviews</code>才能保证使用FangYuan的<code>UIView</code>的<code>superView</code>一定存在吗？才能保证任何 frame 变动时，约束都能生效吗？是不是可以利用 runtime 做一些事情呢？</li>
+<li>书写链式语法时，在代码自动补齐方面，总是跟 UIKit 原有的属性相冲突，为了快速书写，也为了避免和其他第三方库产生可能的冲突，是不是应该添加前缀？</li>
+</ul>
+<p>有机会的话，我一定会不断积累下去的！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在 Swift 环境下使用 JavaScriptCore 和本地代码交互</title>
+    <link href="http://yoursite.com/2016/03/01/%E5%9C%A8%20Swift%20%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8%20JavaScriptCore%20%E5%92%8C%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E4%BA%A4%E4%BA%92/"/>
+    <id>http://yoursite.com/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/</id>
+    <published>2016-03-01T15:36:50.000Z</published>
+    <updated>2016-04-08T12:21:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>最近被问起这样的问题，所以把自己知道的写出来<br>包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下</p>
+<p>本文使用 Xcode 7.3 + Swift，最低兼容 iOS 8.0</p>
+<p><a href="https://github.com/HaloWang/JavaScriptCoreDemo" target="_blank" rel="external">这里</a>查看源代码)是项目的完整代码，下载完成后，请执行 <code>pod install</code></p>
+<h2 id="目录文件介绍"><a href="#目录文件介绍" class="headerlink" title="目录文件介绍"></a>目录文件介绍</h2><h3 id="ViewController-swift"><a href="#ViewController-swift" class="headerlink" title="ViewController.swift"></a>ViewController.swift</h3><p>ViewController.swift 主要配合 Main.storyboard 绘制了 UI 元素<br>接下来绝大部分代码工作将在这个文件中进行<br><code>viewDidLoad</code>方法中主要是让 webView 加载 Bundle 中的 html 文件<br><img src="/image_001/viewController.png" alt=""></p>
+<h3 id="JavaScriptCoreDemo-html"><a href="#JavaScriptCoreDemo-html" class="headerlink" title="JavaScriptCoreDemo.html"></a>JavaScriptCoreDemo.html</h3><p>这个文件主要用来模拟实际使用时我们会遇到的 web 页面<br><img src="/image_001/webPage.png" alt=""></p>
+<h2 id="Web-端调用-iOS-端代码"><a href="#Web-端调用-iOS-端代码" class="headerlink" title="Web 端调用 iOS 端代码"></a>Web 端调用 iOS 端代码</h2><p>我将其分为了如下步骤</p>
+<h3 id="为-WebView-注册代理，并实现代理方法"><a href="#为-WebView-注册代理，并实现代理方法" class="headerlink" title="为 WebView 注册代理，并实现代理方法"></a>为 WebView 注册代理，并实现代理方法</h3><p><code>webView.delegate = self</code></p>
+<pre><code>extension ViewController : UIWebViewDelegate {
+    func webViewDidFinishLoad(webView: UIWebView) {
+        //    Waiting
+    }
+}
+</code></pre><h3 id="获取到当前-Web-页面中的上下文"><a href="#获取到当前-Web-页面中的上下文" class="headerlink" title="获取到当前 Web 页面中的上下文"></a>获取到当前 Web 页面中的上下文</h3><pre><code>func webViewDidFinishLoad(webView: UIWebView) {
+    context = webView.valueForKeyPath(&quot;documentView.webView.mainFrame.javaScriptContext&quot;) as? JSContext
+    //    Waiting
+}
+</code></pre><h3 id="注册回调"><a href="#注册回调" class="headerlink" title="注册回调"></a>注册回调</h3><pre><code>func webViewDidFinishLoad(webView: UIWebView) {
+
+    context = webView.valueForKeyPath(&quot;documentView.webView.mainFrame.javaScriptContext&quot;) as? JSContext
+
+    let callBack : @convention(block) (AnyObject?) -&gt; Void = { [weak self] (paramFromJS) -&gt; Void in
+        //    Waiting
+     }
+
+    context?.setObject(unsafeBitCast(callBack, AnyObject.self), forKeyedSubscript: &quot;callNative&quot;)
+}
+</code></pre><h3 id="展示-Web-页面传递过来的的参数"><a href="#展示-Web-页面传递过来的的参数" class="headerlink" title="展示 Web 页面传递过来的的参数"></a>展示 Web 页面传递过来的的参数</h3><p>最后我们需要通知自己原生代码已经接受到了 web 端的调用，并且输出一下 web 页面传递过来了参数</p>
+<p>在 ViewController 类中，实现 fromJS 方法：</p>
+<pre><code>func fromJS(paramFromJS:AnyObject?) {
+
+    Alert
+        .showIn(self)
+        .style(UIAlertControllerStyle.ActionSheet)
+        .title(&quot;Call From JS&quot;)
+        .message(&quot;检测到了来自 JS 的调用！&quot;)
+        .addAction(&quot;我知道了&quot;, style: .Cancel, handler: nil)
+
+    guard let paramFromJS = paramFromJS else {
+        return
+    }
+
+    print(&quot;param from JavaScript is:&quot;)
+    print(paramFromJS)
+
+}
+</code></pre><p>其中 Alert 类来自于 Halo.framework，用来通知自己原生代码已经接受到了 web 端的调用，对 UIAlertController 做了简单的封装，不必关心</p>
+<p>在上一步中的 <code>Waiting</code> 注释处调用</p>
+<pre><code>let callBack : @convention(block) (AnyObject?) -&gt; Void = { [weak self] (paramFromJS) -&gt; Void in
+    self?.fromJS(paramFromJS)    
+}
+</code></pre><p> 这里的 self (也就是我们的 ViewController) 中被加上了 weak 修饰符，这是因为：</p>
+<pre><code>context?.setObject(unsafeBitCast(callBack, AnyObject.self), forKeyedSubscript: &quot;callNative&quot;)
+</code></pre><p>context 会强引用这个回调块，为了避免强引用，我们需要将 self 在 block 中声明为弱引用</p>
+<p>至于 @convention(block) ，大家可以参看<a href="http://stackoverflow.com/questions/32776342/how-to-store-this-objectivec-block-inside-a-swift-variable" target="_blank" rel="external">这里</a></p>
+<p>PS: 还有一个问题，上面的代码大家是不是有点害怕？优雅的 Swift 怎么会出现 <code>unsafeBitCast(callBack, AnyObject.self)</code> 这样的代码！大家可以看看 <a href="http://nshipster.cn/javascriptcore" target="_blank" rel="external">这里</a><br>期待 iOS10 SDK 中 Swift 环境下，JSContext 可以实现下标访问</p>
+<p>PS2: 另外，我在这里将 paramFromJS 声明为了 AnyObject? 类型，JavaScriptCore 是可以自动将 js 传递的参数做转换的，上面例子中，我们通过</p>
+<pre><code>print(paramFromJS!.dynamicType)
+</code></pre><p>可以发现 paramFromJS 被转化为了<code>__NSDictionaryM</code><br>关于 dynamicType，请看<a href="http://swifter.tips/instance-type/" target="_blank" rel="external">这里</a></p>
+<p><strong>运行程序</strong></p>
+<p>此时控制台输出：</p>
+<p><img src="/image_001/consolo.png" alt=""></p>
+<p>模拟器：</p>
+<p><img src="/image_001/callNative.gif" alt=""></p>
+<h2 id="iOS-端调用-Web-的-js-代码"><a href="#iOS-端调用-Web-的-js-代码" class="headerlink" title="iOS 端调用 Web 的 js 代码"></a>iOS 端调用 Web 的 js 代码</h2><p>可以分为两种方式</p>
+<h3 id="调用-Web-页面中已经实现好的-JS"><a href="#调用-Web-页面中已经实现好的-JS" class="headerlink" title="调用 Web 页面中已经实现好的 JS"></a>调用 Web 页面中已经实现好的 JS</h3><p>我们的 web 页面中包含了一段已经写好的 JavaScript function：</p>
+<pre><code>function fromNative(args) {
+    document.getElementById(&quot;fromNativeParan&quot;).innerHTML = &quot;来自原生代码的参数为&quot; + args;
+};
+</code></pre><p>我们可以通过 JavaScriptContext 直接对其进行调用：</p>
+<p>在 ViewController 类中，实现 callJS 方法：</p>
+<pre><code>func callJS() {
+    let params : [AnyObject]! = [&quot;Hello JS! \(arc4random() % 10)&quot;]
+    context?.objectForKeyedSubscript(&quot;fromNative&quot;).callWithArguments(params)
+}
+</code></pre><p><em>arc4random() % 10 的作用是为了产生随机取以区分多次点击</em></p>
+<p>在 rightBarButtonClick 中调用：</p>
+<pre><code>@IBAction func rightBarButtonClick(sender: UIBarButtonItem) {
+    callJS()
+}
+</code></pre><p>web 页面产生了如下变化：</p>
+<p><img src="/image_001/callJS.gif" alt=""></p>
+<h3 id="直接注入一段-JS-代码"><a href="#直接注入一段-JS-代码" class="headerlink" title="直接注入一段 JS 代码"></a>直接注入一段 JS 代码</h3><p>在 ViewController 类中，实现 evaluateJS 方法：</p>
+<pre><code>func evaluateJS() {
+    context?.evaluateScript(&quot;alert(\&quot;你调用了 JS\&quot;)&quot;)
+}
+</code></pre><p>在 rightBarButtonClick 中调用：</p>
+<pre><code>@IBAction func rightBarButtonClick(sender: UIBarButtonItem) {
+    evaluateJS()
+}
+</code></pre><p>效果如图：</p>
+<p><img src="/image_001/callJS_2.gif" alt=""></p>
+<p>PS: 实际上 evaluateJS 还可以小城下面这种形式：</p>
+<pre><code>func evaluateJS() {
+    context?.evaluateScript(&quot;fromNative(&apos; 你运行了一段JS&apos;)&quot;)
+}
+</code></pre><p>这时该方法的作用和 ViewController.callJS 就一样了</p>
+<h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h2><p>本来还想写点 WKWebView 的东西，但鉴于自己以前的使用经历，还是算了…<br>简单说一下使用 WKWebView 遇到的坑吧：</p>
+<ul>
+<li>无法通过点击 web 页面跳转到 AppStore，<a href="http://stackoverflow.com/questions/29056854/how-can-i-understand-if-uiapplication-is-going-to-open-link-in-safari-app" target="_blank" rel="external">解决方案</a></li>
+<li>在淘宝页面时无法点击 web 页面上的按钮，<a href="http://stackoverflow.com/questions/31955880/wkwebview-not-opening-some-target-blank-links" target="_blank" rel="external">解决方案</a></li>
+<li>web 页面的 alert 在移动端上失效，<a href="http://stackoverflow.com/questions/26898941/ios-wkwebview-not-showing-javascript-alert-dialog" target="_blank" rel="external">解决方案</a></li>
+</ul>
+<p>每个都是超级严重的 bug 有没有！<br>在产品经理面前直冒冷汗有没有！</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="http://nshipster.cn/javascriptcore/" target="_blank" rel="external">NSHipster - JavaScriptCore</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;缘由&quot;&gt;&lt;a href=&quot;#缘由&quot; class=&quot;headerlink&quot; title=&quot;缘由&quot;&gt;&lt;/a&gt;缘由&lt;/h2&gt;&lt;p&gt;最近被问起这样的问题，所以把自己知道的写出来&lt;br&gt;包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>写点什么好呢？</title>
+    <link href="http://yoursite.com/2016/03/01/first-article/"/>
+    <id>http://yoursite.com/2016/03/01/first-article/</id>
+    <published>2016-03-01T12:30:26.000Z</published>
+    <updated>2016-03-01T15:32:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>正式开启了个人博客😁</p>
+<p>下面是一些我想写的东西</p>
+<h3 id="Halo-framework"><a href="#Halo-framework" class="headerlink" title="Halo.framework"></a>Halo.framework</h3><p>使用 Swift 开发 iOS App 以来所总结的东西</p>
+<h3 id="JS-和-iOS-原生交互的若干种方法"><a href="#JS-和-iOS-原生交互的若干种方法" class="headerlink" title="JS 和 iOS 原生交互的若干种方法"></a>JS 和 iOS 原生交互的若干种方法</h3><p>最近被问起这样的问题</p>
+<h3 id="使用-Instrument"><a href="#使用-Instrument" class="headerlink" title="使用 Instrument"></a>使用 Instrument</h3><p>曾经使用过，现在来总结一下</p>
+<p>敬请期待~</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;正式开启了个人博客😁&lt;/p&gt;
+&lt;p&gt;下面是一些我想写的东西&lt;/p&gt;
+&lt;h3 id=&quot;Halo-framework&quot;&gt;&lt;a href=&quot;#Halo-framework&quot; class=&quot;headerlink&quot; title=&quot;Halo.framework&quot;&gt;&lt;/a&gt;Halo.f
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

@@ -61,7 +61,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -79,6 +79,8 @@
 
 
 
+
+  <link rel="alternate" href="/atom.xml" title="王策的博客" type="application/atom+xml" />
 
 
 
@@ -123,7 +125,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"always"},
+    sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -418,6 +420,7 @@
     <div>
       
         
+
       
     </div>
 
@@ -517,7 +520,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -528,6 +531,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -569,7 +579,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缘由"><span class="nav-number">1.</span> <span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录文件介绍"><span class="nav-number">2.</span> <span class="nav-text">目录文件介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewController-swift"><span class="nav-number">2.1.</span> <span class="nav-text">ViewController.swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScriptCoreDemo-html"><span class="nav-number">2.2.</span> <span class="nav-text">JavaScriptCoreDemo.html</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-端调用-iOS-端代码"><span class="nav-number">3.</span> <span class="nav-text">Web 端调用 iOS 端代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为-WebView-注册代理，并实现代理方法"><span class="nav-number">3.1.</span> <span class="nav-text">为 WebView 注册代理，并实现代理方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取到当前-Web-页面中的上下文"><span class="nav-number">3.2.</span> <span class="nav-text">获取到当前 Web 页面中的上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册回调"><span class="nav-number">3.3.</span> <span class="nav-text">注册回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展示-Web-页面传递过来的的参数"><span class="nav-number">3.4.</span> <span class="nav-text">展示 Web 页面传递过来的的参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-端调用-Web-的-js-代码"><span class="nav-number">4.</span> <span class="nav-text">iOS 端调用 Web 的 js 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用-Web-页面中已经实现好的-JS"><span class="nav-number">4.1.</span> <span class="nav-text">调用 Web 页面中已经实现好的 JS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接注入一段-JS-代码"><span class="nav-number">4.2.</span> <span class="nav-text">直接注入一段 JS 代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题外话"><span class="nav-number">5.</span> <span class="nav-text">题外话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">6.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缘由"><span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录文件介绍"><span class="nav-text">目录文件介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewController-swift"><span class="nav-text">ViewController.swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScriptCoreDemo-html"><span class="nav-text">JavaScriptCoreDemo.html</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-端调用-iOS-端代码"><span class="nav-text">Web 端调用 iOS 端代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为-WebView-注册代理，并实现代理方法"><span class="nav-text">为 WebView 注册代理，并实现代理方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取到当前-Web-页面中的上下文"><span class="nav-text">获取到当前 Web 页面中的上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册回调"><span class="nav-text">注册回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展示-Web-页面传递过来的的参数"><span class="nav-text">展示 Web 页面传递过来的的参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-端调用-Web-的-js-代码"><span class="nav-text">iOS 端调用 Web 的 js 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用-Web-页面中已经实现好的-JS"><span class="nav-text">调用 Web 页面中已经实现好的 JS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接注入一段-JS-代码"><span class="nav-text">直接注入一段 JS 代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题外话"><span class="nav-text">题外话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-text">相关链接</span></a></li></ol></div>
             
           </div>
         </section>
@@ -587,7 +597,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -713,6 +723,7 @@
 
   
   
+
   
 
   
