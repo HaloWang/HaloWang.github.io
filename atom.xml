@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-21T09:32:08.000Z</updated>
+  <updated>2016-07-26T03:38:39.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,14 +20,15 @@
     <link href="http://yoursite.com/2016/07/06/Feed-Forward-Neural-Network/"/>
     <id>http://yoursite.com/2016/07/06/Feed-Forward-Neural-Network/</id>
     <published>2016-07-06T09:06:03.000Z</published>
-    <updated>2016-07-21T09:32:08.000Z</updated>
+    <updated>2016-07-26T03:38:39.000Z</updated>
     
-    <content type="html"><![CDATA[<p>在本文中，我将分享一下我近期学习到的神经网络相关<br>同时，使用 Swift 实现一个简单的神经网络，并予以测试</p>
+    <content type="html"><![CDATA[<p>⚠️ 本文尚未完全完成</p>
+<p>在本文中，我将分享一下我近期学习到的神经网络相关<br>同时，使用 Swift 实现一个简单的神经网络，并予以测试</p>
 <h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><h3 id="什么是神经网络"><a href="#什么是神经网络" class="headerlink" title="什么是神经网络"></a>什么是神经网络</h3><p>一般意思上的神经网络指<strong>人工神经网络（Artificial Neural Network）</strong></p>
 <p><a href="https://www.zhihu.com/question/22553761/answer/36429105" target="_blank" rel="external">如何简单形象又有趣地讲解神经网络是什么？</a><br><a href="https://www.quora.com/How-do-you-explain-Machine-Learning-and-Data-Mining-to-non-Computer-Science-people/answer/Pararth-Shah" target="_blank" rel="external">How do you explain Machine Learning and Data Mining to non Computer Science people?</a><br><a href="https://en.wikipedia.org/wiki/Artificial_neural_network" target="_blank" rel="external">wikipedia</a></p>
 <h3 id="很直观的演示"><a href="#很直观的演示" class="headerlink" title="很直观的演示"></a>很直观的演示</h3><p><a href="http://playground.tensorflow.org/" target="_blank" rel="external">Tensorflow</a><br><a href="https://github.com/collinhundley/Swift-AI" target="_blank" rel="external">Swift-AI</a>（需要有 Mac/Xcode 环境）</p>
 <h3 id="神经网络的基本样式"><a href="#神经网络的基本样式" class="headerlink" title="神经网络的基本样式"></a>神经网络的基本样式</h3><p><img src="/FFNN_images/ffnn.png" alt="FFNN"></p>
-<h3 id="Feed-Forward-Neural-Network"><a href="#Feed-Forward-Neural-Network" class="headerlink" title="Feed Forward Neural Network"></a>Feed Forward Neural Network</h3><p>Feed Forward Neural Network 简称 FFNN，也就是<strong>向前反馈神经网络</strong>或称<strong>前馈神经网络</strong>，是一种最简单，最基础的神经网络（这里大家不用太在乎前馈这个词）</p>
+<p>上图是一个最简单的多层神经网络，也是接下来我将要在本文中实现的神经网络</p>
 <h3 id="我理解的神经网络"><a href="#我理解的神经网络" class="headerlink" title="我理解的神经网络"></a>我理解的神经网络</h3><p>给定若干个数据（inputs），以及每个数据所代表的意义（answers），已知每个数据的值和每个数据代表的意义间有<strong>某种复杂的（难以使用传统数学方法得知）函数关系</strong></p>
 <p>现在有该类：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FFNN</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">train</span><span class="params">(inputs:[Float], outputs:[Float])</span></span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">calculate</span><span class="params">(input:[Float])</span></span> -&gt; [<span class="type">Float</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -37,7 +38,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> result = ffnn.calculate(input)</div><div class="line"></div><div class="line"><span class="keyword">if</span> result.diff(input.true_result) &lt; <span class="number">0.05</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"✅ 八九不离十！"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如果我们训练完了 <code>ffnn</code> 后，用一些已知答案的数据做测试，发现 <code>ffnn</code> 计算出来的答案和真实答案的误差已经很小了，那么我们就可以认为对 <code>ffnn</code> 的训练成功了，或者说，<code>ffnn.train</code> 这个黑盒子已经『猜透』了数据中<strong>某种复杂的（难以使用传统数学方法得知）函数关系</strong></p>
 <h2 id="使用-Swift-实现一个-FFNN"><a href="#使用-Swift-实现一个-FFNN" class="headerlink" title="使用 Swift 实现一个 FFNN"></a>使用 Swift 实现一个 FFNN</h2><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p><strong>首先附上<a href="https://github.com/HaloWang/SwiftFFNN" target="_blank" rel="external">完整项目链接</a></strong></p>
-<p>这份代码极大程度上参考了<a href="https://github.com/collinhundley/Swift-AI" target="_blank" rel="external">Swift-AI</a></p>
+<p>这份代码<strong>极大程度上</strong>参考了<a href="https://github.com/collinhundley/Swift-AI" target="_blank" rel="external">Swift-AI</a></p>
 <p>下面我会对代码中的一些<strong>关键部分</strong>做一下讲解</p>
 <h4 id="数据初始化"><a href="#数据初始化" class="headerlink" title="数据初始化"></a>数据初始化</h4><p>初始化输入层、隐藏层、输出层神经元的数量、层级之间的权重、计算所需的缓存</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FFNN</span> </span>&#123;</div><div class="line">    <span class="comment">//  输入层神经元数量</span></div><div class="line">    <span class="keyword">let</span> inputCount: <span class="type">Int</span></div><div class="line">    <span class="comment">//  隐藏层神经元数量</span></div><div class="line">    <span class="keyword">let</span> hiddenCount: <span class="type">Int</span></div><div class="line">    <span class="comment">//  输出层神经元数量</span></div><div class="line">    <span class="keyword">let</span> outputCount: <span class="type">Int</span></div><div class="line">    <span class="comment">//  输入层 - 隐藏层权重</span></div><div class="line">    <span class="keyword">var</span> inputToHiddenWeight: [<span class="type">Float</span>]</div><div class="line">    <span class="comment">//  隐藏层 - 输出层权重</span></div><div class="line">    <span class="keyword">var</span> hiddenToOutputWeight: [<span class="type">Float</span>]</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -64,7 +65,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">backpropagation</span><span class="params">(answer: [Float])</span></span> &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p><font color="#999999"><em>测试这一小节的数据/数据隐含的关系都是我 YY 的，仅仅是为了方便大家理解，如有雷同，纯属巧合</em><br><em>关于 FFNN 在这里的使用方式，我也是 YY 的，不具有指导作用，请大家仅作参考</em></font></p>
 
-<p>假设现在有一家公司要要针对自己的移动端用户做一个<strong>结识妹子</strong>的活动，该活动在移动端的入口为首页的某个可点击区域，该公司运营希望这个活动能<strong>更有针对性的推广</strong>，也就是筛选出来可能会对这个活动更感兴趣的用户，在这些用户使用 App 时，在移动应用首页向其推广活动</p>
+<h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>假设现在有一家公司要要针对自己的移动端用户做一个<strong>结识妹子</strong>的活动，该活动在移动端的入口为首页的某个可点击区域，该公司运营希望这个活动能<strong>更有针对性的推广</strong>，也就是筛选出来可能会对这个活动更感兴趣的用户，在这些用户使用 App 时，<strong>在移动应用首页向其推广活动</strong></p>
 <p>假设现在我们通过某些方式（如灰度发布）得到了一些用户数据：</p>
 <h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Item</span> </span>&#123;</div><div class="line">    <span class="comment">/// 性别</span></div><div class="line">    <span class="comment">/// 0 女性 1 男性</span></div><div class="line">    <span class="keyword">let</span> male: <span class="type">Float</span></div><div class="line">    <span class="comment">/// 婚恋状况</span></div><div class="line">    <span class="comment">/// 0 非单身 1 未知 2 单身</span></div><div class="line">    <span class="keyword">let</span> single: <span class="type">Float</span></div><div class="line">    <span class="comment">/// 年龄</span></div><div class="line">    <span class="comment">/// 15 ~ 55</span></div><div class="line">    <span class="keyword">let</span> age: <span class="type">Float</span></div><div class="line">    <span class="comment">/// 点击热度/感兴趣程度</span></div><div class="line">    <span class="comment">/// 0 ~ 1000</span></div><div class="line">    <span class="keyword">let</span> frequency: <span class="type">Float</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="创建数据"><a href="#创建数据" class="headerlink" title="创建数据"></a>创建数据</h4><p>在这里我假设 <code>frequency</code> 和 <code>age</code> 服从<a href="https://zh.wikipedia.org/zh/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83" target="_blank" rel="external">正态分布</a>的关系，同时和性别于年龄有关</p>
@@ -75,16 +76,13 @@
 <h4 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h4><p>而我们的 FFNN 就是要通过大量的“学习”，来<strong>拟合</strong>上面我假想的这个函数关系</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> ffnn = <span class="type">FFNN</span>(inputCount: <span class="number">3</span>, hiddenCount: <span class="number">5</span>, outputCount: <span class="number">1</span>)</div><div class="line"><span class="keyword">let</span> data = <span class="type">DataGenerator</span>.generateItems(<span class="number">10000</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> (index, item) <span class="keyword">in</span> data.<span class="built_in">enumerate</span>() &#123;</div><div class="line">    ffnn.update([item.male, item.single, item.age])</div><div class="line">    ffnn.backpropagate([item.frequency])</div><div class="line">    <span class="keyword">if</span> index % <span class="number">10</span> == <span class="number">0</span> &#123;</div><div class="line">        <span class="keyword">let</span> testData = <span class="type">DataGenerator</span>.getPerson()</div><div class="line">        <span class="keyword">let</span> result = ffnn.update([testData.male, testData.single, testData.age])</div><div class="line">        <span class="keyword">let</span> answer = testData.frequency</div><div class="line">        <span class="built_in">print</span>(result[<span class="number">0</span>] - answer)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>FFNN 训练好了之后，我们就可以将这个 ffnn 应用在当前的这个<strong>结识妹子</strong>的模型上了</p>
-<p>这时我们可以认为 ffnn 已经能准确的分析出某个用户对这个活动的兴趣，并根据兴趣的多少，来动态改变首页数据是否展示该活动的入口，面积多大，让首页寸土寸金的空间创造更多的流量</p>
+<p>这时我们可以认为 ffnn 已经能根据某个用户的信息（性别，年龄，婚恋状况），较准确的分析出该用户对这个活动的兴趣</p>
+<p>这样，我们就可以根据兴趣的多少，来针对每位用户改变首页中该活动的展示方式，让这个活动能<strong>更有针对性的推广</strong>，让首页寸土寸金的空间为创造更多的流量<a href="#需求">上文提到的需求</a></p>
 <p><strong>再次附上<a href="https://github.com/HaloWang/SwiftFFNN" target="_blank" rel="external">完整项目链接</a></strong></p>
-<h2 id="使用-TensorFlow"><a href="#使用-TensorFlow" class="headerlink" title="使用 TensorFlow"></a>使用 TensorFlow</h2><p></p><p><font color="#999999"><em>需要科学上网</em></font></p><p></p>
-<p>实际上关于神经网络业界成熟的轮子已经有很多了，目前比较火的就是 Google 的 <a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">TensorFlow</a></p>
-<p>关于如何使用基于 TensorFlow 的 FFNN，大家可以看一下这里：<a href="https://www.tensorflow.org/versions/r0.9/tutorials/mnist/tf/index.html" target="_blank" rel="external">TensorFlow Mechanics 101</a>，或者<a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/" target="_blank" rel="external">中文版</a></p>
-<p>下面我就使用 Python 和 TensorFlow 对上面代码生成的 JSON 再做一遍分析：</p>
-<font color="#999999"><em>基于 Python 2.7.12，TensorFlow 已正确安装</em></font>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"><span class="comment"># 导入 json 数据</span></div><div class="line"><span class="comment"># 训练</span></div></pre></td></tr></table></figure>
-<p><a href="">Python.useTF 源码</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="Matrix"><a href="#Matrix" class="headerlink" title="Matrix"></a>Matrix</h3><p>上面的代码中，<code>hiddenWeights</code> 和 <code>outputWeights</code> 可能因为 Apple 的 <code>Accelerate</code> 库的 API 的原因，使用的是一维数组。但是，权重的最佳表现和计算方式应该是矩阵（Matrix）。<a href="https://github.com/mattt/Surge" target="_blank" rel="external">Surge</a>这个库是个矩阵的 Swift 实现，大家可以使用 <code>git submodule add</code> 来集成并使用，估计 <code>backpropagation</code> 的代码能变简洁很多😂</p>
+<h3 id="业界"><a href="#业界" class="headerlink" title="业界"></a>业界</h3><p>实际上关于神经网络业界成熟的轮子已经有很多了，目前比较火的就是 Google 的 <a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">TensorFlow</a></p>
+<p>关于如何使用基于 TensorFlow 的 ANN，大家可以看一下这里：<a href="https://www.tensorflow.org/versions/r0.9/tutorials/mnist/tf/index.html" target="_blank" rel="external">TensorFlow Mechanics 101</a>，或者<a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/" target="_blank" rel="external">中文版</a></p>
+<p>接下来的一段时间里，我也将以 TensorFlow 为辅助工具，继续学习 CNN、RNN 等其他神经网络模型，有时间给大家分享 ~</p>
 <h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
 <li><a href="http://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks" target="_blank" rel="external">stackoverflow: bias 有什么用</a></li>
 <li><a href="https://www.youtube.com/channel/UCiDouKcxRmAdc5OeZdiRwAg" target="_blank" rel="external">Youtube: DeepLearning.TV</a></li>
@@ -96,8 +94,9 @@
     
     <summary type="html">
     
-      &lt;p&gt;在本文中，我将分享一下我近期学习到的神经网络相关&lt;br&gt;同时，使用 Swift 实现一个简单的神经网络，并予以测试&lt;/p&gt;
-&lt;h2 id=&quot;神经网络&quot;&gt;&lt;a href=&quot;#神经网络&quot; class=&quot;headerlink&quot; title=&quot;神经网络&quot;&gt;&lt;/a&gt;神经网络&lt;/h2&gt;
+      &lt;p&gt;⚠️ 本文尚未完全完成&lt;/p&gt;
+&lt;p&gt;在本文中，我将分享一下我近期学习到的神经网络相关&lt;br&gt;同时，使用 Swift 实现一个简单的神经网络，并予以测试&lt;/p&gt;
+&lt;h2 id=&quot;神经网络&quot;&gt;&lt;a href=&quot;#神经网络&quot; class=&quot;headerlink&quot; title=&quot;
     
     </summary>
     
