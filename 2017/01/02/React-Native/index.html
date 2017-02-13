@@ -99,7 +99,7 @@
 集成至现有的 iOS 项目中主要参考 Integration With Existing Apps 即可，其基本逻辑为：
 
 使用 npm 获取 react-native">
-<meta property="og:updated_time" content="2017-02-13T07:35:37.000Z">
+<meta property="og:updated_time" content="2017-02-13T07:55:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="将 React Native 集成至现有的 iOS 项目中">
 <meta name="twitter:description" content="React Native 的原理请大家直接参看React Native 从入门到原理 - 简书，这篇文章简明扼要的讲了 react-native 是在怎样的愿景下产生的，以及 react-native 在 iOS 中运行的基本原理
@@ -366,14 +366,16 @@
 <p>Code-Push 上的教程已经非常明确了，我在这里也就不再赘述</p>
 <p>值得注意的一点是，发布到正式环境的命令为：</p>
 <p><code>code-push release-react YOUR_APP_NAME ios --plistFile YOUR_APP_FOLDER/Info.plist --deploymentName Production --mandatory true</code></p>
-<h1 id="使用-react-native-的优劣"><a href="#使用-react-native-的优劣" class="headerlink" title="使用 react native 的优劣"></a>使用 react native 的优劣</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<p>另外附上我集成 Code-Push 并成功对其进行测试的 <a href="https://github.com/HaloWang/React-Native-Integration-Demo" target="_blank" rel="external">demo</a></p>
+<h1 id="使用-react-native-的优劣"><a href="#使用-react-native-的优劣" class="headerlink" title="使用 react native 的优劣"></a>使用 react native 的优劣</h1><p>我个人认为 rn 有如下的特点</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
 <li>适合 Web 人员入手</li>
 <li>部分页面可以重用</li>
 <li>有一些 web 开发中比较先进的理念</li>
 </ul>
 <h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
-<li>入手难度大，项目维护成本高</li>
-<li>动态性可以用 <a href="https://github.com/bang590/JSPatch" target="_blank" rel="external">JSPatch</a> 来替换</li>
+<li>原生应用开发者入手难度大</li>
+<li>项目架构更加复杂</li>
 </ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><a href="http://www.jianshu.com/p/978c4bd3a759" target="_blank" rel="external">React Native 从入门到原理 - 简书</a></li>
