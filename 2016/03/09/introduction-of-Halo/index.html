@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,9 +27,12 @@
 
 
 
+
+
+
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -37,31 +40,25 @@
   
   
   
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-    
-      
-    
-
-    
   
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -69,23 +66,21 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="WangCe, HaloWang, Swift, iOS" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="王策的博客" type="application/atom+xml" />
+  <meta name="keywords" content="iOS," />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -111,7 +106,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
 <meta property="og:image" content="http://yoursite.com/image_002/log.png">
 <meta property="og:image" content="http://yoursite.com/image_002/FangYuanDemo.png">
 <meta property="og:image" content="http://yoursite.com/image_002/badDemo.png">
-<meta property="og:updated_time" content="2016-04-09T14:43:47.000Z">
+<meta property="og:updated_time" content="2017-01-02T15:53:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Halo.framework">
 <meta name="twitter:description" content="简介Halo 是我使用 Swift 开发 iOS 应用一年下来所积累的一个工具库（当然也会有些以前 ObjC 的“遗老”），这篇文章中我会简单说明一下自己是如何设计并使用 Halo 的
@@ -123,24 +118,35 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://yoursite.com/2016/03/09/introduction-of-Halo/"/>
+
+
+
+
 
   <title> Halo.framework | 王策的博客 </title>
 </head>
@@ -151,15 +157,9 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
 
 
 
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?a733bbad9b2b7096455b1de7838af11d";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
+
+
+
 
 
 
@@ -187,7 +187,9 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">一个 iOS 开发者</p>
+    
+      <p class="site-subtitle">一名编程爱好者</p>
+    
 </div>
 
 <div class="site-nav-toggle">
@@ -232,6 +234,8 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -245,13 +249,26 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
     
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/09/introduction-of-Halo/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="HaloWang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/avatar.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="王策的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="王策的博客" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -270,34 +287,38 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-09T22:46:39+08:00" content="2016-03-09">
-              2016-03-09
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-09T22:46:39+08:00">
+                2016-03-09
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/09/introduction-of-Halo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/09/introduction-of-Halo/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -329,8 +350,7 @@ object.propertyD = valueD
     .propertyC(valueC)
     .propertyD(valueD)
 </code></pre><p>效果图：</p>
-<p><img src="/image_002/ChainableMethods.png" alt=""></p>
-<p>我这样作的主要原因有：</p>
+<p><img src="/image_002/ChainableMethods.png" alt=""><br>​<br>我这样作的主要原因有：</p>
 <ul>
 <li>不喜欢在设置 object 的若干属性时每次都要多写一个 object</li>
 <li>可以在 map 等函数中设置属性的同时返回结果</li>
@@ -462,7 +482,7 @@ class ViewController: UIViewController {
         testView_B.backgroundColor = UIColor.blueColor()
     }
 }
-</code></pre><p>可以看到 FangYuan 能简化很多代码，就算是和 Masonry 相比，也能省下不少代码，同时也还能实现同样的效果</p>
+</code></pre><p>可以看到 FangYuan 能简化很多代码，就算是和 Masonry 相比，也能省下不少代码，同时也还能实现同样的效果<br>​    </p>
 <h4 id="FangYuan-的缺点"><a href="#FangYuan-的缺点" class="headerlink" title="FangYuan 的缺点"></a>FangYuan 的缺点</h4><ul>
 <li>需要知道在<code>UIView.superView</code>存在时才有效</li>
 <li>FangYuan 的诸多方法需要在<code>layoutSubviews</code>或<code>viewWillLayoutSubviews</code>调用才能保证随<code>superView.frame</code>的变化而变化，比如上述代码的ViewController外如果嵌套在一个 NavigationController中，会出现这种情况（因为FangYuan的方法写在了<code>viewDidLoad</code>中）：</li>
@@ -500,7 +520,18 @@ class ViewController: UIViewController {
       
     </div>
 
+
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
       
 
       
@@ -512,6 +543,8 @@ class ViewController: UIViewController {
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -535,17 +568,13 @@ class ViewController: UIViewController {
     </div>
   </div>
 
-
+          
           </div>
           
 
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/03/09/introduction-of-Halo/"
-           data-title="Halo.framework" data-url="http://yoursite.com/2016/03/09/introduction-of-Halo/">
-      </div>
     
   </div>
 
@@ -578,35 +607,38 @@ class ViewController: UIViewController {
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpeg"
-               alt="WangCe" />
-          <p class="site-author-name" itemprop="name">WangCe</p>
+               src="/avatar.jpeg"
+               alt="HaloWang" />
+          <p class="site-author-name" itemprop="name">HaloWang</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
 
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
         
 
         <div class="links-of-author motion-element">
@@ -621,15 +653,6 @@ class ViewController: UIViewController {
                 </a>
               </span>
             
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/u/1782552423" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
           
         </div>
 
@@ -639,19 +662,27 @@ class ViewController: UIViewController {
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链式语法"><span class="nav-text">链式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Halo-详细介绍"><span class="nav-text">Halo 详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-Halo"><span class="nav-text">Swift+Halo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CGFloatable-swift"><span class="nav-text">CGFloatable.swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-Halo-swift"><span class="nav-text">Print+Halo.swift</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIKit-Halo"><span class="nav-text">UIKit+Halo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyboardObserver"><span class="nav-text">KeyboardObserver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方圆（FangYuan）"><span class="nav-text">方圆（FangYuan）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我是这样想的"><span class="nav-text">我是这样想的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单展示"><span class="nav-text">简单展示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用任何第三方布局方式："><span class="nav-text">不使用任何第三方布局方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的缺点"><span class="nav-text">FangYuan 的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的使用情况"><span class="nav-text">FangYuan 的使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在你的项目中集成-Halo-framework"><span class="nav-text">如何在你的项目中集成 Halo.framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods（推荐）"><span class="nav-text">CocoaPods（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carthage"><span class="nav-text">Carthage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-Carthage-上线到-AppStore-时的坑"><span class="nav-text">使用 Carthage 上线到 AppStore 时的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现在"><span class="nav-text">现在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将来"><span class="nav-text">将来</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">2.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链式语法"><span class="nav-number">2.1.</span> <span class="nav-text">链式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Halo-详细介绍"><span class="nav-number">3.</span> <span class="nav-text">Halo 详细介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-Halo"><span class="nav-number">3.1.</span> <span class="nav-text">Swift+Halo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CGFloatable-swift"><span class="nav-number">3.1.1.</span> <span class="nav-text">CGFloatable.swift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-Halo-swift"><span class="nav-number">3.1.2.</span> <span class="nav-text">Print+Halo.swift</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIKit-Halo"><span class="nav-number">3.2.</span> <span class="nav-text">UIKit+Halo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyboardObserver"><span class="nav-number">3.3.</span> <span class="nav-text">KeyboardObserver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方圆（FangYuan）"><span class="nav-number">3.4.</span> <span class="nav-text">方圆（FangYuan）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我是这样想的"><span class="nav-number">3.4.1.</span> <span class="nav-text">我是这样想的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单展示"><span class="nav-number">3.4.2.</span> <span class="nav-text">简单展示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用任何第三方布局方式："><span class="nav-number">3.5.</span> <span class="nav-text">不使用任何第三方布局方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的缺点"><span class="nav-number">3.5.1.</span> <span class="nav-text">FangYuan 的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FangYuan-的使用情况"><span class="nav-number">3.5.2.</span> <span class="nav-text">FangYuan 的使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在你的项目中集成-Halo-framework"><span class="nav-number">4.</span> <span class="nav-text">如何在你的项目中集成 Halo.framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods（推荐）"><span class="nav-number">4.1.</span> <span class="nav-text">CocoaPods（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carthage"><span class="nav-number">4.2.</span> <span class="nav-text">Carthage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-Carthage-上线到-AppStore-时的坑"><span class="nav-number">4.2.1.</span> <span class="nav-text">使用 Carthage 上线到 AppStore 时的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现在"><span class="nav-number">5.1.</span> <span class="nav-text">现在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将来"><span class="nav-number">5.2.</span> <span class="nav-text">将来</span></a></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -666,16 +697,17 @@ class ViewController: UIViewController {
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">WangCe</span>
+  <span class="author" itemprop="copyrightHolder">HaloWang</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -684,6 +716,7 @@ class ViewController: UIViewController {
     NexT.Muse
   </a>
 </div>
+
 
         
 
@@ -716,77 +749,32 @@ class ViewController: UIViewController {
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"haloWang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
-
-
-
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
@@ -794,10 +782,60 @@ class ViewController: UIViewController {
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
 
   
 
   
+
+  
+
 
 </body>
 </html>

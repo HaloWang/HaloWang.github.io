@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,9 +27,12 @@
 
 
 
+
+
+
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -37,31 +40,25 @@
   
   
   
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-    
-      
-    
-
-    
   
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -69,25 +66,21 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="WangCe, HaloWang, Swift, iOS" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-  
-
-
-  <link rel="alternate" href="/atom.xml" title="王策的博客" type="application/atom+xml" />
+  <meta name="keywords" content="JavaScript,iOS," />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -112,7 +105,7 @@
 <meta property="og:image" content="http://yoursite.com/image_001/callNative.gif">
 <meta property="og:image" content="http://yoursite.com/image_001/callJS.gif">
 <meta property="og:image" content="http://yoursite.com/image_001/callJS_2.gif">
-<meta property="og:updated_time" content="2016-04-08T12:21:30.000Z">
+<meta property="og:updated_time" content="2017-01-02T15:54:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Swift 环境下使用 JavaScriptCore 和本地代码交互">
 <meta name="twitter:description" content="缘由最近被问起这样的问题，所以把自己知道的写出来包括 Web 端调用 Native 和 Native 调用 Web，算是记录一下
@@ -123,24 +116,35 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://yoursite.com/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/"/>
+
+
+
+
 
   <title> 在 Swift 环境下使用 JavaScriptCore 和本地代码交互 | 王策的博客 </title>
 </head>
@@ -151,15 +155,9 @@
 
 
 
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?a733bbad9b2b7096455b1de7838af11d";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
+
+
+
 
 
 
@@ -187,7 +185,9 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">一个 iOS 开发者</p>
+    
+      <p class="site-subtitle">一名编程爱好者</p>
+    
 </div>
 
 <div class="site-nav-toggle">
@@ -232,6 +232,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -245,13 +247,26 @@
     
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="HaloWang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/avatar.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="王策的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="王策的博客" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -270,34 +285,38 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-01T23:36:50+08:00" content="2016-03-01">
-              2016-03-01
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-01T23:36:50+08:00">
+                2016-03-01
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -315,13 +334,8 @@
 <h2 id="目录文件介绍"><a href="#目录文件介绍" class="headerlink" title="目录文件介绍"></a>目录文件介绍</h2><h3 id="ViewController-swift"><a href="#ViewController-swift" class="headerlink" title="ViewController.swift"></a>ViewController.swift</h3><p>ViewController.swift 主要配合 Main.storyboard 绘制了 UI 元素<br>接下来绝大部分代码工作将在这个文件中进行<br><code>viewDidLoad</code>方法中主要是让 webView 加载 Bundle 中的 html 文件<br><img src="/image_001/viewController.png" alt=""></p>
 <h3 id="JavaScriptCoreDemo-html"><a href="#JavaScriptCoreDemo-html" class="headerlink" title="JavaScriptCoreDemo.html"></a>JavaScriptCoreDemo.html</h3><p>这个文件主要用来模拟实际使用时我们会遇到的 web 页面<br><img src="/image_001/webPage.png" alt=""></p>
 <h2 id="Web-端调用-iOS-端代码"><a href="#Web-端调用-iOS-端代码" class="headerlink" title="Web 端调用 iOS 端代码"></a>Web 端调用 iOS 端代码</h2><p>我将其分为了如下步骤</p>
-<h3 id="为-WebView-注册代理，并实现代理方法"><a href="#为-WebView-注册代理，并实现代理方法" class="headerlink" title="为 WebView 注册代理，并实现代理方法"></a>为 WebView 注册代理，并实现代理方法</h3><p><code>webView.delegate = self</code></p>
-<pre><code>extension ViewController : UIWebViewDelegate {
-    func webViewDidFinishLoad(webView: UIWebView) {
-        //    Waiting
-    }
-}
-</code></pre><h3 id="获取到当前-Web-页面中的上下文"><a href="#获取到当前-Web-页面中的上下文" class="headerlink" title="获取到当前 Web 页面中的上下文"></a>获取到当前 Web 页面中的上下文</h3><pre><code>func webViewDidFinishLoad(webView: UIWebView) {
+<h3 id="为-WebView-注册代理，并实现代理方法"><a href="#为-WebView-注册代理，并实现代理方法" class="headerlink" title="为 WebView 注册代理，并实现代理方法"></a>为 WebView 注册代理，并实现代理方法</h3><p><code>webView.delegate = self</code><br>​<br>​<br>    extension ViewController : UIWebViewDelegate {<br>        func webViewDidFinishLoad(webView: UIWebView) {<br>            //    Waiting<br>        }<br>    }</p>
+<h3 id="获取到当前-Web-页面中的上下文"><a href="#获取到当前-Web-页面中的上下文" class="headerlink" title="获取到当前 Web 页面中的上下文"></a>获取到当前 Web 页面中的上下文</h3><pre><code>func webViewDidFinishLoad(webView: UIWebView) {
     context = webView.valueForKeyPath(&quot;documentView.webView.mainFrame.javaScriptContext&quot;) as? JSContext
     //    Waiting
 }
@@ -354,8 +368,7 @@
     print(paramFromJS)
 
 }
-</code></pre><p>其中 Alert 类来自于 Halo.framework，用来通知自己原生代码已经接受到了 web 端的调用，对 UIAlertController 做了简单的封装，不必关心</p>
-<p>在上一步中的 <code>Waiting</code> 注释处调用</p>
+</code></pre><p>其中 Alert 类来自于 Halo.framework，用来通知自己原生代码已经接受到了 web 端的调用，对 UIAlertController 做了简单的封装，不必关心<br>​<br>在上一步中的 <code>Waiting</code> 注释处调用</p>
 <pre><code>let callBack : @convention(block) (AnyObject?) -&gt; Void = { [weak self] (paramFromJS) -&gt; Void in
     self?.fromJS(paramFromJS)    
 }
@@ -366,8 +379,7 @@
 <p>PS: 还有一个问题，上面的代码大家是不是有点害怕？优雅的 Swift 怎么会出现 <code>unsafeBitCast(callBack, AnyObject.self)</code> 这样的代码！大家可以看看 <a href="http://nshipster.cn/javascriptcore" target="_blank" rel="external">这里</a><br>期待 iOS10 SDK 中 Swift 环境下，JSContext 可以实现下标访问</p>
 <p>PS2: 另外，我在这里将 paramFromJS 声明为了 AnyObject? 类型，JavaScriptCore 是可以自动将 js 传递的参数做转换的，上面例子中，我们通过</p>
 <pre><code>print(paramFromJS!.dynamicType)
-</code></pre><p>可以发现 paramFromJS 被转化为了<code>__NSDictionaryM</code><br>关于 dynamicType，请看<a href="http://swifter.tips/instance-type/" target="_blank" rel="external">这里</a></p>
-<p><strong>运行程序</strong></p>
+</code></pre><p>可以发现 paramFromJS 被转化为了<code>__NSDictionaryM</code><br>关于 dynamicType，请看<a href="http://swifter.tips/instance-type/" target="_blank" rel="external">这里</a><br>​<br><strong>运行程序</strong></p>
 <p>此时控制台输出：</p>
 <p><img src="/image_001/consolo.png" alt=""></p>
 <p>模拟器：</p>
@@ -383,18 +395,14 @@
     let params : [AnyObject]! = [&quot;Hello JS! \(arc4random() % 10)&quot;]
     context?.objectForKeyedSubscript(&quot;fromNative&quot;).callWithArguments(params)
 }
-</code></pre><p><em>arc4random() % 10 的作用是为了产生随机取以区分多次点击</em></p>
-<p>在 rightBarButtonClick 中调用：</p>
+</code></pre><p><em>arc4random() % 10 的作用是为了产生随机取以区分多次点击</em><br>​<br>在 rightBarButtonClick 中调用：</p>
 <pre><code>@IBAction func rightBarButtonClick(sender: UIBarButtonItem) {
     callJS()
 }
 </code></pre><p>web 页面产生了如下变化：</p>
 <p><img src="/image_001/callJS.gif" alt=""></p>
-<h3 id="直接注入一段-JS-代码"><a href="#直接注入一段-JS-代码" class="headerlink" title="直接注入一段 JS 代码"></a>直接注入一段 JS 代码</h3><p>在 ViewController 类中，实现 evaluateJS 方法：</p>
-<pre><code>func evaluateJS() {
-    context?.evaluateScript(&quot;alert(\&quot;你调用了 JS\&quot;)&quot;)
-}
-</code></pre><p>在 rightBarButtonClick 中调用：</p>
+<h3 id="直接注入一段-JS-代码"><a href="#直接注入一段-JS-代码" class="headerlink" title="直接注入一段 JS 代码"></a>直接注入一段 JS 代码</h3><p>在 ViewController 类中，实现 evaluateJS 方法：<br>​<br>    func evaluateJS() {<br>        context?.evaluateScript(“alert(\”你调用了 JS\”)”)<br>    }</p>
+<p>在 rightBarButtonClick 中调用：</p>
 <pre><code>@IBAction func rightBarButtonClick(sender: UIBarButtonItem) {
     evaluateJS()
 }
@@ -433,7 +441,20 @@
       
     </div>
 
+
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        
       
 
       
@@ -445,6 +466,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -468,17 +491,13 @@
     </div>
   </div>
 
-
+          
           </div>
           
 
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/"
-           data-title="在 Swift 环境下使用 JavaScriptCore 和本地代码交互" data-url="http://yoursite.com/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/">
-      </div>
     
   </div>
 
@@ -511,35 +530,38 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpeg"
-               alt="WangCe" />
-          <p class="site-author-name" itemprop="name">WangCe</p>
+               src="/avatar.jpeg"
+               alt="HaloWang" />
+          <p class="site-author-name" itemprop="name">HaloWang</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
 
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
         
 
         <div class="links-of-author motion-element">
@@ -554,15 +576,6 @@
                 </a>
               </span>
             
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/u/1782552423" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
           
         </div>
 
@@ -572,19 +585,27 @@
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缘由"><span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录文件介绍"><span class="nav-text">目录文件介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewController-swift"><span class="nav-text">ViewController.swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScriptCoreDemo-html"><span class="nav-text">JavaScriptCoreDemo.html</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-端调用-iOS-端代码"><span class="nav-text">Web 端调用 iOS 端代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为-WebView-注册代理，并实现代理方法"><span class="nav-text">为 WebView 注册代理，并实现代理方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取到当前-Web-页面中的上下文"><span class="nav-text">获取到当前 Web 页面中的上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册回调"><span class="nav-text">注册回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展示-Web-页面传递过来的的参数"><span class="nav-text">展示 Web 页面传递过来的的参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-端调用-Web-的-js-代码"><span class="nav-text">iOS 端调用 Web 的 js 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用-Web-页面中已经实现好的-JS"><span class="nav-text">调用 Web 页面中已经实现好的 JS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接注入一段-JS-代码"><span class="nav-text">直接注入一段 JS 代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题外话"><span class="nav-text">题外话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-text">相关链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缘由"><span class="nav-number">1.</span> <span class="nav-text">缘由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录文件介绍"><span class="nav-number">2.</span> <span class="nav-text">目录文件介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewController-swift"><span class="nav-number">2.1.</span> <span class="nav-text">ViewController.swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScriptCoreDemo-html"><span class="nav-number">2.2.</span> <span class="nav-text">JavaScriptCoreDemo.html</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-端调用-iOS-端代码"><span class="nav-number">3.</span> <span class="nav-text">Web 端调用 iOS 端代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为-WebView-注册代理，并实现代理方法"><span class="nav-number">3.1.</span> <span class="nav-text">为 WebView 注册代理，并实现代理方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取到当前-Web-页面中的上下文"><span class="nav-number">3.2.</span> <span class="nav-text">获取到当前 Web 页面中的上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册回调"><span class="nav-number">3.3.</span> <span class="nav-text">注册回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展示-Web-页面传递过来的的参数"><span class="nav-number">3.4.</span> <span class="nav-text">展示 Web 页面传递过来的的参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-端调用-Web-的-js-代码"><span class="nav-number">4.</span> <span class="nav-text">iOS 端调用 Web 的 js 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用-Web-页面中已经实现好的-JS"><span class="nav-number">4.1.</span> <span class="nav-text">调用 Web 页面中已经实现好的 JS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接注入一段-JS-代码"><span class="nav-number">4.2.</span> <span class="nav-text">直接注入一段 JS 代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题外话"><span class="nav-number">5.</span> <span class="nav-text">题外话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">6.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -599,16 +620,17 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">WangCe</span>
+  <span class="author" itemprop="copyrightHolder">HaloWang</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -617,6 +639,7 @@
     NexT.Muse
   </a>
 </div>
+
 
         
 
@@ -649,77 +672,32 @@
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"haloWang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
-
-
-
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
@@ -727,10 +705,60 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
 
   
 
   
+
+  
+
 
 </body>
 </html>
