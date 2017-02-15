@@ -99,7 +99,7 @@
 集成至现有的 iOS 项目中主要参考 Integration With Existing Apps 即可，其基本逻辑为：
 
 使用 npm 获取 react-native">
-<meta property="og:updated_time" content="2017-02-13T07:55:07.000Z">
+<meta property="og:updated_time" content="2017-02-15T08:52:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="将 React Native 集成至现有的 iOS 项目中">
 <meta name="twitter:description" content="React Native 的原理请大家直接参看React Native 从入门到原理 - 简书，这篇文章简明扼要的讲了 react-native 是在怎样的愿景下产生的，以及 react-native 在 iOS 中运行的基本原理
@@ -335,8 +335,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">├── index.ios.js</div><div class="line">├── ios</div><div class="line">│   ├── Podfile</div><div class="line">│   ├── Podfile.lock</div><div class="line">│   ├── Pods</div><div class="line">│   ├── your_project</div><div class="line">│   ├── your_project.xcodeproj</div><div class="line">│   └── your_project.xcworkspace</div><div class="line">├── node_modules</div><div class="line">│   ├── react</div><div class="line">│   ├── react-native</div><div class="line">│   ...</div><div class="line">└── package.json</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>这里我就数一下学习使用过程中值得注意的地方</p>
-<h2 id="live-reload"><a href="#live-reload" class="headerlink" title="live-reload"></a>live-reload</h2><p>在模拟器下直接 <code>⌘+D</code> 打开开发者菜单，选择 <code>Enable Live Reload</code> 即可，可以很大程度上提高开发效率</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>这里我就说一下学习使用过程中值得注意的地方</p>
+<h2 id="live-reload"><a href="#live-reload" class="headerlink" title="live-reload"></a>live-reload</h2><p>这是我非常喜欢的一个 react-native 开发时的特性，在模拟器下直接 <code>⌘+D</code> 打开开发者菜单，选择 <code>Enable Live Reload</code> 即可，可以很大程度上提高开发效率。</p>
+<p>下面是 react-native 官网对这个特性的描述</p>
+<blockquote>
+<p><strong>Don’t Waste Time Recompiling</strong></p>
+<p>React Native lets you build your app faster. Instead of recompiling, you can reload your app instantly. With hot reloading, you can even run new code while retaining your application state. Give it a try - it’s a magical experience.</p>
+</blockquote>
 <p><a href="https://facebook.github.io/react-native/blog/2016/03/24/introducing-hot-reloading.html" target="_blank" rel="external">官方博客</a></p>
 <h2 id="iOS-调用原生代码"><a href="#iOS-调用原生代码" class="headerlink" title="iOS 调用原生代码"></a>iOS 调用原生代码</h2><p>请直接看这里 <a href="https://facebook.github.io/react-native/releases/next/docs/native-modules-ios.html" target="_blank" rel="external">Native Modules iOS</a></p>
 <p>核心步骤其实就是：</p>
@@ -352,28 +357,26 @@
 <p>The style names and values usually match how CSS works on the web, except names are written using camel casing, e.g backgroundColor rather than background-color.</p>
 <p>（react-native 中）样式名称和值通常和在 web 页面上工作的 CSS 相匹配，不同的是样式名称使用驼峰命名法，比如 backgroundColor 对应 background-color</p>
 </blockquote>
-<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>这里我的理解可能还不够深刻，请见谅</p>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>react-native 组件间的数据传递和 iOS native code 有很大的不同，它直接使用了 react 的数据传递机制，官网上对其有详细的说明</p>
 <h3 id="Prop"><a href="#Prop" class="headerlink" title="Prop"></a>Prop</h3><p>不可变的值，在组件初始化时设定，设定方式如下：</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Component Prop1=Value1 Prop2=Value2&gt;&lt;/Component&gt;</div></pre></td></tr></table></figure>
 <h3 id="State"><a href="#State" class="headerlink" title="State"></a>State</h3><p>可变值，调用 <code>setState</code> 后，该组件的 render 会被重新调用，以根据 state 控制 UI</p>
-<h2 id="UI-组件"><a href="#UI-组件" class="headerlink" title="UI 组件"></a>UI 组件</h2><p>rn 提供了非常多的 UI 组件，我个人认为还是先大致看一遍各个组件的名字，下载一下官方的 <a href="https://github.com/facebook/react-native#examples" target="_blank" rel="external">UIExplorer</a> 运行看一下，等真正开发的时候在仔细钻研每个组件使用方式</p>
+<h2 id="UI-组件"><a href="#UI-组件" class="headerlink" title="UI 组件"></a>UI 组件</h2><p>rn 提供了非常多的 UI 组件，我个人认为还是先简要浏览一遍各个组件，下载一下官方的 <a href="https://github.com/facebook/react-native#examples" target="_blank" rel="external">UIExplorer</a> 运行一下，等真正开发的时候再仔细钻研每个组件使用方式</p>
 <h1 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h1><p>打包发布至 AppStore 时，我们需要在 Xcode &gt; Build Phases 中添加 Run Script Phase:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export NODE_BINARY=node</div><div class="line">../node_modules/react-native/packager/react-native-xcode.sh</div></pre></td></tr></table></figure>
 <p>通过执行脚本 node_modules/react-native 中的脚本，将 index.ios.js 以及其他 js 文件编译成 main.jsbundle</p>
 <p>在 release 环境下运行的 App, react-native 默认会读取 bundle 中的 <code>main.jsbundle</code> 而非开发时由 node 动态编译的 index.ios.js 及其他资源文件</p>
 <h1 id="热更新"><a href="#热更新" class="headerlink" title="热更新"></a>热更新</h1><p>上面讲到的发布中 react-native <strong>默认</strong>读取 bundle 中的 <code>main.jsbundle</code>，而 react-native 热更新的原理就是让 react-native 热更新插件从服务器读取最新的 main.jsbundle 并交由 react-native 解析执行</p>
-<p>目前国内的 <a href="http://update.reactnative.cn/home" target="_blank" rel="external">React Native热更新开放平台 - ReactNative中文网</a> 不支持在使用 Cocoapods 集成，所以我选择了 <a href="https://microsoft.github.io/code-push/" target="_blank" rel="external">Code Push</a></p>
+<p>这里我直接使用了 <a href="https://microsoft.github.io/code-push/" target="_blank" rel="external">Code Push</a></p>
 <p>Code-Push 上的教程已经非常明确了，我在这里也就不再赘述</p>
 <p>值得注意的一点是，发布到正式环境的命令为：</p>
-<p><code>code-push release-react YOUR_APP_NAME ios --plistFile YOUR_APP_FOLDER/Info.plist --deploymentName Production --mandatory true</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">code-push release-react YOUR_APP_NAME ios --plistFile YOUR_APP_FOLDER_PATH/Info.plist --deploymentName Production --mandatory true</div></pre></td></tr></table></figure>
 <p>另外附上我集成 Code-Push 并成功对其进行测试的 <a href="https://github.com/HaloWang/React-Native-Integration-Demo" target="_blank" rel="external">demo</a></p>
-<h1 id="使用-react-native-的优劣"><a href="#使用-react-native-的优劣" class="headerlink" title="使用 react native 的优劣"></a>使用 react native 的优劣</h1><p>我个人认为 rn 有如下的特点</p>
+<h1 id="使用-react-native-的优劣"><a href="#使用-react-native-的优劣" class="headerlink" title="使用 react native 的优劣"></a>使用 react native 的优劣</h1><p>我个人认为 react-native 有如下的特点</p>
 <h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
 <li>适合 Web 人员入手</li>
 <li>部分页面可以重用</li>
-<li>有一些 web 开发中比较先进的理念</li>
-</ul>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>有一些 web 开发中比较先进的理念<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2></li>
 <li>原生应用开发者入手难度大</li>
 <li>项目架构更加复杂</li>
 </ul>
