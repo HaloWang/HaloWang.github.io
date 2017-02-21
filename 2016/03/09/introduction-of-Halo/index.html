@@ -123,7 +123,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -192,31 +192,33 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">王策的博客</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">王策的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一名编程爱好者</p>
+      
   </div>
-    
-      <p class="site-subtitle">一名编程爱好者</p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -313,7 +315,7 @@ Halo 使用 Swift 编写，仅支持 iOS 平台
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-09T22:46:39+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-09T22:46:39+08:00">
                 2016-03-09
               </time>
             
@@ -707,15 +709,6 @@ class ViewController: UIViewController {
                 </a>
               </span>
             
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/wang-ce-28" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
           
         </div>
 
@@ -762,6 +755,8 @@ class ViewController: UIViewController {
       <!--/noindex-->
       
 
+      
+
     </div>
   </aside>
 
@@ -801,9 +796,13 @@ class ViewController: UIViewController {
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
   </div>
 
   
@@ -920,6 +919,8 @@ class ViewController: UIViewController {
 
   
 
+
+  
 
 </body>
 </html>
