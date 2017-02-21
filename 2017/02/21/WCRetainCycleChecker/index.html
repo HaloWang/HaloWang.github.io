@@ -99,7 +99,7 @@ Method Swizzling UIViewController.viewDidDisapp">
 原理WCRetainCycleChecker 的原理如下：
 
 Method Swizzling UIViewController.viewDidDisapp">
-<meta property="og:updated_time" content="2017-02-21T05:59:39.000Z">
+<meta property="og:updated_time" content="2017-02-21T06:06:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自动化检查 UIViewController 中的循环引用">
 <meta name="twitter:description" content="目的平时开发 iOS 应用时，有时候一不留神就可能在 UIViewController 中留下循环引用，所以我写了一个叫 WCRetainCycleChecker 的工具，专门用来简单快捷的检查 UIViewController 中的内存泄漏
@@ -368,7 +368,7 @@ Method Swizzling UIViewController.viewDidDisapp">
 <li><code>WCRetainCycleChecker.retainCycleFound</code> 发现可能的循环引用时执行的回调，结合 <a href="https://github.com/facebook/FBRetainCycleDetector" target="_blank" rel="external">FBRetainCycleDetector</a> 使用更佳</li>
 </ul>
 <p>demo:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#if DEBUG</div><div class="line">    [WCRetainCycleChecker setCheckDelay:2];</div><div class="line">    [WCRetainCycleChecker shouldDefaultWarning:NO];</div><div class="line">    [WCRetainCycleChecker retainCycleFound:^(UIViewController *viewController) &#123;</div><div class="line">        NSLog(@&quot;⁉️&quot;);</div><div class="line">        NSLog(@&quot;%@&quot;, viewController);</div><div class="line">    &#125;];</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#import &lt;WCRetainCycleChecker/WCRetainCycleChecker.h&gt;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">#if DEBUG</div><div class="line">    [WCRetainCycleChecker setCheckDelay:2];</div><div class="line">    [WCRetainCycleChecker shouldDefaultWarning:NO];</div><div class="line">    [WCRetainCycleChecker retainCycleFound:^(UIViewController *viewController) &#123;</div><div class="line">        NSLog(@&quot;⁉️&quot;);</div><div class="line">        NSLog(@&quot;%@&quot;, viewController);</div><div class="line">    &#125;];</div><div class="line">#endif</div></pre></td></tr></table></figure>
 <h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p>刚刚把这个公开出来，就有朋友告知存在一个更为强大的 repo：<a href="https://github.com/Zepo/MLeaksFinder" target="_blank" rel="external">MLeaksFinder</a>😅</p>
 
       
