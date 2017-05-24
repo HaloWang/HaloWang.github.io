@@ -13,6 +13,9 @@
 
 
 
+
+
+
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
@@ -68,7 +71,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="iOS,retain-cycle,cococapods," />
@@ -80,7 +83,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
 
@@ -114,11 +117,11 @@ Method Swizzling UIViewController.viewDidDisapp">
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0},
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: '博主'
     },
     algolia: {
@@ -139,7 +142,7 @@ Method Swizzling UIViewController.viewDidDisapp">
 
 
 
-  <title> 自动化检查 UIViewController 中的循环引用 | 王策的博客 </title>
+  <title>自动化检查 UIViewController 中的循环引用 | 王策的博客</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -178,12 +181,13 @@ Method Swizzling UIViewController.viewDidDisapp">
 
 
 
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -267,34 +271,24 @@ Method Swizzling UIViewController.viewDidDisapp">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/21/WCRetainCycleChecker/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/21/WCRetainCycleChecker/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="HaloWang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/avatar.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="王策的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="王策的博客" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HaloWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.jpeg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王策的博客">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                自动化检查 UIViewController 中的循环引用
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">自动化检查 UIViewController 中的循环引用</h1>
         
 
         <div class="post-meta">
@@ -320,16 +314,6 @@ Method Swizzling UIViewController.viewDidDisapp">
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/21/WCRetainCycleChecker/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/21/WCRetainCycleChecker/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -344,7 +328,6 @@ Method Swizzling UIViewController.viewDidDisapp">
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -390,6 +373,12 @@ Method Swizzling UIViewController.viewDidDisapp">
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -435,39 +424,16 @@ Method Swizzling UIViewController.viewDidDisapp">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/02/21/WCRetainCycleChecker/"
-     data-title="自动化检查 UIViewController 中的循环引用"
-     data-content=""
-     data-url="http://yoursite.com/2017/02/21/WCRetainCycleChecker/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
-          
+
           </div>
           
 
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/02/21/WCRetainCycleChecker/"
-           data-title="自动化检查 UIViewController 中的循环引用" data-url="http://yoursite.com/2017/02/21/WCRetainCycleChecker/">
-      </div>
     
   </div>
 
@@ -511,7 +477,7 @@ Method Swizzling UIViewController.viewDidDisapp">
           
         </div>
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
@@ -524,9 +490,11 @@ Method Swizzling UIViewController.viewDidDisapp">
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -641,7 +609,7 @@ Method Swizzling UIViewController.viewDidDisapp">
         
       </div>
     
-    
+
   </div>
 
   
@@ -661,6 +629,14 @@ Method Swizzling UIViewController.viewDidDisapp">
 
 
   
+
+
+
+
+
+
+
+
 
 
 
@@ -687,60 +663,55 @@ Method Swizzling UIViewController.viewDidDisapp">
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
 
 
 
   
+  
 
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
 
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"halowang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
 
   
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+
+  
+
+
+
+
+	
+
+
+
+
+
   
 
 
 
 
 
+  
 
 
+
+
+
+  
 
 
 
@@ -748,7 +719,10 @@ Method Swizzling UIViewController.viewDidDisapp">
 
 
   
-  
+
+
+
+
 
   
 
@@ -757,7 +731,6 @@ Method Swizzling UIViewController.viewDidDisapp">
   
 
   
-
 
   
 

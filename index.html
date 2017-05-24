@@ -13,6 +13,9 @@
 
 
 
+
+
+
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
@@ -68,7 +71,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -80,7 +83,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
 
@@ -101,11 +104,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0},
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: '博主'
     },
     algolia: {
@@ -126,7 +129,7 @@
 
 
 
-  <title> 王策的博客 </title>
+  <title>王策的博客</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -165,12 +168,13 @@
 
 
 
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right 
+  <div class="container sidebar-position-right 
    page-home 
  ">
     <div class="headband"></div>
@@ -256,20 +260,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/21/WCRetainCycleChecker/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/21/WCRetainCycleChecker/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="HaloWang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/avatar.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="王策的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="王策的博客" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HaloWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.jpeg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王策的博客">
+    </span>
 
     
       <header class="post-header">
@@ -277,16 +278,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2017/02/21/WCRetainCycleChecker/" itemprop="url">
-                  自动化检查 UIViewController 中的循环引用
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2017/02/21/WCRetainCycleChecker/" itemprop="url">自动化检查 UIViewController 中的循环引用</a></h1>
         
 
         <div class="post-meta">
@@ -312,16 +305,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/21/WCRetainCycleChecker/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/21/WCRetainCycleChecker/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -336,7 +319,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -368,6 +350,9 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -394,20 +379,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/02/React-Native/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/02/React-Native/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="HaloWang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/avatar.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="王策的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="王策的博客" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HaloWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.jpeg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王策的博客">
+    </span>
 
     
       <header class="post-header">
@@ -415,16 +397,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2017/01/02/React-Native/" itemprop="url">
-                  将 React Native 集成至现有的 iOS 项目中
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2017/01/02/React-Native/" itemprop="url">将 React Native 集成至现有的 iOS 项目中</a></h1>
         
 
         <div class="post-meta">
@@ -450,16 +424,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/02/React-Native/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/02/React-Native/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -474,7 +438,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -506,6 +469,9 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -532,20 +498,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/06/Feed-Forward-Neural-Network/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/06/Feed-Forward-Neural-Network/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="HaloWang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/avatar.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="王策的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="王策的博客" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HaloWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.jpeg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王策的博客">
+    </span>
 
     
       <header class="post-header">
@@ -553,16 +516,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/07/06/Feed-Forward-Neural-Network/" itemprop="url">
-                  关于神经网络
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/07/06/Feed-Forward-Neural-Network/" itemprop="url">关于神经网络</a></h1>
         
 
         <div class="post-meta">
@@ -588,16 +543,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/07/06/Feed-Forward-Neural-Network/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/Feed-Forward-Neural-Network/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -612,7 +557,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -646,6 +590,9 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -672,20 +619,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/09/introduction-of-Halo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/09/introduction-of-Halo/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="HaloWang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/avatar.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="王策的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="王策的博客" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HaloWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.jpeg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王策的博客">
+    </span>
 
     
       <header class="post-header">
@@ -693,16 +637,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/03/09/introduction-of-Halo/" itemprop="url">
-                  Halo.framework
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/03/09/introduction-of-Halo/" itemprop="url">Halo.framework</a></h1>
         
 
         <div class="post-meta">
@@ -728,16 +664,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/03/09/introduction-of-Halo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/09/introduction-of-Halo/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -752,7 +678,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -786,6 +711,9 @@ Ha
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -812,20 +740,17 @@ Ha
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="HaloWang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/avatar.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="王策的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="王策的博客" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HaloWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.jpeg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王策的博客">
+    </span>
 
     
       <header class="post-header">
@@ -833,16 +758,8 @@ Ha
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/" itemprop="url">
-                  在 Swift 环境下使用 JavaScriptCore 和本地代码交互
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/" itemprop="url">在 Swift 环境下使用 JavaScriptCore 和本地代码交互</a></h1>
         
 
         <div class="post-meta">
@@ -868,16 +785,6 @@ Ha
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/01/在 Swift 环境下使用 JavaScriptCore 和本地代码交互/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -892,7 +799,6 @@ Ha
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -926,6 +832,9 @@ Ha
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -952,20 +861,17 @@ Ha
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/01/first-article/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/01/first-article/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="HaloWang">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/avatar.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="王策的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="王策的博客" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HaloWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.jpeg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王策的博客">
+    </span>
 
     
       <header class="post-header">
@@ -973,16 +879,8 @@ Ha
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/03/01/first-article/" itemprop="url">
-                  写点什么好呢？
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/03/01/first-article/" itemprop="url">写点什么好呢？</a></h1>
         
 
         <div class="post-meta">
@@ -1008,16 +906,6 @@ Ha
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/03/01/first-article/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/01/first-article/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1032,7 +920,6 @@ Ha
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -1069,6 +956,9 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -1090,7 +980,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
 
   
 
-          
+
           </div>
           
 
@@ -1127,7 +1017,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
           
         </div>
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
@@ -1140,9 +1030,11 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -1241,7 +1133,7 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
         
       </div>
     
-    
+
   </div>
 
   
@@ -1261,6 +1153,14 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
 
 
   
+
+
+
+
+
+
+
+
 
 
 
@@ -1287,59 +1187,9 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"halowang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
-
-
-
-
-
-
-
-
-
-
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
 
 
 
@@ -1350,10 +1200,57 @@ JS 和 iOS 原生交互的若干种方法最近被问起这样的问题
 
   
 
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
 
+  
 
   
 
